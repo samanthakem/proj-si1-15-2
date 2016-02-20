@@ -6,4 +6,4 @@ Integrantes:
  - Gustavo Oliveira
  - Rafaella Chaves
  - Samantha Monteiro
- - Stenio Araujo
+ - Stênio Araújo
