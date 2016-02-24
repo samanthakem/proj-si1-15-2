@@ -1,0 +1,22 @@
+@(message: String)
+ 
+@main("Caronaê") {
+    <div class="panel panel-default panel-login">
+        <div class="panel-heading">
+            <h3 class="panel-title app-name">Caronaê</h3>
+        </div>
+        <div class="panel-body">
+            <form class="form-login">
+                <div class="form-group">
+                    <label for="inputEmail" class="sr-only">Matrícula</label>
+                    <input type="text" id="inputMatricula" class="form-control" pattern="^[0-9]*$" placeholder="Matrícula" required="" autofocus="">
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword" class="sr-only">Senha</label>
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required="">
+                </div>
+                <button class="btn btn-lg btn-primary btn-block btn-login" type="submit">Entrar</button>
+            </form>
+        </div>
+    </div>
+}

@@ -1,0 +1,16 @@
+body {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #eee;
+}
+
+.panel-login {
+	max-width: 350px;
+	margin: 15% auto;
+}
+
+.app-name {
+	text-align: center;
+}
+
+
