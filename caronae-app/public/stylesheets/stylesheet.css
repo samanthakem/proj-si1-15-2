@@ -1,0 +1,22 @@
+body{
+	height: 100%;
+}
+
+
+.center {
+   text-align:center;
+}
+
+.control-label {
+	margin-top: 7.5px;
+}
+
+.input {
+	overflow: hidden;
+	margin-top: 5px;
+	margin-bottom: 20px;
+}
+
+div >.well {
+	height: 100%;
+}
