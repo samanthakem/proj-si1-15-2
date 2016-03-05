@@ -1,0 +1,20 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+body {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #eee;
+    background-image: url("paper.gif");
+}
+
+.panel-login {
+  max-width: 350px;
+  margin: 15% auto;
+}
+
+.app-name {
+  text-align: center;
+}
