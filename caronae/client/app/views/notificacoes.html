@@ -12,19 +12,19 @@
 <div class="section principal">
   <div class="container-fluid">
 	<div class="list-group">
-	  <a href="#/notificacoes" class="list-group-item notificacao">
+	  <a href="#/notificacoes" class="list-group-item notificacao" ng-repeat="notification in notifications">
 		<div class="picture pull-left col-xs-2 col-sm-1">
 		  <img src="http://www.clker.com/cliparts/5/7/4/8/13099629981030824019profile.svg.med.png" class="img-responsive">
 		</div>
 		<div class="message pull-left col-xs-10 col-sm-11">
-		  <b>Stenio Elson</b>aceitou sua oferta para Carona.
+		  <b>{{notification.name}}</b>{{notification.message}}
 		  <div class="date text-right">
-			03/06/2016 02:10 PM
+			{{notification.time | date: 'medium'}}
 		  </div>
 		</div>
 		<div class="clearfix"></div>
 	  </a>
 	</div>
-	<a class="btn btn-block btn-lg">Mais</a>
+	<a class="btn btn-block btn-lg" ng-click="more()">Mais</a>
   </div>
 </div>
