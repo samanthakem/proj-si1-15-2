@@ -3,6 +3,11 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 
+// Cores
+$gray-base : #000;
+$gray-light : lighten($gray-base, 46.7%); // #777
+$gray-lighter : lighten($gray-base, 93.5%); // #eee
+
 body {
     background-color: #eee;
 }
@@ -20,4 +25,61 @@ body {
 
 .app-name {
   text-align: center;
+}
+
+//Notificacao e horarios CSS
+.section.principal {
+	margin-top: 60px;
+	margin-bottom: 120px;
+}
+//Horarios
+
+.my_times {
+  border: 1px $gray-lighter solid;
+  border-top: 0px;
+  margin-bottom: 80px;
+}
+
+.my_times li {
+  border: 0px;
+  border-bottom: 1px $gray-lighter solid;
+  margin-bottom: 2px;
+}
+
+.my_times > li:last-child {
+  border: 0px;
+}
+
+.day_times > .day {
+  padding-right: 10px;
+}
+.day_times > button {
+  margin: 0px 3px;
+}
+
+//Notificacao
+.notificacao {
+  border: 1px $gray-lighter solid;
+  margin-bottom: 10px;
+}
+
+.notificacao > .picture {
+  padding-right: 10px;
+}
+
+.notificacao > .message > b {
+  padding-right: 3px;
+}
+
+.notificacao > .message > .date {
+  font-size: 10px;
+}
+
+@media (min-width: 970px) {
+  .my_times {
+    margin-bottom: 10px;
+  }
+  .navbar-fixed-bottom {
+    position: relative;
+  }
 }
