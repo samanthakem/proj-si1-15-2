@@ -12,6 +12,10 @@ caronaeApp.config(function ($routeProvider) {
       templateUrl: 'views/main.html',
       controller: 'MainCtrl'
     })
+    .when("/inicio", {
+      templateUrl: 'views/inicio.html',
+      controller: 'InicioCtrl'
+    })
     .otherwise({
       redirectTo: '/'
     });
