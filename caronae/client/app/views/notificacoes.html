@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="container-fluid row">
+	<nav class="navbar navbar-default navbar-fixed-top col-xs-12" role="navigation">
+	  <div class="container-fluid">
+		<div class="navbar-header center">
+		  <a class="navbar-brand col-xs-12" href="/"><strong>Caronaê</strong></a>
+		</div>
+	  </div>
+	</nav>
+  </div>
+</div>
+<div class="section principal">
+  <div class="container-fluid">
+	<div class="list-group">
+	  <a href="#/notificacoes" class="list-group-item notificacao" ng-repeat="notification in notifications">
+		<div class="picture pull-left col-xs-2 col-sm-1">
+		  <img src="http://www.clker.com/cliparts/5/7/4/8/13099629981030824019profile.svg.med.png" class="img-responsive">
+		</div>
+		<div class="message pull-left col-xs-10 col-sm-11">
+		  <b>{{notification.name}}</b>{{notification.message}}
+		  <div class="date text-right">
+			{{notification.time | date: 'medium'}}
+		  </div>
+		</div>
+		<div class="clearfix"></div>
+	  </a>
+	</div>
+	<a class="btn btn-block btn-lg" ng-click="more()">Mais</a>
+  </div>
+</div>

@@ -12,7 +12,16 @@ caronaeApp.config(function ($routeProvider) {
       templateUrl: 'views/main.html',
       controller: 'MainCtrl'
     })
+	.when("/horarios", {
+	  templateUrl: 'views/horarios.html',
+	  controller: 'HorariosCtrl'
+	})
+	.when("/notificacoes", {
+	  templateUrl: 'views/notificacoes.html',
+	  controller: 'NotificacoesCtrl'
+	})
     .otherwise({
-      redirectTo: '/'
+      //redirectTo: '/'
+	  templateUrl: '404.html'
     });
 });
