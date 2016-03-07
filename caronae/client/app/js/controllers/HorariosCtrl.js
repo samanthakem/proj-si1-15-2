@@ -30,11 +30,13 @@ caronaeAppMain.controller('HorariosCtrl', ["$scope", function ($scope) {
 	$scope.tabBeingEdited = $scope.tab["Ida"];
 	
 	$scope.add = function(date) {
-		if ($scope.tabBeingEdited[date.day].indexOf(date.time) > -1) {
+		if (date && $scope.tabBeingEdited[date.day].indexOf(date.time) > -1) {
 			alert("Voce ja adicionou este horario.");
-		} else {
+		} else if (date && $scope.tabBeingEdited[date.day] && date.time){
 			$scope.tabBeingEdited[date.day].push(date.time);
 			$scope.empty[$scope.tabOpen] = false;
+		} else {
+			alert("Os campos não foram preenchidos corretamente.");
 		}
 	};
 	
