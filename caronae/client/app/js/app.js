@@ -4,22 +4,30 @@ var caronaeApp = angular.module('caronaeApp', ['ngAnimate', 'ngCookies', 'ngReso
 
 caronaeApp.config(function ($routeProvider) {
   $routeProvider
-    .when('/', {
+    .when("/", {
+      templateUrl: 'views/inicio.html',
+      controller: 'InicioCtrl'
+    })
+    .when('/login', {
       templateUrl: 'views/login.html',
       controller: 'LoginCtrl'
+    })
+    .when('/cadastro', {
+      templateUrl: 'views/signup.html',
+      controller: 'SignupCtrl'
     })
     .when('/main', {
       templateUrl: 'views/main.html',
       controller: 'MainCtrl'
     })
-	.when("/horarios", {
+	  .when("/horarios", {
 	  templateUrl: 'views/horarios.html',
 	  controller: 'HorariosCtrl'
-	})
-	.when("/notificacoes", {
+	  })
+	  .when("/notificacoes", {
 	  templateUrl: 'views/notificacoes.html',
 	  controller: 'NotificacoesCtrl'
-	})
+	  })
     .otherwise({
       //redirectTo: '/'
 	  templateUrl: '404.html'
