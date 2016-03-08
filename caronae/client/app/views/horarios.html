@@ -29,11 +29,11 @@
 	  <li class="list-group-item" ng-repeat="(day, times) in tabBeingEdited" ng-if="times.length != 0">
 		<div class="day_times">
 		  <spam class="pull-left day">{{day}}:</spam>
-		  <button type="button" class="btn btn-success btn-xs" ng-repeat="time in times | orderBy">{{time | date: "hh:mm a"}}</button>
+		  <button type="button" class="btn btn-success btn-xs" ng-click="remove(day, time)" ng-repeat="time in times | orderBy">{{time | date: "hh:mm a"}}</button>
 		</div>
 		<div class="clearfix"></div>
 	  </li>
-	  <div class="alert alert-warning" ng-if="empty[tabOpen]">
+	  <div class="alert alert-warning" ng-if="qntTimes[tabOpen] == 0">
 		Você ainda não tem nenhum horário de {{tabOpen}}
 	  </div>
 	</ul>
