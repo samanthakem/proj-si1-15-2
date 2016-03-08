@@ -21,8 +21,6 @@ caronaeAppSignup.controller('SignupCtrl', function ($scope,   $location) {
   $scope.warningFlag = false;
   $scope.noName=false;
 
-  console.log('working');
-
   $scope.continueSignup = function() {
     if($scope.newUser.name == null || $scope.newUser.name === ""){
       console.log("entrou if name  signup");
@@ -76,7 +74,7 @@ caronaeAppSignup.controller('SignupCtrl', function ($scope,   $location) {
 
       $scope.signupFlag = false;
       $scope.chooseTypeFlag=true;
-      $location.hash("#cadastrar");
+      //$location.hash("#cadastrar");
     }
   };
 
