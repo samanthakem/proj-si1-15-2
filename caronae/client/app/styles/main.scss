@@ -75,6 +75,30 @@ body {
   font-size: 10px;
 }
 
+//cadastro
+.center {
+  text-align:center;
+}
+
+.control-label {
+  margin-top: 7.5px;
+}
+
+.input {
+  overflow: hidden;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+div >.well {
+  height: 100%;
+}
+
+.jumbotron {
+  margin-top: 55px;
+  padding: 10px;
+}
+
 @media (min-width: 970px) {
   .my_times {
     margin-bottom: 10px;

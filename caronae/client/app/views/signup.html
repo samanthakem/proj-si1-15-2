@@ -1,0 +1,78 @@
+<div class="container-fluid row">
+  <nav class="navbar navbar-default navbar-fixed-top row" role="navigation">
+    <div class="container-fluid row">
+      <div class="navbar-header col-xs-12 row">
+        <a class="navbar-brand col-xs-4 center" href="/">Caronaê</a>
+        <a class="navbar-brand col-xs-4 center" href="#/login">Entrar</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <form name="signupForm" novalidate>
+  <div class="jumbotron row">
+    <div class="center"><h3>Cadastro Pessoal</h3></div>
+    <div class="alert alert-danger" ng-if="warningFlag"><info>Preencha os campos obrigatórios</info></div>
+
+    <div class="input form-group"  ng-class="{'has-error': noName}">
+        <label class="col-xs-3 control-label" for="fullName">Nome* </label>
+        <div class="col-xs-9">
+          <input class="form-control" type="text" id="fullName" ng-model="newUser.name">
+        </div>
+      </div>
+      <div class="input form-group" ng-class="{'has-error': noAddress}">
+        <label class="col-xs-3 control-label" for="address">Endereço* </label>
+        <div class="col-xs-9">
+          <input class="form-control" type="text" id="address" ng-model="newUser.address"/>
+        </div>
+      </div>
+      <div class="input form-group" ng-class="{'has-error': noEmail}">
+        <label class="col-xs-3 control-label" for="emailaddress">Email* </label>
+        <div class="col-xs-9">
+          <input class="form-control" type="email" id="emailaddress" ng-model="newUser.email" placeholder="ex: contato@caronae.com"/>
+        </div>
+      </div>
+      <div class="input form-group" ng-class="{'has-error': noPhone}">
+        <label class="col-xs-3 control-label" for="telephone">Telefone* </label>
+        <div class="col-xs-9">
+          <input class="form-control" type="text" id="telephone" ng-model="newUser.phone" placeholder="(xx) 9xxxx-xxxx"/>
+        </div>
+      </div>
+      <div class="input form-group" ng-class="{'has-error': noId}">
+        <label class="col-xs-3 control-label" for="studentId" >Matrícula* </label>
+        <div class="col-xs-9">
+          <input class="form-control" type="text" id="studentId" ng-model="newUser.studentId" pattern="^[0-9]*$" placeholder="ex: 111111111"/>
+        </div>
+      </div>
+      <div class="input form-group" ng-class="{'has-error': noPassword}">
+        <label class="col-xs-3 control-label" for="password">Senha* </label>
+        <div class="col-xs-9">
+          <input class="form-control" type="password" id="password" ng-model="newUser.password" />
+        </div>
+      </div>
+      <button class="btn btn-info btn-block btn-lg" ng-if="signupFlag" ng-click="continueSignup()" scroll-to="#typeSection" ><i>Continuar</i></button>
+  </div>
+  <div id="typeSection" class="jumbotron row" ng-if="chooseTypeFlag">
+    <div class="center"><h3>O que eu sou?</h3></div>
+    <div class="input form-group" ng-model="newUser.passanger">
+      <label for="passanger">
+        <input id="passanger" type="checkbox" />
+        Passageiro
+      </label>
+    </div>
+    <div class="input form-group">
+      <label for="driver">
+        <input id="driver" type="checkbox" ng-model="newUser.driver"/>
+        Motorista
+      </label>
+    </div>
+    <div class="input form-group" ng-if="newUser.driver">
+      <label>Numero de Vagas
+        <input type="number" ng-model="newUser.numberAvailable"/>
+      </label>
+    </div>
+    <button id="cadastrar" class="btn btn-success btn-block btn-lg" ng-click="signup()">Cadastrar</button>
+  </div>
+  </form>
+</div>
+
