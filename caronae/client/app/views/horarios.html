@@ -60,6 +60,20 @@
 		  </form>
 		</div>
 	  </div>
+	  <div class="row" ng-if="tabOpen == 'Volta'">
+		<div class="col-md-6 col-xs-6 col-xs-offset-3 col-md-offset-0">
+		  <div class="form-group pull-right">
+			<label class="checkbox-inline">
+		      <input ng-model="date.returnAddressDifferent" type="checkbox">Neste horário, meu endereço de retorno é diferente
+			</label>
+		  </div>
+	    </div>
+		<div class="col-md-6 col-xs-6 col-xs-offset-3 col-md-offset-0">
+		  <div class="form-group">
+		    <input class="form-control input-lg" placeholder="Endereço" type="text" ng-if="date.returnAddressDifferent" ng-model="date.returnAddress">
+		  </div>
+	    </div>
+	  </div>
 	  <div class="row">
 		<div class="col-md-12">
 		  <a class="btn btn-block btn-lg btn-success" ng-click="add(date)">Adicionar</a>
