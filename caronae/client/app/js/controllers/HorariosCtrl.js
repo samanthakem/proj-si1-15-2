@@ -2,7 +2,9 @@
 
 var caronaeAppMain = angular.module('caronaeApp');
 
-caronaeAppMain.controller('HorariosCtrl', ["$scope", function ($scope) {
+caronaeAppMain.controller('HorariosCtrl', ["$scope", "$rootScope", function ($scope, $rootScope) {
+	$rootScope.logged = true;
+	
 	$scope.tab = {};
 	$scope.tab["Ida"] = {
 		"Seg": [],
