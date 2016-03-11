@@ -4,10 +4,10 @@
 	  <div class="col-md-12">
 		<ul class="nav nav-tabs">
 		  <li class="col-xs-6 text-center" ng-class="{active: editingIda}">
-			<a role="button" ng-click="edit('Ida')">Ida</a>
+			<a role="button" ng-click="edit('Ida')">Ida para a UFCG</a>
 		  </li>
 		  <li class="col-xs-6 text-center" ng-class="{active: editingVolta}">
-			<a role="button" ng-click="edit('Volta')">Volta</a>
+			<a role="button" ng-click="edit('Volta')">Volta da UFCG</a>
 		  </li>
 		</ul>
 	  </div>
@@ -23,7 +23,7 @@
 		<div class="clearfix"></div>
 	  </li>
 	  <div class="alert alert-warning" ng-if="qntTimes[tabOpen] == 0">
-		Você ainda não tem nenhum horário de {{tabOpen}}
+		Você ainda não adicionou nenhum horário de {{tabOpen}}.
 	  </div>
 	</ul>
 	<div class="navbar navbar-default navbar-fixed-bottom col-xs-12">
@@ -65,7 +65,7 @@
 	  </div>
 	  <div class="row">
 		<div class="col-md-12">
-		  <a class="btn btn-block btn-lg btn-success" ng-click="add(date)">Adicionar</a>
+		  <a class="btn btn-block btn-lg btn-success" ng-click="add(date)">Adicionar Horário</a>
 		</div>
 	  </div>
 	</div>
