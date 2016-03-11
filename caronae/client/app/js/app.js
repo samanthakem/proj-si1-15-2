@@ -19,16 +19,20 @@ caronaeApp.config(function ($routeProvider) {
     .when('/main', {
       templateUrl: 'views/main.html',
       controller: 'MainCtrl'
-    })
-	  .when("/horarios", {
+	})
+	.when("/horarios", {
 	  templateUrl: 'views/horarios.html',
 	  controller: 'HorariosCtrl'
-	  })
-	  .when("/notificacoes", {
+	})
+	.when("/notificacoes", {
 	  templateUrl: 'views/notificacoes.html',
 	  controller: 'NotificacoesCtrl'
-	  })
-    .otherwise({
+	})
+    .when("/sidebar", {
+	  templateUrl: 'views/sidebar.html',
+	  controller: 'SidebarCtrl'
+	})
+	.otherwise({
       //redirectTo: '/'
 	  templateUrl: '404.html'
     });
