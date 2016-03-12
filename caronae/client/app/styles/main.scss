@@ -40,12 +40,14 @@ body {
 //MAIN
 #main {
   margin-top: 60px;
+  margin-left: 70px;
 }
 
 //Notificacao e horarios CSS
 .section.principal {
 	margin-top: 60px;
 	margin-bottom: 120px;
+  margin-left: 70px;
 }
 //Horarios
 
@@ -127,6 +129,10 @@ div >.well {
 ul.sidebar-menu {
   margin-top: 80px;
 }
+ul {
+  list-style-type: none;
+}
+
 
 ul.sidebar-menu , ul.sidebar-menu li ul.sub{
   list-style-type: none;
@@ -139,10 +145,18 @@ ul.sidebar-menu , ul.sidebar-menu li ul.sub{
 }
 
 .active-btn{
-  background-color: #C5CAE9;
+  background-color: #adb2d1;
   text-align: center;
   vertical-align: middle;
-  color: #3F51B5
+  &a {
+    color: #3F51B5
+  }
+}
+
+.active-btns-2 {
+  background-color: #797e9c;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .nonactive-btn{

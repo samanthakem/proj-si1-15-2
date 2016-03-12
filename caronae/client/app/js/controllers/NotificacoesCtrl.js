@@ -2,7 +2,7 @@
 
 var caronaeAppMain = angular.module('caronaeApp');
 
-caronaeAppMain.controller('NotificacoesCtrl', ['$scope', function ($scope, $rootScope) {
+caronaeAppMain.controller('NotificacoesCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
   $rootScope.logged = true;
 	$scope.not = {
 		name: "Mariane",

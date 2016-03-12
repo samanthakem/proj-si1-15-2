@@ -33,6 +33,8 @@ caronaeAppMain.controller('SidebarCtrl', ["$scope", "$rootScope", '$location', f
       $rootScope.perspective.notificacoes = false;
 		}
 
+    $scope.requestRide = $rootScope.perspective.rider;
+
 	}
 
   $scope.go = function(path){
