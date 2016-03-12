@@ -29,9 +29,9 @@ caronaeApp.config(function ($routeProvider) {
 	  controller: 'NotificacoesCtrl'
 
 	})
-	.when("/oferecer", {
-	  templateUrl: 'views/oferecer_carona.html',
-	  controller: 'OferecerCtrl'
+	.when("/pedir", {
+	  templateUrl: 'views/pedir_carona.html',
+	  controller: 'PedirCtrl'
 
 	})
     .when("/sidebar", {
