@@ -57,6 +57,10 @@ body {
   margin: 0px 3px;
 }
 
+.day_times > button:hover {
+	@extend .btn-danger;
+}
+
 //Notificacao
 .notificacao {
   border: 1px $gray-lighter solid;
@@ -75,6 +79,35 @@ body {
   font-size: 10px;
 }
 
+//cadastro
+.center {
+  text-align:center;
+}
+
+.control-label {
+  margin-top: 7.5px;
+}
+
+.input {
+  overflow: hidden;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+div >.well {
+  height: 100%;
+}
+
+.jumbotron {
+  text-align: center;
+  margin-top: 55px;
+  padding: 10px;
+}
+
+.sidebar {
+  padding-top:60px;
+}
+
 @media (min-width: 970px) {
   .my_times {
     margin-bottom: 10px;
@@ -83,3 +116,4 @@ body {
     position: relative;
   }
 }
+
