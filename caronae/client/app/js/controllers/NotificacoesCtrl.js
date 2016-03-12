@@ -2,7 +2,8 @@
 
 var caronaeAppMain = angular.module('caronaeApp');
 
-caronaeAppMain.controller('NotificacoesCtrl', ['$scope', function ($scope) {
+caronaeAppMain.controller('NotificacoesCtrl', ['$scope', function ($scope, $rootScope) {
+  $rootScope.logged = true;
 	$scope.not = {
 		name: "Mariane",
 		message: "aceitou sua oferta para Carona.",
@@ -23,21 +24,21 @@ caronaeAppMain.controller('NotificacoesCtrl', ['$scope', function ($scope) {
 		}
 	};
 	$scope.notifications = [$scope.not, $scope.not2];
-	
+
 	$scope.more = function() {
 		for (var i = 0; i < 3; i++) {
 			var copy1 = angular.copy($scope.not);
-			
+
 			$scope.notifications.push(copy1);
 		}
 	}
-	
+
 	$scope.accept = function(notification) {
 		notification.request.choosen = true;
 		notification.request.accepted = true;
 		notification.status = "list-group-item-success";
 	}
-	
+
 	$scope.reject = function(notification) {
 		notification.request.choosen = true;
 		notification.status = "list-group-item-danger";
