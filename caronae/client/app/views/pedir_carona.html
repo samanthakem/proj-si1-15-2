@@ -1,0 +1,33 @@
+<div class="section principal">
+  <div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12 col-md-4 col-md-offset-4">
+			<label for="dateRide">Escolha o dia da carona:</label><input id="dateRide" class="form-control input-lg" type="date"></label>
+		</div>
+		<div class="col-xs-12 col-md-4 col-md-offset-4 text-center">
+			<label class="radio-inline"><input type="radio" name="optradio">Ida</label>
+			<label class="radio-inline"><input type="radio" name="optradio">Volta</label>
+		</div>
+	</div>
+	<div class="list-group">
+	<div class="row notificacao" ng-repeat="pedido in pedidos">
+	  <a href="#/pedir" class="list-group-item {{pedido.status}}">
+		<div class="picture pull-left col-xs-2 col-sm-1">
+		  <img ng-src="{{pedido.imageURL}}" class="img-responsive">
+		</div>
+		<div class="message pull-left col-xs-10 col-sm-11">
+		  <p><b>{{pedido.name}}</b></p>
+		  <div ng-if="pedido.request">
+			  <p><b>Para: </b> {{pedido.request.destination}}</br><b>Quando: </b>{{pedido.request.when}}
+		  </div>
+		</div>
+		<div class="clearfix"></div>
+	  </a>
+	  <div class="row">
+		<div class="col-xs-12 col-sm-12">
+			<div class="btn btn-block btn-lg btn-success" ng-click="request(pedido)">Pedir Carona</div>
+		</div>
+	  </div>
+	</div>
+  </div>
+</div>

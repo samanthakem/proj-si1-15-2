@@ -2,7 +2,7 @@ caronaeApp.directive("sidebar", function() {
 	return {
 		restrict: "E",
 		replace: true,
-		templateUrl: "views/sidebar.html",
+		templateUrl: "views/directives/sidebar.html",
 		controller: "SidebarCtrl"
 	}
 });

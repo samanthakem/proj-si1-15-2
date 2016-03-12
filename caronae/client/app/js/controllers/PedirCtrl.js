@@ -2,34 +2,27 @@
 
 var caronaeAppMain = angular.module('caronaeApp');
 
-caronaeAppMain.controller('NotificacoesCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+caronaeAppMain.controller('PedirCtrl', ['$scope','$rootScope', function ($scope,$rootScope) {
   $rootScope.logged = true;
+
 	$scope.not = {
 		name: "Mariane",
-		message: "aceitou sua oferta para Carona.",
 		imageURL: "http://www.clker.com/cliparts/5/7/4/8/13099629981030824019profile.svg.med.png",
-		time: new Date()
-	};
-	$scope.not2 = {
-		name: "Stenio Elson",
-		message: "pediu uma Carona para você.",
-		imageURL: "http://server.stenioelson.com.br/public/stenio.jpg",
-		time: new Date(),
 		request: {
-			destination: "Pedregal",
-			when: "Seg 04:00 PM",
+			destination: "UFCG",
+			when: "Seg 07:40 AM",
 			accepted: false,
 			choosen: false,
 			telephone: "99999-9999",
 		}
 	};
-	$scope.notifications = [$scope.not, $scope.not2];
+	$scope.pedidos = [$scope.not];
 
 	$scope.more = function() {
 		for (var i = 0; i < 3; i++) {
 			var copy1 = angular.copy($scope.not);
 
-			$scope.notifications.push(copy1);
+			$scope.pedidos.push(copy1);
 		}
 	}
 

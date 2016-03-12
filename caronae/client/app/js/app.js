@@ -27,12 +27,19 @@ caronaeApp.config(function ($routeProvider) {
 	.when("/notificacoes", {
 	  templateUrl: 'views/notificacoes.html',
 	  controller: 'NotificacoesCtrl'
+
+	})
+	.when("/pedir", {
+	  templateUrl: 'views/pedir_carona.html',
+	  controller: 'PedirCtrl'
+
 	})
     .when("/sidebar", {
 	  templateUrl: 'views/sidebar.html',
 	  controller: 'SidebarCtrl'
 	})
 	.otherwise({
+
       //redirectTo: '/'
 	  templateUrl: '404.html'
     });
