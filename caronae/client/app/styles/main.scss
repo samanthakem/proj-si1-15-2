@@ -8,6 +8,16 @@ $gray-base : #000;
 $gray-light : lighten($gray-base, 46.7%); // #777
 $gray-lighter : lighten($gray-base, 93.5%); // #eee
 
+/*a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  color: white;
+  text-decoration: none;
+}*/
+
 body {
     background-color: #eee;
 }
@@ -25,6 +35,11 @@ body {
 
 .app-name {
   text-align: center;
+}
+
+//MAIN
+#main {
+  margin-top: 60px;
 }
 
 //Notificacao e horarios CSS
@@ -104,10 +119,66 @@ div >.well {
   padding: 10px;
 }
 
+// SideBar
 .sidebar {
-  padding-top:60px;
+  padding-top: 150px;
 }
 
+ul.sidebar-menu {
+  margin-top: 80px;
+}
+
+ul.sidebar-menu , ul.sidebar-menu li ul.sub{
+  list-style-type: none;
+  margin: 80px 0 0 -40px;
+  padding-top: 20px;
+}
+
+#sidebar > ul > li > ul.sub {
+  display: none;
+}
+
+.active-btn{
+  background-color: #C5CAE9;
+  text-align: center;
+  vertical-align: middle;
+  color: #3F51B5
+}
+
+.nonactive-btn{
+  //background-color: #C5CAE9;
+  text-align: center;
+  vertical-align: middle;
+  color: #ffffff;
+}
+
+.side-btns {
+  height: 60px;
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 60px;
+}
+
+.side-btns a {
+  text-decoration: none;
+  color: white;
+  height: 60px;
+}
+
+.side-btns a:hover, a:focus {
+  text-decoration: none;
+  color: white;
+  height: 60px;
+}
+
+#sidebar {
+// padding-top: 50px;
+  width: 210px;
+  height: 100%;
+  position: fixed;
+  background: #3F51B5;
+}
 @media (min-width: 970px) {
   .my_times {
     margin-bottom: 10px;

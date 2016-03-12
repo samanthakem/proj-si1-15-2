@@ -19,11 +19,13 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 	<top-navbar></top-navbar>
-	<div class="col-md-3" ng-if="logged">
-		<sidebar></sidebar>
-	</div>
-	<div ng-class="{'col-md-12': !logged, 'col-md-9': logged}">
-		<div ng-view=""></div>
+
+
+	<div class="col-lg-8 col-lg-offset-1">
+    <div class="col-md-2 col-md-offset-2" ng-if="logged">
+      <sidebar class=""></sidebar>
+    </div>
+		<div ng-view="" class="col-md-8 col-md-offset-4"></div>
 	</div>
 
 
