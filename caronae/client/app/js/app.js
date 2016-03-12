@@ -28,6 +28,10 @@ caronaeApp.config(function ($routeProvider) {
 	  templateUrl: 'views/notificacoes.html',
 	  controller: 'NotificacoesCtrl'
 	  })
+	  .when("/oferecer", {
+	  templateUrl: 'views/oferecer_caronasa.html',
+	  controller: 'OferecerCtrl'
+	  })
     .otherwise({
       //redirectTo: '/'
 	  templateUrl: '404.html'
