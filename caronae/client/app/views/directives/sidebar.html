@@ -12,6 +12,7 @@
       </li>
       <li class="side-btns" ng-class="{'active-btn': perspective.rider, 'nonactive-btn': perspective.driver}" ng-click="changePerspective('passageiro'); go('/horarios')">
         <a href=""><p>PASSAGEIRO</p></a>
+		<a href="#/pedir" ng-if="perspective.rider"><p>PEDIR CARONA</p></a>
       </li>
     </ul>
 	</div>
