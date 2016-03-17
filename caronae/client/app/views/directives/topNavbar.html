@@ -2,7 +2,10 @@
   <div class="container-fluid row">
 	<nav class="navbar navbar-default navbar-fixed-top col-xs-12" role="navigation">
 	  <div class="container-fluid">
-		<div class="navbar-header pull-left">
+		<div class="pull-left hidden-sm hidden-md hidden-lg" ng-if="logged">
+		  <a class="navbar-brand glyphicon" ng-class="{'glyphicon-menu-hamburger': !menuOpen, 'glyphicon-menu-left': menuOpen}" ng-click="toggleMenu()"></a>
+		</div>
+		<div class="pull-left">
 		  <a class="navbar-brand col-xs-12" href=""><strong>Caronaê</strong></a>
 		</div>
 		<div class="pull-right" ng-if="!logged">
