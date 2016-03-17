@@ -3,6 +3,6 @@ caronaeApp.directive("topNavbar", function() {
 		restrict: "E",
 		replace: true,
 		templateUrl: "views/directives/topNavbar.html",
-		controller: "SidebarCtrl"
+		controller: "TopNavbarCtrl"
 	}
 });

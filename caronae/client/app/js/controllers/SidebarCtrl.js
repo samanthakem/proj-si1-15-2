@@ -3,6 +3,8 @@
 var caronaeAppMain = angular.module('caronaeApp');
 
 caronaeAppMain.controller('SidebarCtrl', ["$scope", "$rootScope", '$location', function ($scope, $rootScope,$location) {
+	$rootScope.menuOpen = false;
+	
 	$rootScope.perspective = {
 		driver: false,
 		rider: false,
@@ -38,6 +40,7 @@ caronaeAppMain.controller('SidebarCtrl', ["$scope", "$rootScope", '$location', f
 	}
 
   $scope.go = function(path){
+	$rootScope.toggleMenu();
     $location.path(path);
   };
 }]);
