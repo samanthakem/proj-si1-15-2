@@ -1,20 +1,20 @@
-<aside class="hidden-xs hidden-sm hidden-md">
-	<div id="sidebar" class="">
-    <ul class="sidebar-menu btn-group-verticalbtn-block ">
-      <li class="side-btns" ng-class="{'active-btn': perspective.home}" ng-click="changePerspective('home'); go('/main')">
-        <a href=""><h1 class="glyphicon glyphicon-home"></h1></a>
-      </li>
-      <li class="side-btns" ng-class="{'active-btn': perspective.notificacoes}" ng-click="changePerspective('notificacoes'); go('/notificacoes')">
-        <a href=""><h1 class="glyphicon glyphicon-bullhorn"></h1></a>
-      </li>
-      <li class="side-btns" ng-class="{'active-btn': perspective.driver, 'nonactive-btn': perspective.rider}" ng-click="changePerspective('motorista'); go('/horarios')">
-        <a href=""><p>MOTORISTA</p></a>
-      </li>
-      <li class="side-btns" ng-class="{'active-btn': perspective.rider, 'nonactive-btn': perspective.driver}" ng-click="changePerspective('passageiro'); go('/horarios')">
-        <a href=""><p>PASSAGEIRO</p></a>
-    		<a href="#/pedir" ng-if="perspective.rider"><p>PEDIR CARONA</p></a>
-      </li>
-    </ul>
+<aside id="sidebar" class="hidden-xs hidden-sm">
+	<div>
+		<ul class="sidebar-menu btn-group-verticalbtn-block ">
+		  <li class="side-btns" ng-class="{'active-btn': perspective.home}" ng-click="changePerspective('home'); go('/main')">
+			<a href=""><h1 class="glyphicon glyphicon-home"></h1></a>
+		  </li>
+		  <li class="side-btns" ng-class="{'active-btn': perspective.notificacoes}" ng-click="changePerspective('notificacoes'); go('/notificacoes')">
+			<a href=""><h1 class="glyphicon glyphicon-bullhorn"></h1></a>
+		  </li>
+		  <li class="side-btns" ng-class="{'active-btn': perspective.driver, 'nonactive-btn': perspective.rider}" ng-click="changePerspective('motorista'); go('/horarios')">
+			<a href=""><p>MOTORISTA</p></a>
+		  </li>
+		  <li class="side-btns" ng-class="{'active-btn': perspective.rider, 'nonactive-btn': perspective.driver}" ng-click="changePerspective('passageiro'); go('/horarios')">
+			<a href=""><p>PASSAGEIRO</p></a>
+				<a href="#/pedir" ng-if="perspective.rider"><p>PEDIR CARONA</p></a>
+		  </li>
+		</ul>
 	</div>
   <div class="clearfix" ></div>
 </aside>
