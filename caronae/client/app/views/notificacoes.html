@@ -1,0 +1,34 @@
+<div class="section principal">
+  <div class="container-fluid">
+	<div class="list-group">
+	<div class="row notificacao" ng-repeat="notification in notifications">
+	  <a href="#/notificacoes" ng-click="teste('Notificacao')" class="list-group-item {{notification.status}}">
+		<div class="picture pull-left col-xs-2 col-sm-1">
+		  <img src="{{notification.imageURL}}" class="img-responsive">
+		</div>
+		<div class="message pull-left col-xs-10 col-sm-11">
+		  <p><b>{{notification.name}} </b>{{notification.message}}</p>
+		  <div ng-if="notification.request">
+			  <p><b>Para: </b> {{notification.request.destination}}</br><b>Quando: </b>{{notification.request.when}}
+			<p ng-if="notification.request.accepted">
+				<b>Telefone: </b> {{notification.request.telephone}}
+			</p>
+			  <div class="date text-right">
+				{{notification.time | date: 'medium'}}
+			  </div>
+		  </div>
+		</div>
+		<div class="clearfix"></div>
+	  </a>
+	  <div class="row" ng-if="notification.request && !notification.request.choosen">
+		<div class="col-xs-12 col-sm-6">
+			<div class="btn btn-block btn-lg btn-success" ng-click="accept(notification)">Aceitar</div>
+		</div>
+		<div class="col-xs-12 col-sm-6">
+			<div class="btn btn-block btn-lg btn-danger" ng-click="reject(notification)">Recusar</div>
+		</div>
+	  </div>
+	</div>
+	<a class="btn btn-block btn-lg" ng-click="more()">Ver Mais</a>
+  </div>
+</div>

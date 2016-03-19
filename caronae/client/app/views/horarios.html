@@ -1,0 +1,73 @@
+<div class="section principal">
+  <div class="container-fluid">
+	<div class="row">
+	  <div class="col-md-12">
+		<ul class="nav nav-tabs">
+		  <li class="col-xs-6 text-center" ng-class="{active: editingIda}">
+			<a role="button" ng-click="edit('Ida')">Ida para a UFCG</a>
+		  </li>
+		  <li class="col-xs-6 text-center" ng-class="{active: editingVolta}">
+			<a role="button" ng-click="edit('Volta')">Volta da UFCG</a>
+		  </li>
+		</ul>
+	  </div>
+	</div>
+  </div>
+  <div class="col-md-12 ">
+	<ul class="list-group my_times">
+	  <li class="list-group-item" ng-repeat="(day, times) in tabBeingEdited" ng-if="times.length != 0">
+		<div class="day_times">
+		  <spam class="pull-left day">{{day}}:</spam>
+		  <button type="button" class="btn btn-success btn-xs" ng-click="remove(day, time)" ng-repeat="time in times | orderBy">{{time | date: "hh:mm a"}}</button>
+		</div>
+		<div class="clearfix"></div>
+	  </li>
+	  <div class="alert alert-warning" ng-if="qntTimes[tabOpen] == 0">
+		Você ainda não adicionou nenhum horário de {{tabOpen}}.
+	  </div>
+	</ul>
+	<div class="navbar navbar-default navbar-fixed-bottom col-xs-12">
+	  <div class="row">
+		<div class="col-xs-6">
+		  <div class="form-group pull-right">
+			<select ng-model="date.day" placeholder="Dia da Semana" class="form-control input-lg">
+			  <option>Seg</option>
+			  <option>Ter</option>
+			  <option>Qua</option>
+			  <option>Qui</option>
+			  <option>Sex</option>
+			  <option>Sab</option>
+			  <option>Dom</option>
+			</select>
+		  </div>
+		</div>
+		<div class="col-xs-6">
+		  <form role="form">
+			<div class="form-group pull-left">
+			  <input class="form-control input-lg" type="time" ng-model="date.time">
+			</div>
+		  </form>
+		</div>
+	  </div>
+	  <div class="row" ng-if="tabOpen == 'Volta'">
+		<div class="col-md-6 col-xs-6 col-xs-offset-3 col-md-offset-0">
+		  <div class="form-group pull-right">
+			<label class="checkbox-inline">
+		      <input ng-model="date.returnAddressDifferent" type="checkbox">Neste horário, meu endereço de retorno é diferente
+			</label>
+		  </div>
+	    </div>
+		<div class="col-md-6 col-xs-6 col-xs-offset-3 col-md-offset-0">
+		  <div class="form-group">
+		    <input class="form-control input-lg" placeholder="Endereço" type="text" ng-if="date.returnAddressDifferent" ng-model="date.returnAddress">
+		  </div>
+	    </div>
+	  </div>
+	  <div class="row">
+		<div class="col-md-12">
+		  <a class="btn btn-block btn-lg btn-success" ng-click="add(date)">Adicionar Horário</a>
+		</div>
+	  </div>
+	</div>
+  </div>
+</div>
