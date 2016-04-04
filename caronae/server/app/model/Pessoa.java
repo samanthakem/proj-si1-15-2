@@ -17,6 +17,10 @@ public class Pessoa {
         return this.id;
     }
 
+    /**
+     * A informação da Pessoa em formato JSON
+     * @return A informação da Pessoa
+     */
     public JsonNode toJson() {
         return Json.parse("{\"id\":\"" + this.id + "\"}");
     }
