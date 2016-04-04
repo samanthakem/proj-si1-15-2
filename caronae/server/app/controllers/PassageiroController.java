@@ -12,6 +12,11 @@ import play.mvc.Result;
  */
 public class PassageiroController extends Controller {
 
+    /**
+     * Recupera uma pessoa da coleção de passageiros
+     * @param id O id do passageiro
+     * @return Um JSON com as informações do passageiro se foi possível recuperar, caso contrário a explicação em formato JSON.
+     */
     public Result getPassageiro(Integer id) {
         Result result;
         JsonNode resultJson;
@@ -26,9 +31,13 @@ public class PassageiroController extends Controller {
         return result;
     }
 
+    /**
+     * Adiciona um passageiro a coleção de passageiros
+     * @param id O id do novo Passageiro
+     * @return Um JSON com as informações do passageiro se foi possível adicionar, caso contrário a explicação em formato JSON.
+     */
     public Result addPassageiro(Integer id) {
-        Result result = ok();
-        JsonNode resultJson;
+        Result result;
 
         try {
             GerenciadorDePassageiros.addPassageiro(id);

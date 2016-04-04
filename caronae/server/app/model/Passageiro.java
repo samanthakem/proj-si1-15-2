@@ -17,6 +17,10 @@ public class Passageiro {
         return pessoa.getId();
     }
 
+    /**
+     * A informação do passageiro em formato JSON
+     * @return A informação do Passageiro
+     */
     public JsonNode toJson() {
         return Json.parse("{\"id\":\"" + this.pessoa.getId() + "\"}");
     }

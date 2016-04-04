@@ -1,6 +1,5 @@
 package controllers;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import model.GerenciadorDePessoas;
 import model.HttpException;
 import model.Pessoa;
@@ -12,6 +11,11 @@ import play.mvc.Result;
  */
 public class PessoaController extends Controller {
 
+    /**
+     * Recupera uma pessoa da coleção de pessoas
+     * @param id O id da Pessoa
+     * @return Um JSON com as informações da pessoa se foi possível recuperar, caso contrário a explicação em formato JSON.
+     */
     public Result getPessoa(Integer id) {
         Result result;
 
@@ -25,9 +29,13 @@ public class PessoaController extends Controller {
         return result;
     }
 
+    /**
+     * Adiciona uma pessoa a coleção de pessoas
+     * @param id O id da nova Pessoa
+     * @return Um JSON com as informações da pessoa se foi possível adicionar, caso contrário a explicação em formato JSON.
+     */
     public Result addPessoa(Integer id) {
-        Result result = ok();
-        JsonNode resultJson;
+        Result result;
 
         try {
             GerenciadorDePessoas.addPessoa(id);
