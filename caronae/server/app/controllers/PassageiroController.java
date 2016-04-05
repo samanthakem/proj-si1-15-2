@@ -11,6 +11,7 @@ import play.mvc.Result;
  * Created by stenio on 4/3/2016.
  */
 public class PassageiroController extends Controller {
+    private GerenciadorDePassageiros gerenciadorDePassageiros = GerenciadorDePassageiros.getGerenciador();
 
     /**
      * Recupera uma pessoa da coleção de passageiros
@@ -22,7 +23,7 @@ public class PassageiroController extends Controller {
         JsonNode resultJson;
 
         try {
-            Passageiro passageiro = GerenciadorDePassageiros.getPassageiro(id);
+            Passageiro passageiro = gerenciadorDePassageiros.getPassageiro(id);
             result = ok(passageiro.toJson());
         } catch (HttpException e) {
             result = status(e.getStatus(), e.getJSONMessage());
@@ -40,9 +41,9 @@ public class PassageiroController extends Controller {
         Result result;
 
         try {
-            GerenciadorDePassageiros.addPassageiro(id);
+            gerenciadorDePassageiros.addPassageiro(id);
 
-            Passageiro passageiro = GerenciadorDePassageiros.getPassageiro(id);
+            Passageiro passageiro = gerenciadorDePassageiros.getPassageiro(id);
 
             result = ok(passageiro.toJson());
         } catch(HttpException e) {
