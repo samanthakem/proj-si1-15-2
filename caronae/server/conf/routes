@@ -11,3 +11,13 @@ GET     /message                    controllers.AsyncController.message
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+# Routes used for the Passageiro resource
+GET     /passageiros/:id            controllers.PassageiroController.getPassageiro(id: Integer)
+
+POST     /passageiros/:id            controllers.PassageiroController.addPassageiro(id: Integer)
+
+#Routes used for the Pessoa Resource
+GET     /pessoas/:id            controllers.PessoaController.getPessoa(id: Integer)
+
+POST    /pessoas/:id            controllers.PessoaController.addPessoa(id: Integer)
