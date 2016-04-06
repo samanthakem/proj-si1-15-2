@@ -10,6 +10,7 @@ import play.mvc.Result;
  * Created by stenio on 4/3/2016.
  */
 public class PessoaController extends Controller {
+    private GerenciadorDePessoas gerenciadorDePessoas = GerenciadorDePessoas.getGerenciador();
 
     /**
      * Recupera uma pessoa da coleção de pessoas
@@ -20,7 +21,7 @@ public class PessoaController extends Controller {
         Result result;
 
         try {
-            Pessoa pessoa = GerenciadorDePessoas.getPessoa(id);
+            Pessoa pessoa = gerenciadorDePessoas.getPessoa(id);
             result = ok(pessoa.toJson());
         } catch (HttpException e) {
             result = status(e.getStatus(), e.getJSONMessage());
@@ -38,9 +39,9 @@ public class PessoaController extends Controller {
         Result result;
 
         try {
-            GerenciadorDePessoas.addPessoa(id);
+            gerenciadorDePessoas.addPessoa(id);
 
-            Pessoa pessoa = GerenciadorDePessoas.getPessoa(id);
+            Pessoa pessoa = gerenciadorDePessoas.getPessoa(id);
 
             result = ok(pessoa.toJson());
         } catch(HttpException e) {
