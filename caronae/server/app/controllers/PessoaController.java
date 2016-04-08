@@ -14,14 +14,14 @@ public class PessoaController extends Controller {
 
     /**
      * Recupera uma pessoa da coleção de pessoas
-     * @param id O id da Pessoa
+     * @param matricula A matricula da Pessoa
      * @return Um JSON com as informações da pessoa se foi possível recuperar, caso contrário a explicação em formato JSON.
      */
-    public Result getPessoa(Integer id) {
+    public Result getPessoa(Integer matricula) {
         Result result;
 
         try {
-            Pessoa pessoa = gerenciadorDePessoas.getPessoa(id);
+            Pessoa pessoa = gerenciadorDePessoas.getPessoa(matricula);
             result = ok(pessoa.toJson());
         } catch (HttpException e) {
             result = status(e.getStatus(), e.getJSONMessage());
@@ -32,16 +32,22 @@ public class PessoaController extends Controller {
 
     /**
      * Adiciona uma pessoa a coleção de pessoas
-     * @param id O id da nova Pessoa
+     * @param nome o nome da nova pessoa
+     * @param bairro o bairro da nova pessoa
+     * @param rua a rua da nova pessoa
+     * @param email o email da nova pessoa
+     * @param telefone o telefone da nova pessoa
+     * @param senha a senha da nova pessoa
+     * @param matricula a matricula da nova pessoa
      * @return Um JSON com as informações da pessoa se foi possível adicionar, caso contrário a explicação em formato JSON.
      */
-    public Result addPessoa(Integer id) {
+    public Result addPessoa(String nome, String bairro, String rua, String email, String telefone, String senha, Integer matricula) {
         Result result;
 
         try {
-            gerenciadorDePessoas.addPessoa(id);
+            gerenciadorDePessoas.addPessoa(nome, bairro, rua, email, telefone, senha, matricula);
 
-            Pessoa pessoa = gerenciadorDePessoas.getPessoa(id);
+            Pessoa pessoa = gerenciadorDePessoas.getPessoa(matricula);
 
             result = ok(pessoa.toJson());
         } catch(HttpException e) {

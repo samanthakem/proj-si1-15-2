@@ -23,11 +23,12 @@ public class GerenciadorDePessoas {
 
     /**
      * Recupera um passageiro da coleção de pessoas
-     * @param id O id da pessoa
+     * @param matricula A matricula da pessoa
      * @return retorna null se o não existir alguma pessoa com a mesma id que a id especificada, caso contrário retorna a pessoa
+     * @throws HttpException se a Pessoa não existir na coleção
      */
-    public Pessoa getPessoa(Integer id) throws HttpException{
-        Pessoa pessoa = pessoas.get(id);
+    public Pessoa getPessoa(Integer matricula) throws HttpException{
+        Pessoa pessoa = pessoas.get(matricula);
 
         if (pessoa == null) {
             throw new HttpException(404, "Pessoa does not exist");
@@ -37,24 +38,30 @@ public class GerenciadorDePessoas {
     }
 
     /**
-     * Adiciona um passageiro a coleção de passageiros
-     * @param id O id do novo passageiro
-     * @return retorna false se não for possível adicionar o passageiro a coleção, caso contrário retorna true.
+     * Adiciona um passageiro a coleção de pessoas
+     * @param nome o nome da nova pessoa
+     * @param bairro o bairro da nova pessoa
+     * @param rua a rua da nova pessoa
+     * @param email o email da nova pessoa
+     * @param telefone o telefone da nova pessoa
+     * @param senha a senha da nova pessoa
+     * @param matricula a matricula da nova pessoa
+     * @throws HttpException se a Pessoa já existir na coleção
      */
-    public void addPessoa(Integer id) throws HttpException {
-        if (pessoas.containsKey(id)) {
+    public void addPessoa(String nome, String bairro, String rua, String email, String telefone, String senha, Integer matricula) throws HttpException {
+        if (pessoas.containsKey(matricula)) {
             throw new HttpException(409, "Pessoa already exists");
         } else {
-            pessoas.put(id, new Pessoa(id));
+            pessoas.put(matricula, new Pessoa(nome, bairro, rua, email, telefone, senha, matricula));
         }
     }
 
     /**
      * Verifica se existe alguma pessoa com aquele id;
-     * @param id O id da pessoa
+     * @param matricula A matricula da pessoa
      * @return true se existe uma pessoa com o mesmo id, caso contr[ario false
      */
-    public boolean existePessoa(Integer id) {
-        return pessoas.containsKey(id);
+    public boolean existePessoa(Integer matricula) {
+        return pessoas.containsKey(matricula);
     }
 }
