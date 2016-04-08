@@ -19,6 +19,8 @@ public class Pessoa {
             senha,
             matricula;
 
+    public Pessoa() {}
+
     /**
      * Construtor padrão.
      * @param nome o nome da Pessoa
@@ -44,7 +46,12 @@ public class Pessoa {
      * @return A informação da Pessoa
      */
     public JsonNode toJson() {
-        return Json.parse("{\"id\":\"" + this.matricula + "\"}");
+
+        return Json.toJson(this);
+        /*return Json.parse(
+                "{\"matricula\":\"" + this.getMatricula() + "\","+
+                "\"nome\":\"" + this.getNome() + "\"," +
+                "\"email\":\"" + this.getEmail() + "\"," + "}");*/
     }
 
     /**

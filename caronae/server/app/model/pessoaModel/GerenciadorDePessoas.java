@@ -8,7 +8,7 @@ import model.HttpException;
 public class GerenciadorDePessoas {
     private static GerenciadorDePessoas gerenciador;
 
-    private PessoaDao pessoaDao;
+    private PessoaDao pessoaDao = new PessoaDao();
 
     private GerenciadorDePessoas(){}
 
@@ -58,5 +58,9 @@ public class GerenciadorDePessoas {
         pessoaDao.addPessoa(pessoa);
 
         return pessoa;
+    }
+
+    public boolean existePessoa(String matricula) {
+        return pessoaDao.existePessoa(matricula);
     }
 }

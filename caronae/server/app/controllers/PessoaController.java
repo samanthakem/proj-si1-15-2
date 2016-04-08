@@ -1,10 +1,12 @@
 package controllers;
 
-import model.pessoaModel.GerenciadorDePessoas;
 import model.HttpException;
+import model.pessoaModel.GerenciadorDePessoas;
 import model.pessoaModel.Pessoa;
 import play.mvc.Controller;
 import play.mvc.Result;
+
+import static play.data.Form.form;
 
 /**
  * Created by stenio on 4/3/2016.
@@ -21,6 +23,7 @@ public class PessoaController extends Controller {
         Result result;
 
         try {
+            System.out.print(matricula);
             Pessoa pessoa = gerenciadorDePessoas.getPessoa(matricula);
             result = ok(pessoa.toJson());
         } catch (HttpException e) {
@@ -28,6 +31,24 @@ public class PessoaController extends Controller {
         }
 
         return result;
+    }
+
+    /**
+     * Adiciona uma pessoa a coleção de pessoas
+     * @return Um JSON com as informações da pessoa se foi possível adicionar, caso contrário a explicação em formato JSON.
+     */
+    public Result addPessoa() {
+        Pessoa r = form(Pessoa.class).bindFromRequest().get();
+
+        String nome = r.getNome();
+        String bairro = r.getBairro();
+        String rua = r.getRua();
+        String email = r.getEmail();
+        String telefone = r.getTelefone();
+        String senha = r.getSenha();
+        String matricula = r.getMatricula();
+
+        return addPessoa(nome, bairro, rua, email, telefone, senha, matricula);
     }
 
     /**
@@ -41,11 +62,10 @@ public class PessoaController extends Controller {
      * @param matricula a matricula da nova pessoa
      * @return Um JSON com as informações da pessoa se foi possível adicionar, caso contrário a explicação em formato JSON.
      */
-    public Result addPessoa(String nome, String bairro, String rua, String email, String telefone, String senha, String matricula) {
+    private Result addPessoa(String nome, String bairro, String rua, String email, String telefone, String senha, String matricula) {
         Result result;
 
         try {
-
             Pessoa pessoa = gerenciadorDePessoas.addPessoa(nome, bairro, rua, email, telefone, senha, matricula);
 
             result = ok(pessoa.toJson());

@@ -38,7 +38,7 @@ public class PessoaMock {
 
     private void fillin() {
         Pessoa pessoa = new Pessoa("Caroneiro Maior Da Silva Santos", "Motorizados", "Renaut, 49",
-                "caroneiro.mss@caronae.com.br", "83999996666", "admin", "111111111");
+                "caroneiro.mss@caronae.com.br", "83999996666", "admin1", "111111111");
 
         pessoas.put(pessoa.getMatricula(), pessoa);
     }
