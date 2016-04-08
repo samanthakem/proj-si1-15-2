@@ -1,6 +1,7 @@
-package model;
+package model.passageiroModel;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import model.pessoaModel.Pessoa;
 import play.libs.Json;
 
 /**

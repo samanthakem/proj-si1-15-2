@@ -1,9 +1,9 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import model.GerenciadorDePassageiros;
+import model.passageiroModel.GerenciadorDePassageiros;
 import model.HttpException;
-import model.Passageiro;
+import model.passageiroModel.Passageiro;
 import play.mvc.Controller;
 import play.mvc.Result;
 

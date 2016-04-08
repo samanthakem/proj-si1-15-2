@@ -1,4 +1,8 @@
-package model;
+package model.motoristaModel;
+
+import model.HttpException;
+import model.pessoaModel.GerenciadorDePessoas;
+import model.pessoaModel.Pessoa;
 
 import java.util.HashMap;
 

@@ -1,4 +1,4 @@
-package model;
+package model.pessoaModel;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import play.libs.Json;
@@ -11,8 +11,13 @@ import java.util.regex.Pattern;
  */
 public class Pessoa {
 
-    private String nome, bairro, rua, email, telefone, senha;
-    private Integer matricula;
+    private String nome,
+            bairro,
+            rua,
+            email,
+            telefone,
+            senha,
+            matricula;
 
     /**
      * Construtor padrão.
@@ -24,7 +29,7 @@ public class Pessoa {
      * @param senha a senha da Pessoa
      * @param matricula a matricula da Pessoa
      */
-    public Pessoa(String nome, String bairro, String rua, String email, String telefone, String senha, Integer matricula) {
+    public Pessoa(String nome, String bairro, String rua, String email, String telefone, String senha, String matricula) {
         setNome(nome);
         setBairro(bairro);
         setRua(rua);
@@ -158,7 +163,7 @@ public class Pessoa {
      * Recupera a matrícula da Pessoa
      * @return a matrícula da Pessoa
      */
-    public int getMatricula() {
+    public String getMatricula() {
         return matricula;
     }
 
@@ -166,8 +171,8 @@ public class Pessoa {
      * Modifica a matrícula da Pessoa, caso o parâmetro seja válido
      * @param matricula a nova matrícula da Pessoa
      */
-    public void setMatricula(int matricula) {
-        if(Integer.toString(matricula).length() != 9) {
+    public void setMatricula(String matricula) {
+        if(matricula.length() != 9) {
             throw new IllegalArgumentException("Parâmetro 'matrícula' deve conter exatamente 9 dígitos");
         }
         this.matricula = matricula;

@@ -1,8 +1,8 @@
 package controllers;
 
-import model.GerenciadorDePessoas;
+import model.pessoaModel.GerenciadorDePessoas;
 import model.HttpException;
-import model.Pessoa;
+import model.pessoaModel.Pessoa;
 import play.mvc.Controller;
 import play.mvc.Result;
 
