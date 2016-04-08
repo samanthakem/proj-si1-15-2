@@ -13,8 +13,8 @@ public class Motorista {
         this.pessoa = pessoa ;
     }
 
-    public Integer getId() {
-        return pessoa.getId();
+    public Integer getMatricula() {
+        return pessoa.getMatricula();
     }
 
     /**
@@ -22,6 +22,6 @@ public class Motorista {
      * @return A informação do Motorista
      */
     public JsonNode toJson() {
-        return Json.parse("{\"id\":\"" + this.pessoa.getId() + "\"}");
+        return Json.parse("{\"id\":\"" + this.pessoa.getMatricula() + "\"}");
     }
 }
