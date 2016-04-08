@@ -1,6 +1,7 @@
-package model;
+package model.passageiroModel;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import model.pessoaModel.Pessoa;
 import play.libs.Json;
 
 /**
@@ -13,8 +14,8 @@ public class Passageiro {
         this.pessoa = pessoa ;
     }
 
-    public Integer getId() {
-        return pessoa.getId();
+    public Integer getMatricula() {
+        return pessoa.getMatricula();
     }
 
     /**
@@ -22,6 +23,6 @@ public class Passageiro {
      * @return A informação do Passageiro
      */
     public JsonNode toJson() {
-        return Json.parse("{\"id\":\"" + this.pessoa.getId() + "\"}");
+        return Json.parse("{\"id\":\"" + this.pessoa.getMatricula() + "\"}");
     }
 }
