@@ -17,7 +17,7 @@ public class PessoaController extends Controller {
      * @param matricula A matricula da Pessoa
      * @return Um JSON com as informações da pessoa se foi possível recuperar, caso contrário a explicação em formato JSON.
      */
-    public Result getPessoa(Integer matricula) {
+    public Result getPessoa(String matricula) {
         Result result;
 
         try {
@@ -41,13 +41,12 @@ public class PessoaController extends Controller {
      * @param matricula a matricula da nova pessoa
      * @return Um JSON com as informações da pessoa se foi possível adicionar, caso contrário a explicação em formato JSON.
      */
-    public Result addPessoa(String nome, String bairro, String rua, String email, String telefone, String senha, Integer matricula) {
+    public Result addPessoa(String nome, String bairro, String rua, String email, String telefone, String senha, String matricula) {
         Result result;
 
         try {
-            gerenciadorDePessoas.addPessoa(nome, bairro, rua, email, telefone, senha, matricula);
 
-            Pessoa pessoa = gerenciadorDePessoas.getPessoa(matricula);
+            Pessoa pessoa = gerenciadorDePessoas.addPessoa(nome, bairro, rua, email, telefone, senha, matricula);
 
             result = ok(pessoa.toJson());
         } catch(HttpException e) {

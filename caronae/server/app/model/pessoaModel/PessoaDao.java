@@ -11,7 +11,7 @@ public class PessoaDao {
     }
 
     /**
-     * Retorna o objeto {@Pessoa} dado uma matricula.
+     * Recupera um objeto {@Pessoa} dado uma matricula.
      * @param matricula A matricula da pessoa
      * @return objeto {@Pessoa} caso exista, caso contrario retorna null
      */
@@ -28,6 +28,10 @@ public class PessoaDao {
         return pessoaMock.contemPessoa(matricula);
     }
 
+    /**
+     * Adiciona Pessoa ao banco
+     * @param pessoa objeto {@Pessoa}
+     */
     public void addPessoa(Pessoa pessoa) {
         pessoaMock.add(pessoa);
     }
