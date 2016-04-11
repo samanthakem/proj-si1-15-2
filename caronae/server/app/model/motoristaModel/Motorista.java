@@ -14,7 +14,7 @@ public class Motorista {
         this.pessoa = pessoa ;
     }
 
-    public Integer getMatricula() {
+    public String getMatricula() {
         return pessoa.getMatricula();
     }
 

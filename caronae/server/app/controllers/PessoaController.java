@@ -4,7 +4,10 @@ import model.HttpException;
 import model.pessoaModel.GerenciadorDePessoas;
 import model.pessoaModel.Pessoa;
 import play.mvc.Controller;
+import play.mvc.Http;
 import play.mvc.Result;
+
+import java.util.Map;
 
 import static play.data.Form.form;
 
@@ -23,7 +26,6 @@ public class PessoaController extends Controller {
         Result result;
 
         try {
-            System.out.print(matricula);
             Pessoa pessoa = gerenciadorDePessoas.getPessoa(matricula);
             result = ok(pessoa.toJson());
         } catch (HttpException e) {
@@ -38,15 +40,19 @@ public class PessoaController extends Controller {
      * @return Um JSON com as informações da pessoa se foi possível adicionar, caso contrário a explicação em formato JSON.
      */
     public Result addPessoa() {
-        Pessoa r = form(Pessoa.class).bindFromRequest().get();
+        Http.Request request = request();
+        Http.RequestBody body = request.body();
+        Map<String, String[]> valores = request.body().asFormUrlEncoded();
 
-        String nome = r.getNome();
-        String bairro = r.getBairro();
-        String rua = r.getRua();
-        String email = r.getEmail();
-        String telefone = r.getTelefone();
-        String senha = r.getSenha();
-        String matricula = r.getMatricula();
+//        Pessoa r = form(Pessoa.class).bindFromRequest().get();
+
+        String nome = valores.get("name")[0];
+        String bairro = valores.get("address2")[0];
+        String rua = valores.get("address1")[0];
+        String email = valores.get("email")[0];
+        String telefone = valores.get("phone")[0];
+        String senha = valores.get("password")[0];
+        String matricula = valores.get("studentId")[0];
 
         return addPessoa(nome, bairro, rua, email, telefone, senha, matricula);
     }
