@@ -13,11 +13,14 @@ GET     /message                    controllers.AsyncController.message
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
 # Routes used for the Passageiro resource
-GET     /passageiros/:id            controllers.PassageiroController.getPassageiro(id: String)
-
-POST     /passageiros            controllers.PassageiroController.addPassageiro()
+#GET     /passageiros/:id            controllers.PassageiroController.getPassageiro(id: String)
+#
+#POST     /passageiros            controllers.PassageiroController.addPassageiro()
 
 #Routes used for the Pessoa Resource
 GET     /pessoas/:id            controllers.PessoaController.getPessoa(id: String)
 
 POST    /pessoas            controllers.PessoaController.addPessoa()
+
+#Routes used for Session Resource
+POST    /app/login              controllers.SessionController.login()
