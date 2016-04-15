@@ -1,21 +1,44 @@
 package controllers;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import model.HttpException;
 import model.pessoaModel.GerenciadorDePessoas;
 import model.pessoaModel.Pessoa;
+import model.sessaoModel.SessaoValidador;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
 
 import java.util.Map;
 
-import static play.data.Form.form;
-
 /**
  * Created by stenio on 4/3/2016.
  */
 public class PessoaController extends Controller {
     private GerenciadorDePessoas gerenciadorDePessoas = GerenciadorDePessoas.getGerenciador();
+    private SessaoValidador sessaoValidador = new SessaoValidador();
+
+    /**
+     * Realiza login de um usuario no sistema
+     * @return Um JSON com as informações da pessoa se foi possível recuperar, caso contrário a explicação em formato JSON.
+     */
+    public Result login(){
+        Result result;
+        JsonNode request = request().body().asJson();
+
+        try {
+            Pessoa pessoa = sessaoValidador.validaUsuario(request);
+            //session("connected", pessoa.toJson().toString());
+            long timeNow = System.currentTimeMillis()/1000L;
+            session().put("lastRequest", String.valueOf(timeNow));
+            //System.out.print(session("connected"));
+            //System.out.print(session("lastRequest"));
+            result = ok(pessoa.toJson());
+        } catch (HttpException e) {
+            result = status(e.getStatus(), e.getJSONMessage());
+        }
+        return result;
+    }
 
     /**
      * Recupera uma pessoa da coleção de pessoas
@@ -53,7 +76,7 @@ public class PessoaController extends Controller {
         String telefone = valores.get("phone")[0];
         String senha = valores.get("password")[0];
         String matricula = valores.get("studentId")[0];
-
+//
         return addPessoa(nome, bairro, rua, email, telefone, senha, matricula);
     }
 
