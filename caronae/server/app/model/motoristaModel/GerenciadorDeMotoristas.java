@@ -47,15 +47,15 @@ public class GerenciadorDeMotoristas {
      * @return retorna false se não for possível adicionar o motorista a coleção, caso contrário retorna true.
      */
     public void addMotorista(Integer id) throws HttpException {
-        if (motoristas.containsKey(id)) {
-            throw new HttpException(409, "Motorista already exists");
-        } else if (!gerenciadorDePessoas.existePessoa(id)) {
-            throw new HttpException(404, "There is no Pessoa with this id. It is necessary to create a person before creating a motorista.");
-        } else {
-            Pessoa pessoa = gerenciadorDePessoas.getPessoa(id);
-
-            motoristas.put(id, new Motorista(pessoa));
-        }
+//        if (motoristas.containsKey(id)) {
+//            throw new HttpException(409, "Motorista already exists");
+//        } else if (!gerenciadorDePessoas.existePessoa(id)) {
+//            throw new HttpException(404, "There is no Pessoa with this id. It is necessary to create a person before creating a motorista.");
+//        } else {
+//            Pessoa pessoa = gerenciadorDePessoas.getPessoa(id);
+//
+//            motoristas.put(id, new Motorista(pessoa));
+//        }
     }
 
     /**

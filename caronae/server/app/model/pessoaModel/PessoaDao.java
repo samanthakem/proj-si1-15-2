@@ -1,10 +1,13 @@
 package model.pessoaModel;
 
+import model.HttpException;
+
 /**
  * Created by gustavooliveira on 4/7/16.
  */
 public class PessoaDao {
     private PessoaMock pessoaMock;
+
 
     public PessoaDao() {
         pessoaMock = PessoaMock.getPessoaMock();
@@ -12,27 +15,36 @@ public class PessoaDao {
 
     /**
      * Recupera um objeto {@Pessoa} dado uma matricula.
-     * @param matricula A matricula da pessoa
-     * @return objeto {@Pessoa} caso exista, caso contrario retorna null
+     * @param {String} matricula 
+     * 		A matricula da pessoa
+     * @return {Object} pessoa 
+     * 		Retorna null se não existir alguma pessoa com a mesma id que a id especificada, caso contrário retorna a pessoa
      */
     public Pessoa getPessoa(String matricula) {
-        return pessoaMock.get(matricula);
+    	Pessoa pessoa = null;
+        try {
+			pessoa = pessoaMock.get(matricula);
+		} catch (HttpException e) {
+		
+		}
+        
+        return pessoa;
     }
-
+    
     /**
-     * Verifica se existe alguma pessoa com aquele id;
-     * @param matricula A matricula da pessoa
-     * @return true se existe uma pessoa com o mesmo id, caso contr[ario false
+     * Salva a pessoa
+     * @param {Object} pessoa
+     * 		Pessoa que sera salva
      */
-    public boolean existePessoa(String matricula) {
-        return pessoaMock.contemPessoa(matricula);
+    public void persistirPessoa(Pessoa pessoa) {
+    	try {
+    		pessoaMock.add(pessoa);
+    	} catch (HttpException e) {
+    		
+    	}
     }
-
-    /**
-     * Adiciona Pessoa ao banco
-     * @param pessoa objeto {@Pessoa}
-     */
-    public void addPessoa(Pessoa pessoa) {
-        pessoaMock.add(pessoa);
+    
+    public Pessoa atualizarPessoa(Pessoa pessoa) {
+    	return null;
     }
 }

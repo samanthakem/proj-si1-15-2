@@ -3,14 +3,18 @@ package model.pessoaModel;
 import model.HttpException;
 
 /**
- * Created by stenio on 4/3/2016.
+ * Classe responsavel por implementar os servicos da entidade {@Pessoa}
+ * @author Stenio Elson, Samantha Monteiro
  */
-public class GerenciadorDePessoas {
+public class GerenciadorDePessoas implements PessoaService {
+
     private static GerenciadorDePessoas gerenciador;
 
-    private PessoaDao pessoaDao = new PessoaDao();
-
-    private GerenciadorDePessoas(){}
+    private PessoaDao dao = new PessoaDao();
+    
+    private PessoaValidador validador = new PessoaValidador();
+    
+    private GerenciadorDePessoas() {}
 
     /**
      * @return A instancia de GerenciadorDePessoas
@@ -18,49 +22,45 @@ public class GerenciadorDePessoas {
     public static GerenciadorDePessoas getGerenciador() {
         if (gerenciador == null)
             gerenciador = new GerenciadorDePessoas();
-
         return gerenciador;
     }
 
     /**
      * Recupera um passageiro da coleção de pessoas
-     * @param matricula A matricula da pessoa
-     * @return retorna null se o não existir alguma pessoa com a mesma id que a id especificada, caso contrário retorna a pessoa
-     * @throws HttpException se a Pessoa não existir na coleção
+     * @param {String} matricula 
+     * 		A matricula da pessoa
+     * @return {Object} pessoa
+     * 		Retorna null se não existir alguma pessoa com a mesma id que a id especificada, caso contrário retorna a pessoa
      */
-    public Pessoa getPessoa(String matricula) throws HttpException{
-        Pessoa pessoa = pessoaDao.getPessoa(matricula);
+    public Pessoa getPessoa(String matricula) throws HttpException {
+        Pessoa pessoa = dao.getPessoa(matricula);
 
-        if (pessoa == null) {
-            throw new HttpException(404, "Pessoa does not exist");
+        if(pessoa == null){
+            throw new HttpException(404, "This Matricula does not exist");
         }
-
         return pessoa;
     }
 
     /**
      * Adiciona um passageiro a coleção de pessoas
-     * @param nome o nome da nova pessoa
-     * @param bairro o bairro da nova pessoa
-     * @param rua a rua da nova pessoa
-     * @param email o email da nova pessoa
-     * @param telefone o telefone da nova pessoa
-     * @param senha a senha da nova pessoa
-     * @param matricula a matricula da nova pessoa
-     * @throws HttpException se a Pessoa já existir na coleção
+	 * @param {Object} pessoa
+	 * 		Pessoa que sera adicionada no sistema
      */
-    public Pessoa addPessoa(String nome, String bairro, String rua, String email, String telefone, String senha, String matricula) throws HttpException {
-        if (pessoaDao.existePessoa(matricula)) {
-            throw new HttpException(409, "Pessoa already exists");
-        }
+    public void addPessoa(Pessoa pessoa) throws HttpException {
+        validador.validarCadastro(pessoa);
+		dao.persistirPessoa(pessoa);
+    }
 
+    public Pessoa addPessoa(String nome, String bairro, String rua, String email, String telefone, String senha, String matricula) throws HttpException {
         Pessoa pessoa = new Pessoa(nome, bairro, rua, email, telefone, senha, matricula);
-        pessoaDao.addPessoa(pessoa);
+
+        validador.validarCadastro(pessoa);
+        dao.persistirPessoa(pessoa);
 
         return pessoa;
     }
 
-    public boolean existePessoa(String matricula) {
-        return pessoaDao.existePessoa(matricula);
+    public static void setGerenciador(GerenciadorDePessoas gerenciador) {
+        GerenciadorDePessoas.gerenciador = gerenciador;
     }
 }

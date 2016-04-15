@@ -18,7 +18,7 @@ public class PassageiroController extends Controller {
      * @param id O id do passageiro
      * @return Um JSON com as informações do passageiro se foi possível recuperar, caso contrário a explicação em formato JSON.
      */
-    public Result getPassageiro(Integer id) {
+    public Result getPassageiro(String id) {
         Result result;
         JsonNode resultJson;
 
@@ -38,18 +38,20 @@ public class PassageiroController extends Controller {
      * @return Um JSON com as informações do passageiro se foi possível adicionar, caso contrário a explicação em formato JSON.
      */
     public Result addPassageiro(Integer id) {
-        Result result;
-
-        try {
-            gerenciadorDePassageiros.addPassageiro(id);
-
-            Passageiro passageiro = gerenciadorDePassageiros.getPassageiro(id);
-
-            result = ok(passageiro.toJson());
-        } catch(HttpException e) {
-            result = status(e.getStatus(), e.getJSONMessage());
-        }
-
-        return result;
+//        Result result;
+//
+//        try {
+//            gerenciadorDePassageiros.addPassageiro(id);
+//
+//            Passageiro passageiro = gerenciadorDePassageiros.getPassageiro(id);
+//
+//            result = ok(passageiro.toJson());
+//        } catch(HttpException e) {
+//            result = status(e.getStatus(), e.getJSONMessage());
+//        }
+//
+//        return result;\
+        return null;
     }
+
 }
