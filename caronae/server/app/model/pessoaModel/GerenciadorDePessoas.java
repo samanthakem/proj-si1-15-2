@@ -1,7 +1,5 @@
 package model.pessoaModel;
 
-import model.HttpException;
-
 /**
  * Classe responsavel por implementar os servicos da entidade {@Pessoa}
  * @author Stenio Elson, Samantha Monteiro
@@ -12,7 +10,7 @@ public class GerenciadorDePessoas implements PessoaService {
 
     private PessoaDao dao = new PessoaDao();
     
-    private PessoaValidador validador = new PessoaValidador();
+    private PessoaValidador pessoaValidador = new PessoaValidador();
     
     private GerenciadorDePessoas() {}
 
@@ -32,12 +30,9 @@ public class GerenciadorDePessoas implements PessoaService {
      * @return {Object} pessoa
      * 		Retorna null se não existir alguma pessoa com a mesma id que a id especificada, caso contrário retorna a pessoa
      */
-    public Pessoa getPessoa(String matricula) throws HttpException {
+    public Pessoa getPessoa(String matricula) {
+    	pessoaValidador.validarExistenciaPessoa(matricula);
         Pessoa pessoa = dao.getPessoa(matricula);
-
-        if(pessoa == null){
-            throw new HttpException(404, "This Matricula does not exist");
-        }
         return pessoa;
     }
 
@@ -47,13 +42,13 @@ public class GerenciadorDePessoas implements PessoaService {
 	 * 		Pessoa que sera adicionada no sistema
      */
     public void addPessoa(Pessoa pessoa) {
-        validador.validarCadastro(pessoa);
+        pessoaValidador.validarCadastro(pessoa);
 		dao.persistirPessoa(pessoa);
     }
 
-    public Pessoa addPessoa(String nome, String bairro, String rua, String email, String telefone, String senha, String matricula) throws HttpException {
+    public Pessoa addPessoa(String nome, String bairro, String rua, String email, String telefone, String senha, String matricula) {
         Pessoa pessoa = new Pessoa(nome, bairro, rua, email, telefone, senha, matricula);
-        validador.validarCadastro(pessoa);
+        pessoaValidador.validarCadastro(pessoa);
         dao.persistirPessoa(pessoa);
         return pessoa;
     }

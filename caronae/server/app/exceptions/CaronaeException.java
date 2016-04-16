@@ -5,7 +5,6 @@ import java.util.Map;
 import javax.ws.rs.core.Response.Status;
 
 /**
- * 
  * @author Samantha Monteiro
  */
 public abstract class CaronaeException extends RuntimeException {
@@ -52,6 +51,11 @@ public abstract class CaronaeException extends RuntimeException {
 	 */
 	public CaronaeException setCodigoErro(Status codigoErro) {
 		this.codigoErro = codigoErro;
+		return this;
+	}
+	
+	public CaronaeException addParametroParaMensagem(ParametersExceptions key, String value) {
+		parameters.put(key, value);
 		return this;
 	}
 }

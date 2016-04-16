@@ -3,9 +3,6 @@ package model.pessoaModel;
 import com.fasterxml.jackson.databind.JsonNode;
 import play.libs.Json;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 /**
  * Created by stenio on 4/3/2016.
  */
@@ -67,9 +64,6 @@ public class Pessoa {
      * @param nome o novo nome da Pessoa
      */
     public void setNome(String nome) {
-        if(nome == null || nome.equals("")) {
-            throw new IllegalArgumentException("Parâmetro 'nome' recebendo valores inválidos");
-        }
         this.nome = nome;
     }
 
@@ -86,9 +80,6 @@ public class Pessoa {
      * @param bairro  o novo bairro da Pessoa
      */
     public void setBairro(String bairro) {
-        if(bairro == null || bairro.equals("")) {
-            throw new IllegalArgumentException("Parâmetro 'bairro' recebendo valores inválidos");
-        }
         this.bairro = bairro;
     }
 
@@ -105,9 +96,6 @@ public class Pessoa {
      * @param rua a nova rua da Pessoa
      */
     public void setRua(String rua) {
-        if(rua == null || rua.equals("")) {
-            throw new IllegalArgumentException("Parâmetro 'rua' recebendo valores inválidos");
-        }
         this.rua = rua;
     }
 
@@ -124,27 +112,7 @@ public class Pessoa {
      * @param email o novo email da Pessoa
      */
     public void setEmail(String email) {
-        if(email == null || email.equals("") || !isEmailValid(email)) {
-            throw new IllegalArgumentException("Parâmetro 'email' recebendo valores inválidos");
-        } else if (isEmailValid(email)) {
-            this.email = email;
-        }
-    }
-
-    /**
-     * Verifica se o email passado como parâmetro é válido
-     * @param email o email a ser verificado
-     * @return true se o email é válido e false, caso contrário
-     */
-    private boolean isEmailValid(String email) {
-        boolean isValid = false;
-        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(email);
-        if (matcher.matches()) {
-            isValid = true;
-        }
-        return isValid;
+    	this.email = email;
     }
 
     /**
@@ -160,9 +128,6 @@ public class Pessoa {
      * @param telefone o novo telefone da Pessoa
      */
     public void setTelefone(String telefone) {
-        if(telefone == null || telefone.equals("")) {
-            throw new IllegalArgumentException("Parâmetro 'telefone' recebendo valores inválidos");
-        }
         this.telefone = telefone;
     }
 
@@ -179,9 +144,6 @@ public class Pessoa {
      * @param matricula a nova matrícula da Pessoa
      */
     public void setMatricula(String matricula) {
-        if(matricula.length() != 9) {
-            throw new IllegalArgumentException("Parâmetro 'matrícula' deve conter exatamente 9 dígitos");
-        }
         this.matricula = matricula;
     }
 
@@ -198,10 +160,6 @@ public class Pessoa {
      * @param senha a nova senha da Pessoa
      */
     public void setSenha(String senha) {
-        int tamanhoMinimo = 6;
-        if(senha == null || senha.equals("") || senha.length() < tamanhoMinimo) {
-            throw new IllegalArgumentException("Parâmetro 'senha' recebendo valores inválidos");
-        }
         this.senha = senha;
     }
 }

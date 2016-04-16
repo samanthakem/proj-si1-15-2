@@ -1,5 +1,8 @@
 package model.pessoaModel;
 
+import exceptions.DAOErroMensagem;
+import exceptions.DAOException;
+import exceptions.DAOParameterErrors;
 import model.HttpException;
 
 /**
@@ -8,7 +11,7 @@ import model.HttpException;
 public class PessoaDao {
     private PessoaMock pessoaMock;
 
-
+    
     public PessoaDao() {
         pessoaMock = PessoaMock.getPessoaMock();
     }
@@ -21,13 +24,15 @@ public class PessoaDao {
      * 		Retorna null se não existir alguma pessoa com a mesma id que a id especificada, caso contrário retorna a pessoa
      */
     public Pessoa getPessoa(String matricula) {
-    	Pessoa pessoa = null;
-        try {
+    	Pessoa pessoa;
+		// @formatter:off
+		try {
 			pessoa = pessoaMock.get(matricula);
-		} catch (HttpException e) {
-		
+		} catch (HttpException ex) {
+			throw new DAOException(DAOErroMensagem.CONSULTA_ID_NAO_ENCONTRADO, ex)
+					.addParametroParaMensagem(DAOParameterErrors.NOME_ARRAY, "Lista de Pessoas")
+					.addParametroParaMensagem(DAOParameterErrors.ID_DA_ENTIDADE, matricula);
 		}
-        
         return pessoa;
     }
     
@@ -39,8 +44,9 @@ public class PessoaDao {
     public void persistirPessoa(Pessoa pessoa) {
     	try {
     		pessoaMock.add(pessoa);
-    	} catch (HttpException e) {
-    		
+    	} catch (HttpException ex) {
+    		throw new DAOException(DAOErroMensagem.SALVAR_ENTIDADE_JA_EXISTENTE, ex)
+				.addParametroParaMensagem(DAOParameterErrors.ID_DA_ENTIDADE, pessoa.getMatricula());
     	}
     }
     

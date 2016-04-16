@@ -1,6 +1,10 @@
 package model.pessoaModel;
 
 import exceptions.ValidacaoFieldsException;
+import javax.ws.rs.core.Response.Status;
+import exceptions.DAOErroMensagem;
+import exceptions.DAOException;
+import exceptions.DAOParameterErrors;
 import exceptions.ValidacaoErroMensagem;
 import exceptions.ValidacaoParameterErrors;
 import util.RegexPattern;
@@ -24,6 +28,8 @@ public class PessoaValidador {
 	private static final String RUA = "Rua";
 	private static final String TELEFONE = "Telefone";
 	private static final int TAMANHO_MATRICULA_OBRIGATORIO = 11;
+	
+	private PessoaDao dao = new PessoaDao();
 	
 	public PessoaValidador() {}
 	
@@ -124,6 +130,24 @@ public class PessoaValidador {
 			throw new ValidacaoFieldsException().addTemplateComParametro(
 					ValidacaoErroMensagem.FORMATO_INVALIDO, 
 					ValidacaoParameterErrors.OBJETO, TELEFONE);
+		}
+	}
+	
+	/**
+	 * Valida se a pessoa ja foi criada.
+	 * @param {String} matricula
+	 * 		Matricula referente a pessoa a ser procurada
+	 */
+	public void validarExistenciaPessoa(String matricula) {
+		if (matricula == null) {
+			throw new DAOException(DAOErroMensagem.CONSULTA_ID_NULO).setCodigoErro(Status.NOT_FOUND)
+				.addParametroParaMensagem(DAOParameterErrors.NOME_ARRAY, "Lista de Pessoas");
+		}
+		boolean entidadeExiste = dao.getPessoa(matricula) != null;
+		if (!entidadeExiste) {
+			throw new DAOException(DAOErroMensagem.CONSULTA_ID_NAO_ENCONTRADO).setCodigoErro(Status.NOT_FOUND)
+				.addParametroParaMensagem(DAOParameterErrors.NOME_ARRAY, "Lista de Pessoas")
+				.addParametroParaMensagem(DAOParameterErrors.ID_DA_ENTIDADE, matricula);
 		}
 	}
 }

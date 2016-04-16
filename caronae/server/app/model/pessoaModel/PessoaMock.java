@@ -1,7 +1,6 @@
 package model.pessoaModel;
 
 import java.util.HashMap;
-
 import model.HttpException;
 
 /**
@@ -24,7 +23,7 @@ public class PessoaMock {
 
     public Pessoa get(String matricula) throws HttpException {
         if (!pessoas.containsKey(matricula)) {
-        	throw new HttpException(404, "Pessoa does not exist");
+        	throw new HttpException(404, "This matricula does not exist");
         }
         return pessoas.get(matricula);
     }
