@@ -23,7 +23,7 @@ public class PessoaValidador {
 	private static final String BAIRRO = "Bairro";
 	private static final String RUA = "Rua";
 	private static final String TELEFONE = "Telefone";
-	private static final int TAMANHO_MATRICULA_OBRIGATORIO = 6;
+	private static final int TAMANHO_MATRICULA_OBRIGATORIO = 11;
 	
 	public PessoaValidador() {}
 	
