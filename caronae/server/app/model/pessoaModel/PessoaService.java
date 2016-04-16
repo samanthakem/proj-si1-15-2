@@ -1,6 +1,6 @@
 package model.pessoaModel;
 
-import model.HttpException;
+import exceptions.HttpException;
 
 /**
  * Classe responsável pelos serviços de {@Pessoa}

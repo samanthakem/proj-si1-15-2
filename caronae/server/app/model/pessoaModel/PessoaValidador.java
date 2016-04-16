@@ -27,7 +27,7 @@ public class PessoaValidador {
 	private static final String BAIRRO = "Bairro";
 	private static final String RUA = "Rua";
 	private static final String TELEFONE = "Telefone";
-	private static final int TAMANHO_MATRICULA_OBRIGATORIO = 11;
+	private static final int TAMANHO_MATRICULA_OBRIGATORIO = 9;
 	
 	private PessoaDao dao = new PessoaDao();
 	
@@ -58,7 +58,7 @@ public class PessoaValidador {
 		validarSenha(pessoa.getSenha());
 		validarNome(pessoa.getNome());
 		validarEndereco(pessoa.getRua(), pessoa.getBairro());
-		validarTelefone(pessoa.getTelefone());
+		//validarTelefone(pessoa.getTelefone());
 	}
 	
 	/**

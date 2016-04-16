@@ -3,7 +3,7 @@ package model.pessoaModel;
 import exceptions.DAOErroMensagem;
 import exceptions.DAOException;
 import exceptions.DAOParameterErrors;
-import model.HttpException;
+import exceptions.HttpException;
 
 /**
  * Created by gustavooliveira on 4/7/16.

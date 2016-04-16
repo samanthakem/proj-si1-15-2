@@ -2,6 +2,8 @@ package util;
 
 import com.google.common.base.Strings;
 
+import play.mvc.Http.Request;
+
 /**
  * Classe utilitaria com metodos que podem ser usados em varias partes do sistema.
  * 
@@ -20,6 +22,10 @@ public class Utils {
 	 */
 	public static boolean isCampoNaoPreenchido(String campo) {
 		return Strings.isNullOrEmpty(campo);
+	}
+	
+	public static String getAtributo(String key, Request request) {
+		return request.getQueryString(key);
 	}
 	
 }

@@ -4,7 +4,6 @@ import javax.ws.rs.core.Response.Status;
 import exceptions.DAOErroMensagem;
 import exceptions.DAOParameterErrors;
 import exceptions.ParametersExceptions;
-import model.HttpException;
 
 public class DAOException extends CaronaeException {
 	

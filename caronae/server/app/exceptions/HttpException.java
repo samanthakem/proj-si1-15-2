@@ -1,13 +1,18 @@
-package model;
+package exceptions;
+
+import javax.ws.rs.core.Response.Status;
 
 import com.fasterxml.jackson.databind.JsonNode;
+
 import play.libs.Json;
 
 /**
  * Created by stenio on 4/3/2016.
  */
-public class HttpException extends Exception {
-    private Integer statusCode;
+public class HttpException extends CaronaeException {
+
+	private static final long serialVersionUID = 1L;
+	private Integer statusCode;
     private String message;
 
     public HttpException(Integer statusCode, String message) {
@@ -27,4 +32,10 @@ public class HttpException extends Exception {
     public JsonNode getJSONMessage() {
         return Json.parse("{\"error\": \"" + this.message + "\"}");
     }
+
+	@Override
+	public Status getCodigoErro() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
