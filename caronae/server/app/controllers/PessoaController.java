@@ -96,7 +96,6 @@ public class PessoaController extends Controller {
 
         try {
             Pessoa pessoa = gerenciadorDePessoas.addPessoa(nome, bairro, rua, email, telefone, senha, matricula);
-
             result = ok(pessoa.toJson());
         } catch(HttpException e) {
             result = status(e.getStatus(), e.getJSONMessage());

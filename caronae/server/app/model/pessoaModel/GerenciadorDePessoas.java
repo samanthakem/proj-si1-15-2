@@ -46,17 +46,15 @@ public class GerenciadorDePessoas implements PessoaService {
 	 * @param {Object} pessoa
 	 * 		Pessoa que sera adicionada no sistema
      */
-    public void addPessoa(Pessoa pessoa) throws HttpException {
+    public void addPessoa(Pessoa pessoa) {
         validador.validarCadastro(pessoa);
 		dao.persistirPessoa(pessoa);
     }
 
     public Pessoa addPessoa(String nome, String bairro, String rua, String email, String telefone, String senha, String matricula) throws HttpException {
         Pessoa pessoa = new Pessoa(nome, bairro, rua, email, telefone, senha, matricula);
-
         validador.validarCadastro(pessoa);
         dao.persistirPessoa(pessoa);
-
         return pessoa;
     }
 
