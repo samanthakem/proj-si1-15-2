@@ -1,12 +1,14 @@
 package model.pessoaModel;
 
 import com.fasterxml.jackson.databind.JsonNode;
+
+import model.Entidade;
 import play.libs.Json;
 
 /**
  * Created by stenio on 4/3/2016.
  */
-public class Pessoa {
+public class Pessoa extends Entidade {
 
     private String nome,
             bairro,
@@ -36,19 +38,6 @@ public class Pessoa {
         setTelefone(telefone);
         setMatricula(matricula);
         setSenha(senha);
-    }
-
-    /**
-     * A informação da Pessoa em formato JSON
-     * @return A informação da Pessoa
-     */
-    public JsonNode toJson() {
-
-        return Json.toJson(this);
-        /*return Json.parse(
-                "{\"matricula\":\"" + this.getMatricula() + "\","+
-                "\"nome\":\"" + this.getNome() + "\"," +
-                "\"email\":\"" + this.getEmail() + "\"," + "}");*/
     }
 
     /**

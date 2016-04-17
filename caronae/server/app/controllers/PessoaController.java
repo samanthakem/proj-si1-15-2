@@ -1,7 +1,6 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
-
 import exceptions.HttpException;
 import model.pessoaModel.GerenciadorDePessoas;
 import model.pessoaModel.Pessoa;
@@ -17,7 +16,7 @@ import java.util.Arrays;
 
 
 /**
- * Created by stenio on 4/3/2016.
+ * @author Stenio Elson, Samantha Monteiro
  */
 public class PessoaController extends Controller {
     private GerenciadorDePessoas gerenciadorDePessoas = GerenciadorDePessoas.getGerenciador();
@@ -69,7 +68,17 @@ public class PessoaController extends Controller {
 	    String rua = Utils.getAtributo("address1", request);
 	    String email = Utils.getAtributo("email", request);
 	    String telefone = Utils.getAtributo("phone", request);
+	    
+	    Pessoa pessoa = new Pessoa(
+	    		nome,
+	    		bairro,
+	    		rua,
+	    		email,
+	    		telefone,
+	    		senha,
+	    		matricula);
 
-        return ok(gerenciadorDePessoas.addPessoa(nome, bairro, rua, email, telefone, senha, matricula).toJson());
+        gerenciadorDePessoas.addPessoa(pessoa);
+        return ok(pessoa.toJson());
     }
 }

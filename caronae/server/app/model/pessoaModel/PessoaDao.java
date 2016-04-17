@@ -6,11 +6,10 @@ import exceptions.DAOParameterErrors;
 import exceptions.HttpException;
 
 /**
- * Created by gustavooliveira on 4/7/16.
+ * @author Gustavo Oliveira, Samantha Monteiro
  */
 public class PessoaDao {
     private PessoaMock pessoaMock;
-
     
     public PessoaDao() {
         pessoaMock = PessoaMock.getPessoaMock();
@@ -25,7 +24,6 @@ public class PessoaDao {
      */
     public Pessoa getPessoa(String matricula) {
     	Pessoa pessoa;
-		// @formatter:off
 		try {
 			pessoa = pessoaMock.get(matricula);
 		} catch (HttpException ex) {

@@ -1,7 +1,6 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
-
 import exceptions.HttpException;
 import model.passageiroModel.GerenciadorDePassageiros;
 import model.passageiroModel.Passageiro;

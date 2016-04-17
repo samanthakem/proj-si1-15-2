@@ -23,8 +23,8 @@ public class PessoaMock {
     }
 
     public Pessoa get(String matricula) {
-        if (!pessoas.containsKey(matricula)) {
-        	return null;
+        if (!contemPessoa(matricula)) {
+        	throw new HttpException(404, "Pessoa does not exist");
         }
         return pessoas.get(matricula);
     }
@@ -35,7 +35,7 @@ public class PessoaMock {
 
     public void add(Pessoa pessoa) throws HttpException {
     	if (this.contemPessoa(pessoa.getMatricula())) {
-			
+			throw new HttpException(409, "Pessoa already exists");
 		}
         pessoas.put(pessoa.getMatricula(), pessoa);
     }

@@ -46,13 +46,6 @@ public class GerenciadorDePessoas implements PessoaService {
 		dao.persistirPessoa(pessoa);
     }
 
-    public Pessoa addPessoa(String nome, String bairro, String rua, String email, String telefone, String senha, String matricula) {
-        Pessoa pessoa = new Pessoa(nome, bairro, rua, email, telefone, senha, matricula);
-        pessoaValidador.validarCadastro(pessoa);
-        dao.persistirPessoa(pessoa);
-        return pessoa;
-    }
-
     public static void setGerenciador(GerenciadorDePessoas gerenciador) {
         GerenciadorDePessoas.gerenciador = gerenciador;
     }
