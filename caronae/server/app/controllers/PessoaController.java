@@ -28,9 +28,7 @@ public class PessoaController extends Controller {
 
         try {
             Pessoa pessoa = sessaoValidador.validaUsuario(request);
-            //session("connected", pessoa.toJson().toString());
-            long timeNow = System.currentTimeMillis()/1000L;
-            session().put("lastRequest", String.valueOf(timeNow));
+            sessaoValidador.registraPessoaLogada(pessoa);
             //System.out.print(session("connected"));
             //System.out.print(session("lastRequest"));
             result = ok(pessoa.toJson());
@@ -38,6 +36,26 @@ public class PessoaController extends Controller {
             result = status(e.getStatus(), e.getJSONMessage());
         }
         return result;
+    }
+
+    public Result logout(){
+//        System.out.print(session("connected"));
+        session().clear();
+//        System.out.print(session("connected"));
+        return status(200, "Logged out successfully");
+    }
+
+    /**
+     * Recupera da sessao o usuario que está logado no momento
+     * @return Um JSON com as informações da pessoa se foi possível recuperar, caso contrário a explicação em formato JSON.
+     */
+    public Result getUsuarioLogado() {
+        System.out.print(">>>>>>>>>Request Enviado");
+        try {
+            return ok(sessaoValidador.getPessoaLogada());
+        } catch (HttpException e) {
+            return badRequest(e.getJSONMessage());
+        }
     }
 
     /**
