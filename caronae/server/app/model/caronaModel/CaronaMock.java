@@ -24,7 +24,7 @@ public class CaronaMock {
 
     public Carona get(String id) {
         if (!contemCarona(id)) {
-        	return null;
+        	throw new HttpException(404, "Carona does not exist");
         }
         return caronas.get(id);
     }
@@ -35,7 +35,7 @@ public class CaronaMock {
 
     public void add(Carona carona) throws HttpException {
     	if (this.contemCarona(carona.getId())) {
-			
+    		throw new HttpException(409, "Carona already exists");
 		}
         caronas.put(carona.getId(), carona);
     }
