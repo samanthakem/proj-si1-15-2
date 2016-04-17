@@ -1,9 +1,7 @@
 package model.pessoaModel;
 
-import model.HttpException;
-
 /**
- * Classe responsável pelos serviços de {@Pessoa}
+ * Interface responsável pelos serviços de {@Pessoa}
  * 
  * @author Samantha Monteiro
  *
@@ -17,13 +15,13 @@ public interface PessoaService {
      * @return {Object} pessoa
      * 		Retorna null se não existir alguma pessoa com a mesma id que a id especificada, caso contrário retorna a pessoa
      */
-	Pessoa getPessoa(String matricula) throws HttpException;
+	Pessoa getPessoa(String matricula);
 
 	/**
      * Adiciona um passageiro a coleção de pessoas
 	 * @param {Object} pessoa
 	 * 		Pessoa que sera adicionada no sistema
      */
-	void addPessoa(Pessoa pessoa) throws HttpException;
+	void addPessoa(Pessoa pessoa);
 
 }

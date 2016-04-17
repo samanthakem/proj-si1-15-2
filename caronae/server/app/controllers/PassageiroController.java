@@ -1,8 +1,8 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import exceptions.HttpException;
 import model.passageiroModel.GerenciadorDePassageiros;
-import model.HttpException;
 import model.passageiroModel.Passageiro;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -37,7 +37,7 @@ public class PassageiroController extends Controller {
      * @param id O id do novo Passageiro
      * @return Um JSON com as informações do passageiro se foi possível adicionar, caso contrário a explicação em formato JSON.
      */
-    public Result addPassageiro(Integer id) {
+    public Result addPassageiro(String id) {
 //        Result result;
 //
 //        try {

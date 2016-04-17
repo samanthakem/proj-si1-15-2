@@ -1,10 +1,11 @@
 package model.motoristaModel;
 
-import model.HttpException;
 import model.pessoaModel.GerenciadorDePessoas;
 import model.pessoaModel.Pessoa;
 
 import java.util.HashMap;
+
+import exceptions.HttpException;
 
 /**
  * Created by stenio on 4/3/2016.
