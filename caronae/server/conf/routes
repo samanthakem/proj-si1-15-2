@@ -23,3 +23,7 @@ GET     /pessoas/:id            controllers.PessoaController.getPessoa(id: Strin
 POST    /app/pessoas            controllers.PessoaController.addPessoa()
 
 POST    /app/login              controllers.PessoaController.login()
+
+GET     /app/logged             controllers.PessoaController.getUsuarioLogado
+
+GET     /app/logout             controllers.PessoaController.logout()
