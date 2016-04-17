@@ -3,7 +3,7 @@ package exceptions;
 public enum ValidacaoErroMensagem {
 
 	VALOR_NULL (
-		ValidacaoParameterErrors.OBJETO + " can't be empty"
+		ValidacaoParameterErrors.OBJETO + " cant be empty"
 	), FORMATO_INVALIDO (
 		ValidacaoParameterErrors.OBJETO + " has invalid format"
 	);

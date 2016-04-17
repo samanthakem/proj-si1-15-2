@@ -28,8 +28,8 @@ public class ValidacaoFieldsException extends CaronaeException {
 	}
 	
 	@Override
-	public Status getCodigoErro() {
-		return codigoErro;
+	public int getCodigoErro() {
+		return codigoErro.getStatusCode();
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class ValidacaoFieldsException extends CaronaeException {
 				builder.append(" | ");
 			}
 		}
-		return builder.toString();
+		return builder.toString() + "%%" + getCodigoErro();
 	}
 	
 	public ValidacaoFieldsException addTemplateComParametro(

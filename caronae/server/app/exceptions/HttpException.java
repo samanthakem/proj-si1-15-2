@@ -34,8 +34,7 @@ public class HttpException extends CaronaeException {
     }
 
 	@Override
-	public Status getCodigoErro() {
-		// TODO Auto-generated method stub
-		return null;
+	public int getCodigoErro() {
+		return this.statusCode;
 	}
 }

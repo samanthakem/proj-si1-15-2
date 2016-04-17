@@ -32,11 +32,11 @@ public class DAOException extends CaronaeException {
 			mensagem = mensagem.replace(((DAOParameterErrors) key).name(),
 					parameters.get(key));
 		}
-		return mensagem;
+		return mensagem + "%%" + getCodigoErro() ;
 	}
 
 	@Override
-	public Status getCodigoErro() {
-		return codigoErro;
+	public int getCodigoErro() {
+		return codigoErro.getStatusCode();
 	}
 }

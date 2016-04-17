@@ -30,7 +30,7 @@ public abstract class CaronaeException extends RuntimeException {
 	 * @return {Status} 
 	 * 		Retorna o código de erro http da exceção lançada.
 	 */
-	public abstract Status getCodigoErro();
+	public abstract int getCodigoErro();
 	
 	/**
 	 * Recupera a mensagem de erro da exceção lançada.

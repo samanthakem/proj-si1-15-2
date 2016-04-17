@@ -12,20 +12,25 @@ import java.util.concurrent.CompletionStage;
  * Created by stenio on 4/17/2016.
  */
 public class ErrorHandler extends RuntimeException implements HttpErrorHandler {
-    @Override
+
+	private static final long serialVersionUID = 1L;
+
+	@Override
     public CompletionStage<Result> onClientError(Http.RequestHeader request, int statusCode, String message) {
         return CompletableFuture.completedFuture(Results.status(statusCode, "{\"error\": \"" + message + "\"}").as("application/json"));
     }
 
     @Override
     public CompletionStage<Result> onServerError(Http.RequestHeader request, Throwable exception) {
-        if (exception instanceof CaronaeException) {
-            CaronaeException excep = (CaronaeException) exception;
-
-            return CompletableFuture.completedFuture(Results.ok(excep.getMessage()));
-        } else {
-            return CompletableFuture.completedFuture(Results.status(500, "{\"error\": \"" + exception.getLocalizedMessage() + "\"}").as("application/json"));
-        }
-
+    	int statusCode = 500;
+    	String mensagem = exception.getMessage();
+    	if (mensagem.contains("%%")) {
+    		String mensagemDividida[] = mensagem.split("%%");
+    		if (mensagemDividida.length > 1) {
+        		statusCode = Integer.parseInt(mensagemDividida[1]);
+        	}
+    		mensagem = mensagemDividida[0];
+    	}
+    	return CompletableFuture.completedFuture(Results.status(statusCode, "{\"error\": \"" + mensagem + "\"}").as("application/json"));
     }
 }
