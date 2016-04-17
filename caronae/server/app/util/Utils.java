@@ -1,5 +1,6 @@
 package util;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.base.Strings;
 
 import play.mvc.Http.Request;
@@ -24,8 +25,8 @@ public class Utils {
 		return Strings.isNullOrEmpty(campo);
 	}
 	
-	public static String getAtributo(String key, Request request) {
-		return request.getQueryString(key);
+	public static String getAtributo(String key, JsonNode request) {
+		return request.findPath(key).asText();
 	}
 	
 }

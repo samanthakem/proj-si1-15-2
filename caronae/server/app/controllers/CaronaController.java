@@ -1,5 +1,7 @@
 package controllers;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 import model.caronaModel.Carona;
 import model.caronaModel.GerenciadorDeCaronas;
 import play.mvc.Controller;
@@ -30,7 +32,7 @@ public class CaronaController extends Controller {
      * @return Um JSON com as informações da pessoa se foi possível adicionar, caso contrário a explicação em formato JSON.
      */
     public Result addCarona() {
-    	Request request = request();
+    	JsonNode request = request().body().asJson();
     	String id = Utils.getAtributo("id", request);
     	Carona carona = new Carona(id);
         gerenciadorDeCaronas.addCarona(carona);

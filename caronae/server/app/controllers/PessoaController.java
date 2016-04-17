@@ -14,7 +14,6 @@ import java.util.Set;
 import java.util.Map;
 import java.util.Arrays;
 
-
 /**
  * @author Stenio Elson, Samantha Monteiro
  */
@@ -59,7 +58,7 @@ public class PessoaController extends Controller {
      * @return Um JSON com as informações da pessoa se foi possível adicionar, caso contrário a explicação em formato JSON.
      */
     public Result addPessoa() {
-    	Request request = request();
+    	JsonNode request = request().body().asJson();
     	
         String matricula = Utils.getAtributo("studentId", request);
         String senha = Utils.getAtributo("password", request);

@@ -1,8 +1,8 @@
 'use strict';
 
-var caronaeAppMain = angular.module('caronaeApp');
+var caronaeAppHorarios = angular.module('caronaeApp');
 
-caronaeAppMain.controller('HorariosCtrl', ["$scope", "$rootScope", function ($scope, $rootScope) {
+caronaeAppHorarios.controller('HorariosCtrl', ["$scope", "$rootScope", function ($scope, $rootScope) {
 	$rootScope.logged = true;
 
 	$scope.tab = {};

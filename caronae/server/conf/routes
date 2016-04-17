@@ -19,7 +19,7 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 #Routes used for the Pessoa Resource
 GET     /pessoas/:id                controllers.PessoaController.getPessoa(id: String)
-POST    /pessoas                    controllers.PessoaController.addPessoa()
+POST    /app/pessoas                    controllers.PessoaController.addPessoa()
 
 #Routes used for Carona Resource
 GET /caronas/:id                    controllers.CaronaController.getCarona(id: String)
