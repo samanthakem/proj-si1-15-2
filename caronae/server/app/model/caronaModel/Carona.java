@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Endereco;
 import model.Entidade;
+import model.Horario;
 
 /**
  * @author Samantha Monteiro
@@ -22,6 +23,8 @@ public class Carona extends Entidade {
 
 	private Endereco destino;
 
+	private Horario horario;
+
 	public Carona() {
 		this.idsPassageiros = new ArrayList<String>();
 	}
@@ -38,14 +41,25 @@ public class Carona extends Entidade {
 	 * 		ponto inicial da carona
 	 * @param {Object} destino
 	 * 		destino da carona
+	 * @param {Object} horario
+	 * 		horario da carona
 	 */
-	public Carona(String id, String idMotorista, int qntVagasDisponiveis, Endereco pontoInicial, Endereco destino) {
+	public Carona(String id, String idMotorista, int qntVagasDisponiveis, Endereco pontoInicial, Endereco destino, Horario horario) {
 		this();
 		setId(id);
 		setIdMotorista(idMotorista);
 		setQntVagasDisponiveis(qntVagasDisponiveis);
 		setPontoInicial(pontoInicial);
 		setDestino(destino);
+		setHorario(horario);
+	}
+	
+	public void setHorario(Horario horario) {
+		this.horario = horario;
+	}
+	
+	public Horario getHorario() {
+		return horario;
 	}
 	
 	public List<String> getIdsPassageiros() {
