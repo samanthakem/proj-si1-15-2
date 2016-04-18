@@ -2,8 +2,6 @@ package model.pessoaModel;
 
 import java.util.HashMap;
 
-import exceptions.HttpException;
-
 /**
  * Created by gustavooliveira on 4/7/16.
  */
@@ -23,20 +21,18 @@ public class PessoaMock {
     }
 
     public Pessoa get(String matricula) {
-        if (!contemPessoa(matricula)) {
-        	throw new HttpException(404, "Pessoa does not exist");
+        if (pessoas.containsKey(matricula)) {
+            return pessoas.get(matricula);
         }
-        return pessoas.get(matricula);
+
+        return null;
     }
 
     public boolean contemPessoa(String matricula) {
         return pessoas.containsKey(matricula);
     }
 
-    public void add(Pessoa pessoa) throws HttpException {
-    	if (this.contemPessoa(pessoa.getMatricula())) {
-			throw new HttpException(409, "Pessoa already exists");
-		}
+    public void add(Pessoa pessoa) {
         pessoas.put(pessoa.getMatricula(), pessoa);
     }
 
