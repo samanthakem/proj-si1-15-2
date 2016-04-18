@@ -2,7 +2,11 @@
 
 var caronaeAppHorarios = angular.module('caronaeApp');
 
+<<<<<<< Updated upstream
 caronaeAppHorarios.controller('HorariosCtrl', ["$scope", "$rootScope", "$http", "$location", function ($scope, $rootScope, $http, $location) {
+=======
+caronaeAppMain.controller('HorariosCtrl', ["$scope", "$rootScope", "$http", "$location", function ($scope, $rootScope, $http, $location) {
+>>>>>>> Stashed changes
   $http.get("/app/logged").success(function(data) {
     $rootScope.logged = true;
   }).error(function(data, status) {
