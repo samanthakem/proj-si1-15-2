@@ -1,18 +1,22 @@
 package model.motoristaModel;
 
-import model.HttpException;
 import model.pessoaModel.GerenciadorDePessoas;
 import model.pessoaModel.Pessoa;
 
 import java.util.HashMap;
 
+import exceptions.HttpException;
+
 /**
- * Created by stenio on 4/3/2016.
+ * Created by stenio, aline.
  */
 public class GerenciadorDeMotoristas {
-    private HashMap<Integer, Motorista> motoristas = new HashMap<>();
+
     private static GerenciadorDeMotoristas gerenciador;
-    private GerenciadorDePessoas gerenciadorDePessoas = GerenciadorDePessoas.getGerenciador();
+
+    private MotoristaDao motoristaDao = new MotoristaDao();
+
+    private MotoristaValidador motoristaValidador = new MotoristaValidador();
 
     private GerenciadorDeMotoristas(){};
 
@@ -28,42 +32,33 @@ public class GerenciadorDeMotoristas {
 
     /**
      * Recupera um motorista da coleção de motoristas
-     * @param id O id do motorista
-     * @return retorna null se o não existir algum passgeiro com a mesma id que a id especificada, caso contrário retorna o passgeiro
+     * @param {String} matricula
+     *          A matricula do motorista
+     * @return {Object} motorista
+     *          Retorna null se não existir algum motorista com a mesma matricula que a especificada, caso contrário retorna o motorista
      */
-    public Motorista getMotorista(Integer id) throws HttpException {
-        Motorista motorista = motoristas.get(id);
-
-        if (motorista == null) {
-            throw new HttpException(404, "motorista does not exist");
-        }
-
+    public Motorista getMotorista(String matricula) {
+        motoristaValidador.validarExistenciaMotorista(matricula);
+        Motorista motorista = motoristaDao.getMotorista(matricula);
         return motorista;
     }
 
     /**
      * Adiciona um motorista a coleção de motoristas
-     * @param id O id do novo motorista
-     * @return retorna false se não for possível adicionar o motorista a coleção, caso contrário retorna true.
+     * @param {Object} motorista
+     *          o motorista a ser adicionado
      */
-    public void addMotorista(Integer id) throws HttpException {
-//        if (motoristas.containsKey(id)) {
-//            throw new HttpException(409, "Motorista already exists");
-//        } else if (!gerenciadorDePessoas.existePessoa(id)) {
-//            throw new HttpException(404, "There is no Pessoa with this id. It is necessary to create a person before creating a motorista.");
-//        } else {
-//            Pessoa pessoa = gerenciadorDePessoas.getPessoa(id);
-//
-//            motoristas.put(id, new Motorista(pessoa));
-//        }
+    public void addMotorista(Motorista motorista) {
+       motoristaValidador.validarCadastro(motorista);
+       motoristaDao.persistirMotorista(motorista);
     }
 
     /**
-     * Verifica se existe algum motorista com aquele id;
-     * @param id O id do motorista
-     * @return true se existe um motorista com o mesmo id, caso contr[ario false
+     * Verifica se existe algum motorista cadastrado com aquela matricula;
+     * @param matricula A matricula do motorista
+     * @return true se existe um motorista com a mesma matricula, caso contrário false
      */
-    public boolean existeMotorista(Integer id) {
-        return motoristas.containsKey(id);
+    public boolean existeMotorista(String matricula) {
+        return motoristaDao.existeMotorista(matricula);
     }
 }

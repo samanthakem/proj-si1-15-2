@@ -1,7 +1,8 @@
 package model.sessaoModel;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import model.HttpException;
+
+import exceptions.HttpException;
 import model.pessoaModel.GerenciadorDePessoas;
 import model.pessoaModel.Pessoa;
 import play.libs.Json;

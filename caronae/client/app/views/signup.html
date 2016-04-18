@@ -1,54 +1,56 @@
 <div class="container-fluid row">
   <form name="signupForm" novalidate>
-  <div class="jumbotron row">
-    <div class="center"><h3>Cadastro Pessoal</h3></div>
-    <div class="alert alert-danger" ng-if="warningFlag"><info>Preencha todos os campos obrigatórios corretamente.</info></div>
+    <div class="jumbotron row">
+      <div class="center"><h3>Cadastro Pessoal</h3></div>
+        <div class="alert alert-danger" ng-if="warningFlag">
+          <info>Preencha todos os campos obrigatórios corretamente.</info>
+        </div>
 
     <div class="input form-group"  ng-class="{'has-error': noName}">
         <label class="col-xs-3 control-label" for="fullName">Nome* </label>
         <div class="col-xs-9">
-          <input class="form-control" type="text" id="fullName" ng-model="newUser.name">
+          <input class="form-control" type="text" id="fullName" ng-model="pessoaCtrl.pessoa.name">
         </div>
       </div>
       <div class="input form-group" ng-class="{'has-error': noAddress}">
         <label class="col-xs-3 control-label" for="addressB">Bairro* </label>
         <div class="col-xs-4">
-          <input class="form-control" type="text" id="addressB" ng-model="newUser.addressB"/>
+          <input class="form-control" type="text" id="addressB" ng-model="pessoaCtrl.pessoa.address2"/>
         </div>
         <label class="col-xs-1 control-label" for="addressR">Rua* </label>
         <div class="col-xs-4">
-          <input class="form-control" type="text" id="addressR" ng-model="newUser.addressR"/>
+          <input class="form-control" type="text" id="addressR" ng-model="pessoaCtrl.pessoa.address1"/>
         </div>
       </div>
       <div class="input form-group" ng-class="{'has-error': noEmail}">
         <label class="col-xs-3 control-label" for="emailaddress">Email* </label>
         <div class="col-xs-9">
-          <input class="form-control" type="email" id="emailaddress" ng-model="newUser.email" placeholder="ex: contato@caronae.com"/>
+          <input class="form-control" type="email" id="emailaddress" ng-model="pessoaCtrl.pessoa.email" placeholder="ex: contato@caronae.com"/>
         </div>
       </div>
       <div class="input form-group" ng-class="{'has-error': noPhone}">
         <label class="col-xs-3 control-label" for="telephone">Telefone* </label>
         <div class="col-xs-9">
-          <input class="form-control" type="text" id="telephone" ng-model="newUser.phone" placeholder="(xx) 9xxxx-xxxx"/>
+          <input class="form-control" type="text" id="telephone" ng-model="pessoaCtrl.pessoa.phone" placeholder="(xx) 9xxxx-xxxx"/>
         </div>
       </div>
       <div class="input form-group" ng-class="{'has-error': noId}">
         <label class="col-xs-3 control-label" for="studentId" >Matrícula* </label>
         <div class="col-xs-9">
-          <input class="form-control" type="text" id="studentId" ng-model="newUser.studentId" pattern="^[0-9]*$" placeholder="ex: 111111111"/>
+          <input class="form-control" type="text" id="studentId" ng-model="pessoaCtrl.pessoa.studentId" pattern="^[0-9]*$" placeholder="ex: 111111111"/>
         </div>
       </div>
       <div class="input form-group" ng-class="{'has-error': noPassword}">
         <label class="col-xs-3 control-label" for="password">Senha* </label>
         <div class="col-xs-9">
-          <input class="form-control" type="password" id="password" ng-model="newUser.password" />
+          <input class="form-control" type="password" id="password" ng-model="pessoaCtrl.pessoa.password" />
         </div>
       </div>
-      <button class="btn btn-info btn-block btn-lg" ng-if="signupFlag" ng-click="continueSignup()" scroll-to="#cadastrar" ><i>Continuar</i></button>
+      <button class="btn btn-info btn-block btn-lg" ng-if="true" ng-click="pessoaCtrl.continueSignup()" scroll-to="#cadastrar" ><i>Continuar</i></button>
   </div>
-  <div id="typeSection" class="jumbotron row" ng-if="chooseTypeFlag">
+  <div id="typeSection" class="jumbotron row" ng-if="true">
     <div class="center"><h3>Cadastrar-me como:</h3></div>
-    <div class="input form-group" ng-model="newUser.passanger">
+    <div class="input form-group" ng-model="pessoaCtrl.pessoa.passanger">
       <label for="passanger">
         <input id="passanger" type="checkbox" />
         Passageiro
@@ -56,16 +58,16 @@
     </div>
     <div class="input form-group">
       <label for="driver">
-        <input id="driver" type="checkbox" ng-model="newUser.driver"/>
+        <input id="driver" type="checkbox" ng-model="pessoaCtrl.pessoa.driver"/>
         Motorista
       </label>
     </div>
-    <div class="input form-group" ng-if="newUser.driver">
+    <div class="input form-group" ng-if="pessoaCtrl.pessoa.driver">
       <label>Número de vagas para passageiros no meu carro
-        <input type="number" ng-model="newUser.numberAvailable"/>
+        <input type="number" ng-model="pessoaCtrl.pessoa.numberAvailable"/>
       </label>
     </div>
-    <button id="cadastrar" class="btn btn-success btn-block btn-lg" ng-click="signup()">Cadastrar</button>
+    <button id="cadastrar" class="btn btn-success btn-block btn-lg" ng-click="pessoaCtrl.salvar()">Cadastrar</button>
   </div>
   </form>
 </div>

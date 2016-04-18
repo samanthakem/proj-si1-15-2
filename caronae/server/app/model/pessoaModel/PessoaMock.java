@@ -2,7 +2,7 @@ package model.pessoaModel;
 
 import java.util.HashMap;
 
-import model.HttpException;
+import exceptions.HttpException;
 
 /**
  * Created by gustavooliveira on 4/7/16.
@@ -22,9 +22,9 @@ public class PessoaMock {
         return mock;
     }
 
-    public Pessoa get(String matricula) throws HttpException {
-        if (!pessoas.containsKey(matricula)) {
-        	throw new HttpException(404, "Pessoa does not exist");
+    public Pessoa get(String matricula) {
+        if (!contemPessoa(matricula)) {
+            throw new HttpException(404, "Pessoa does not exist");
         }
         return pessoas.get(matricula);
     }
@@ -34,9 +34,9 @@ public class PessoaMock {
     }
 
     public void add(Pessoa pessoa) throws HttpException {
-    	if (this.contemPessoa(pessoa.getMatricula())) {
-			throw new HttpException(409, "Pessoa already exists");
-		}
+        if (this.contemPessoa(pessoa.getMatricula())) {
+            throw new HttpException(409, "Pessoa already exists");
+        }
         pessoas.put(pessoa.getMatricula(), pessoa);
     }
 

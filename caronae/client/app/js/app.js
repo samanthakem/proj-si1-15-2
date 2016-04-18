@@ -14,7 +14,7 @@ caronaeApp.config(function ($routeProvider) {
     })
     .when('/cadastro', {
       templateUrl: 'views/signup.html',
-      controller: 'SignupCtrl'
+      controller: 'PessoaCtrl as pessoaCtrl'
     })
     .when('/main', {
       templateUrl: 'views/main.html',

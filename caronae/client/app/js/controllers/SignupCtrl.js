@@ -13,6 +13,8 @@
 var caronaeAppSignup = angular.module('caronaeApp');
 
 caronaeAppSignup.controller('SignupCtrl', function ($scope,   $location) {
+
+  console.log("entra aqui");
   $scope.newUser={};
 
   $scope.signupFlag = true;
