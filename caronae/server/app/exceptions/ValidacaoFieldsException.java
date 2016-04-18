@@ -1,9 +1,10 @@
 package exceptions;
 
+import play.mvc.Http.Status;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import javax.ws.rs.core.Response.Status;
 
 /**
  * Classe reponsável pela representação e tratamento de uma exceção de validação
@@ -29,7 +30,7 @@ public class ValidacaoFieldsException extends CaronaeException {
 	
 	@Override
 	public int getCodigoErro() {
-		return codigoErro.getStatusCode();
+		return this.codigoErro;
 	}
 
 	@Override

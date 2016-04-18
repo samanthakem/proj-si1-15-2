@@ -22,15 +22,15 @@ public class ErrorHandler extends RuntimeException implements HttpErrorHandler {
 
     @Override
     public CompletionStage<Result> onServerError(Http.RequestHeader request, Throwable exception) {
-    	int statusCode = 500;
-    	String mensagem = exception.getMessage();
-    	if (mensagem.contains("%%")) {
-    		String mensagemDividida[] = mensagem.split("%%");
-    		if (mensagemDividida.length > 1) {
-        		statusCode = Integer.parseInt(mensagemDividida[1]);
-        	}
-    		mensagem = mensagemDividida[0];
-    	}
+		exception = exception.getCause();
+
+		String mensagem = exception.getMessage();
+
+		int statusCode = 500;
+		if (exception instanceof CaronaeException) {
+			statusCode = ((CaronaeException) exception).getCodigoErro();
+		}
+
     	return CompletableFuture.completedFuture(Results.status(statusCode, "{\"error\": \"" + mensagem + "\"}").as("application/json"));
     }
 }
