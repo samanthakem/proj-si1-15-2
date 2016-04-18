@@ -2,7 +2,6 @@ package exceptions;
 
 import java.util.HashMap;
 import java.util.Map;
-import javax.ws.rs.core.Response.Status;
 
 /**
  * @author Samantha Monteiro
@@ -13,7 +12,7 @@ public abstract class CaronaeException extends RuntimeException {
 
 	protected Map<ParametersExceptions, String> parameters;
 	
-	protected Status codigoErro;
+	protected int codigoErro;
 
 	public CaronaeException(Exception exception) {
 		super(exception);
@@ -46,10 +45,11 @@ public abstract class CaronaeException extends RuntimeException {
 	 * 
 	 * @param {Status} codigoErro
 	 * 		Novo código de erro.
+	 * @param codigoErro
 	 * @return {CaronaeException}
 	 * 		Retorna exceção com código de erro alterado.
 	 */
-	public CaronaeException setCodigoErro(Status codigoErro) {
+	public CaronaeException setCodigoErro(int codigoErro) {
 		this.codigoErro = codigoErro;
 		return this;
 	}
