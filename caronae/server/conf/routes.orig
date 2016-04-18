@@ -24,7 +24,14 @@ POST    /app/pessoas                    controllers.PessoaController.addPessoa()
 #Routes used for Carona Resource
 GET /caronas/:id                    controllers.CaronaController.getCarona(id: String)
 POST /caronas                       controllers.CaronaController.addCarona()
+  
+POST    /app/login              controllers.PessoaController.login()
+
+<<<<<<< HEAD
 POST    /app/login              controllers.PessoaController.login()
 
 GET     /app/logged             controllers.PessoaController.getUsuarioLogado
+
 GET     /app/logout             controllers.PessoaController.logout()
+=======
+>>>>>>> 6c6fced67354389a851114f7dd93d66e9947de3a

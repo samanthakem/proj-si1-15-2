@@ -2,8 +2,13 @@
 
 var caronaeAppMain = angular.module('caronaeApp');
 
-caronaeAppMain.controller('PedirCtrl', ['$scope','$rootScope', function ($scope,$rootScope) {
-  $rootScope.logged = true;
+caronaeAppMain.controller('PedirCtrl', ['$scope','$rootScope',  "$http", "$location", function ($scope,$rootScope, $http, $location) {
+  $http.get("/app/logged").success(function(data) {
+    $rootScope.logged = true;
+  }).error(function(data, status) {
+    console.log(data, status);
+    $scope.go("/");
+  });
 
 	$scope.not = {
 		name: "Mariane",
@@ -36,4 +41,9 @@ caronaeAppMain.controller('PedirCtrl', ['$scope','$rootScope', function ($scope,
 		notification.request.choosen = true;
 		notification.status = "list-group-item-danger";
 	}
+
+  $scope.go = function(path){
+    $location.path(path);
+  };
+
 }]);
