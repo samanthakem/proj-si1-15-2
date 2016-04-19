@@ -7,6 +7,9 @@ import exceptions.DAOParameterErrors;
 import exceptions.ValidacaoErroMensagem;
 import exceptions.ValidacaoFieldsException;
 import exceptions.ValidacaoParameterErrors;
+import model.Endereco;
+import model.Horario;
+import util.UtilsValidacao;
 
 /**
  * Classe responsavel pela validacao da entidade {@Carona}
@@ -16,6 +19,16 @@ import exceptions.ValidacaoParameterErrors;
 public class CaronaValidador {
 	
 	private static final String CARONA = "Carona";
+
+	private static final String ID_MOTORISTA = "Id do Motorista";
+
+	private static final String QNT_VAGAS = "Quantidade de vagas disponiveis";
+
+	private static final String PONTO_INICIAL = "Ponto Inicial";
+	
+	private static final String DESTINO = "Destino";
+	
+	private static final String HORARIO = "Horario";
 	
 	private CaronaDAO dao = new CaronaDAO();
 	
@@ -40,9 +53,47 @@ public class CaronaValidador {
 	 * @param {Object} carona
 	 * 		Carona cujos campos serao validados
 	 */
-	private void validarCamposCarona(Carona carona) {
-		// TODO Auto-generated method stub
+	public void validarCamposCarona(Carona carona) {
+		validarIdMotorista(carona.getIdMotorista());
+		validarQntVagasDisponiveis(carona.getQntVagasDisponiveis());
+		validarPontoInicial(carona.getPontoInicial());
+		validarDestino(carona.getDestino());
+		validarHorario(carona.getHorario());
 	}
+
+	public void validarHorario(Horario horario) {
+		if (horario == null) {
+			throw new ValidacaoFieldsException().addTemplateComParametro(
+					ValidacaoErroMensagem.VALOR_NULL, 
+					ValidacaoParameterErrors.OBJETO, HORARIO);
+		}
+	}
+
+	public void validarDestino(Endereco destino) {
+		if (destino == null) {
+			throw new ValidacaoFieldsException().addTemplateComParametro(
+					ValidacaoErroMensagem.VALOR_NULL, 
+					ValidacaoParameterErrors.OBJETO, DESTINO);
+		}
+	}
+
+	public void validarPontoInicial(Endereco pontoInicial) {
+		if (pontoInicial == null) {
+			throw new ValidacaoFieldsException().addTemplateComParametro(
+					ValidacaoErroMensagem.VALOR_NULL, 
+					ValidacaoParameterErrors.OBJETO, PONTO_INICIAL);
+		}
+	}
+
+	public void validarQntVagasDisponiveis(int qntVagasDisponiveis) {
+		UtilsValidacao.validaCampoNaoPreenchido(Integer.toString(qntVagasDisponiveis), QNT_VAGAS);
+	}
+
+	public void validarIdMotorista(String idMotorista) {
+		UtilsValidacao.validaCampoNaoPreenchido(idMotorista, ID_MOTORISTA);	
+	}
+	
+	
 
 	/**
 	 * Valida se a carona ja foi criada.

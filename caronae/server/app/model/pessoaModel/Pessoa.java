@@ -1,39 +1,39 @@
 package model.pessoaModel;
 
-import com.fasterxml.jackson.databind.JsonNode;
-
+import model.Endereco;
 import model.Entidade;
-import play.libs.Json;
 
 /**
  * Created by stenio on 4/3/2016.
  */
 public class Pessoa extends Entidade {
 
-    private String nome,
-            bairro,
-            rua,
-            email,
-            telefone,
-            senha,
-            matricula;
+    private String nome;
+    
+    private String email;
+    
+    private String telefone;
+    
+    private String senha;
+    
+    private String matricula;
+    
+    private Endereco endereco;
 
     public Pessoa() {}
 
     /**
      * Construtor padrão.
      * @param nome o nome da Pessoa
-     * @param bairro o bairro da Pessoa
-     * @param rua a rua da Pessoa
+     * @param endereco o endereco da Pessoa
      * @param email o email da Pessoa
      * @param telefone o telefone da Pessoa
      * @param senha a senha da Pessoa
      * @param matricula a matricula da Pessoa
      */
-    public Pessoa(String nome, String bairro, String rua, String email, String telefone, String senha, String matricula) {
+    public Pessoa(String nome, Endereco endereco, String email, String telefone, String senha, String matricula) {
         setNome(nome);
-        setBairro(bairro);
-        setRua(rua);
+        setEndereco(endereco);
         setEmail(email);
         setTelefone(telefone);
         setMatricula(matricula);
@@ -57,35 +57,20 @@ public class Pessoa extends Entidade {
     }
 
     /**
-     * Recupera o bairro da Pessoa
-     * @return o bairro da Pessoa
+     * Recupera o endereco da Pessoa
+     * @return o endereco da Pessoa
      */
-    public String getBairro() {
-        return bairro;
+    public Endereco getEndereco() {
+        return endereco;
     }
 
     /**
-     * Modifica o bairro da Pessoa, caso o parâmetro seja válido
-     * @param bairro  o novo bairro da Pessoa
+     * Modifica o endereco da Pessoa, caso o parâmetro seja válido
+     * @param {Object} endereco 
+     * 		 novo endereco da Pessoa
      */
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
-
-    /**
-     * Recupera a rua da Pessoa
-     * @return a rua da Pessoa
-     */
-    public String getRua() {
-        return rua;
-    }
-
-    /**
-     * Modifica a rua da Pessoa, caso o parâmetro seja válido
-     * @param rua a nova rua da Pessoa
-     */
-    public void setRua(String rua) {
-        this.rua = rua;
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
     /**
