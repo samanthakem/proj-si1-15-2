@@ -7,6 +7,7 @@ import exceptions.DAOException;
 import exceptions.DAOParameterErrors;
 import exceptions.ValidacaoErroMensagem;
 import exceptions.ValidacaoParameterErrors;
+import model.Endereco;
 import util.RegexPattern;
 import util.UtilsValidacao;
 
@@ -57,7 +58,7 @@ public class PessoaValidador {
 		validarMatricula(pessoa.getMatricula());
 		validarSenha(pessoa.getSenha());
 		validarNome(pessoa.getNome());
-		validarEndereco(pessoa.getRua(), pessoa.getBairro());
+		validarEndereco(pessoa.getEndereco());
 		//validarTelefone(pessoa.getTelefone());
 	}
 	
@@ -114,9 +115,10 @@ public class PessoaValidador {
 	 * @param {String} bairro
 	 * 		Bairro a ser cadastrado
 	 */
-	public void validarEndereco(String rua, String bairro) {
-		UtilsValidacao.validaCampoNaoPreenchido(rua, RUA);
-		UtilsValidacao.validaCampoNaoPreenchido(bairro, BAIRRO);
+	public void validarEndereco(Endereco endereco) {
+		UtilsValidacao.validaCampoNaoPreenchido(endereco.getNum(), BAIRRO);
+		UtilsValidacao.validaCampoNaoPreenchido(endereco.getRua(), RUA);
+		UtilsValidacao.validaCampoNaoPreenchido(endereco.getBairro(), BAIRRO);
 	}
 	
 	/**

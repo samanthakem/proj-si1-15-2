@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import exceptions.HttpException;
 import model.pessoaModel.GerenciadorDePessoas;
 import model.pessoaModel.Pessoa;
+import model.Endereco;
 import model.sessaoModel.SessaoValidador;
 import play.mvc.Controller;
 import play.mvc.Http;
@@ -65,8 +66,8 @@ public class PessoaController extends Controller {
         String nome = Utils.getAtributo("name", request);
 	    String email = Utils.getAtributo("email", request);
 	    String telefone = Utils.getAtributo("phone", request);
-	    String bairro = Utils.getAtributo("address2", request);
-	    String rua = Utils.getAtributo("address1", request);
+	    String bairro = Utils.getAtributo("bairro", request);
+	    String rua = Utils.getAtributo("rua", request);
 	    String num = Utils.getAtributo("num", request);
 	    
 	    Endereco endereco = new Endereco(num, rua, bairro);

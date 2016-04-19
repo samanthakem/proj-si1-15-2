@@ -3,6 +3,7 @@ package model.pessoaModel;
 import java.util.HashMap;
 
 import exceptions.HttpException;
+import model.Endereco;
 
 /**
  * Created by gustavooliveira on 4/7/16.
@@ -41,7 +42,8 @@ public class PessoaMock {
     }
 
     private void fillin() {
-        Pessoa pessoa = new Pessoa("Caroneiro Maior Da Silva Santos", "Motorizados", "Renaut, 49",
+    	Endereco endereco = new Endereco("92", "Sinha Alves", "Presidente Medici");
+        Pessoa pessoa = new Pessoa("Caroneiro Maior Da Silva Santos", endereco,
                 "caroneiro.mss@caronae.com.br", "83999996666", "admin1", "111111111");
 
         pessoas.put(pessoa.getMatricula(), pessoa);
