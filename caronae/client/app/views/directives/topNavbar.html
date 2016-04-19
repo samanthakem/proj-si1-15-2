@@ -11,6 +11,9 @@
 		<div class="pull-right" ng-if="!logged">
 		  <a class="navbar-brand col-xs-12" href="#/login"><strong>Entrar</strong></a>
 		</div>
+    <div class="pull-right" ng-if="logged">
+      <a class="navbar-brand col-xs-12" href="" ng-click="logout()"><strong>Sair</strong></a>
+    </div>
 	  </div>
 	</nav>
   </div>

@@ -11,14 +11,25 @@ import exceptions.HttpException;
 /**
  * Created by stenio, aline.
  */
+<<<<<<< HEAD
 public class GerenciadorDeMotoristas implements MotoristaService {
 	
+    private HashMap<Integer, Motorista> motoristas = new HashMap<>();
     
+    private static GerenciadorDeMotoristas gerenciador;
+    
+    private MotoristaDAO dao = new MotoristaDAO();
+    
+    private GerenciadorDePessoas gerenciadorDePessoas = GerenciadorDePessoas.getGerenciador();
+=======
+public class GerenciadorDeMotoristas {
+
     private static GerenciadorDeMotoristas gerenciador;
 
     private MotoristaDao motoristaDao = new MotoristaDao();
 
     private MotoristaValidador motoristaValidador = new MotoristaValidador();
+>>>>>>> master
 
     private GerenciadorDeMotoristas() {};
 
@@ -63,6 +74,7 @@ public class GerenciadorDeMotoristas implements MotoristaService {
     public boolean existeMotorista(String matricula) {
         return motoristaDao.existeMotorista(matricula);
     }
+<<<<<<< HEAD
 
 	@Override
 	public Motorista getMotorista(String idMotorista) {
@@ -76,3 +88,6 @@ public class GerenciadorDeMotoristas implements MotoristaService {
 		//dao.atualizarMotorista(motorista);
 	}
 }
+=======
+}
+>>>>>>> master

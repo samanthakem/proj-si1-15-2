@@ -37,7 +37,7 @@ public class GerenciadorDePessoas implements PessoaService {
     }
 
     /**
-     * Adiciona um passageiro a coleção de pessoas
+     * Adiciona uma pessoa a coleção de pessoas
 	 * @param {Object} pessoa
 	 * 		Pessoa que sera adicionada no sistema
      */
