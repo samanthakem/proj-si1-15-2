@@ -116,7 +116,6 @@ public class PessoaValidador {
 	 * 		Bairro a ser cadastrado
 	 */
 	public void validarEndereco(Endereco endereco) {
-		UtilsValidacao.validaCampoNaoPreenchido(endereco.getNum(), BAIRRO);
 		UtilsValidacao.validaCampoNaoPreenchido(endereco.getRua(), RUA);
 		UtilsValidacao.validaCampoNaoPreenchido(endereco.getBairro(), BAIRRO);
 	}
