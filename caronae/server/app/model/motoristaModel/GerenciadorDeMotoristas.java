@@ -1,5 +1,6 @@
 package model.motoristaModel;
 
+import model.caronaModel.Carona;
 import model.pessoaModel.GerenciadorDePessoas;
 import model.pessoaModel.Pessoa;
 
@@ -10,12 +11,17 @@ import exceptions.HttpException;
 /**
  * Created by stenio on 4/3/2016.
  */
-public class GerenciadorDeMotoristas {
+public class GerenciadorDeMotoristas implements MotoristaService {
+	
     private HashMap<Integer, Motorista> motoristas = new HashMap<>();
+    
     private static GerenciadorDeMotoristas gerenciador;
+    
+    private MotoristaDAO dao = new MotoristaDAO();
+    
     private GerenciadorDePessoas gerenciadorDePessoas = GerenciadorDePessoas.getGerenciador();
 
-    private GerenciadorDeMotoristas(){};
+    private GerenciadorDeMotoristas() {};
 
     /**
      * @return A instancia de GerenciadorDeMotoristas
@@ -26,7 +32,7 @@ public class GerenciadorDeMotoristas {
 
         return gerenciador;
     }
-
+    
     /**
      * Recupera um motorista da coleção de motoristas
      * @param id O id do motorista
@@ -67,4 +73,16 @@ public class GerenciadorDeMotoristas {
     public boolean existeMotorista(Integer id) {
         return motoristas.containsKey(id);
     }
+
+	@Override
+	public Motorista getMotorista(String idMotorista) {
+		//return dao.getMotorista(idMotorista);
+		return null;
+	}
+
+	@Override
+	public void addMotoristaNaCarona(Motorista motorista, Carona carona) {
+		//motorista.setIdMotorista(carona.getId());
+		//dao.atualizarMotorista(motorista);
+	}
 }
