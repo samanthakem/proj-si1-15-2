@@ -36,7 +36,8 @@ public class Notificacao {
      * @param {Long}
      *      timestamp O timestamp do momento em que a notificacao foi gerada
      */
-    public Notificacao(Pessoa de, Pessoa para, String razao, long timestamp, ParaTipo paraTipo) {
+    public Notificacao(String idNotificacao, Pessoa de, Pessoa para, String razao, long timestamp, ParaTipo paraTipo) {
+        setIdNotificacao(idNotificacao);
         setDe(de);
         setPara(para);
         setRazao(razao);
@@ -104,7 +105,7 @@ public class Notificacao {
     /**
      * @return O id da notificação
      */
-    public String getIdNotificacao(String idNotificacao) {
+    public String getIdNotificacao() {
         return this.idNotificacao;
     }
 

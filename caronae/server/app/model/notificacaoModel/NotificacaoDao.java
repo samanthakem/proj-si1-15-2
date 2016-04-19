@@ -27,6 +27,15 @@ public class NotificacaoDao {
         return notificacao;
     }
 
+    public void persistirNotificacao(Notificacao notificacao) {
+        try {
+            notificacaoMock.add(notificacao);
+        } catch (HttpException ex) {
+            throw new DAOException(DAOErroMensagem.SALVAR_ENTIDADE_JA_EXISTENTE, ex)
+                    .addParametroParaMensagem(DAOParameterErrors.ID_DA_ENTIDADE, notificacao.getIdNotificacao());
+        }
+    }
+
     public List<Notificacao> getNotificacoes(String matricula, int limite, ParaTipo tipo) {
         return notificacaoMock.getNotificacoes(matricula, limite, tipo);
     }

@@ -40,4 +40,9 @@ public class GerenciadorDeNotificacoes {
     public List<Notificacao> getNotificacoes(String matricula, long inicio, long fim, int limite, boolean reverse, ParaTipo tipo) {
         return dao.getNotificacoes(matricula, inicio, fim, limite, reverse, tipo);
     }
+
+    public void addNotificacao(Notificacao notificacao) {
+        //Precisa de validacao? Acho que nao
+        dao.persistirNotificacao(notificacao);
+    }
 }

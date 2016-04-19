@@ -23,6 +23,13 @@ public class NotificacaoMock {
         return notificacoes.get(idNotificacao);
     }
 
+    public void add(Notificacao notificacao) throws HttpException {
+        if (this.contemNotificacao(notificacao.getIdNotificacao())) {
+            throw new HttpException(409, "Notificacao already exists");
+        }
+        notificacoes.put(notificacao.getIdNotificacao(), notificacao);
+    }
+
     public boolean contemNotificacao(String idNotificacao) {
         return this.notificacoes.containsKey(idNotificacao);
     }
@@ -109,12 +116,16 @@ public class NotificacaoMock {
     public void fillin() {
         Pessoa pessoa = GerenciadorDePessoas.getGerenciador().getPessoa("111111111");
 
-        Notificacao notificacao = new Notificacao(pessoa, pessoa, "Mandou avisar que funcionou",
+        Notificacao notificacao = new Notificacao(Integer.toString(notificacoes.size()), pessoa, pessoa, "Mandou avisar que funcionou",
                 new Date().getTime(), ParaTipo.MOTORISTA);
-        notificacoes.put(Integer.toString(notificacoes.size()), notificacao);
+        notificacoes.put(notificacao.getIdNotificacao(), notificacao);
 
-        notificacao = new Notificacao(pessoa, pessoa, "Mandou avisar que funcionou",
+        notificacao = new Notificacao(Integer.toString(notificacoes.size()), pessoa, pessoa, "Mandou avisar que funcionou",
                 new Date().getTime(), ParaTipo.MOTORISTA);
-        notificacoes.put(Integer.toString(notificacoes.size()), notificacao);
+        notificacoes.put(notificacao.getIdNotificacao(), notificacao);
+
+        NotificacaoPedidoCarona pedidoCarona = new NotificacaoPedidoCarona(Integer.toString(notificacoes.size()), pessoa, pessoa, "Pediu caroninha!",
+                new Date().getTime(), ParaTipo.MOTORISTA);
+        notificacoes.put(pedidoCarona.getIdNotificacao(), pedidoCarona);
     }
 }
