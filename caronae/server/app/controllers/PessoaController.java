@@ -81,15 +81,17 @@ public class PessoaController extends Controller {
         String matricula = Utils.getAtributo("studentId", request);
         String senha = Utils.getAtributo("password", request);
         String nome = Utils.getAtributo("name", request);
-	    String bairro = Utils.getAtributo("address2", request);
-	    String rua = Utils.getAtributo("address1", request);
 	    String email = Utils.getAtributo("email", request);
 	    String telefone = Utils.getAtributo("phone", request);
+	    String bairro = Utils.getAtributo("address2", request);
+	    String rua = Utils.getAtributo("address1", request);
+	    String num = Utils.getAtributo("num", request);
+	    
+	    Endereco endereco = new Endereco(num, rua, bairro);
 	    
 	    Pessoa pessoa = new Pessoa(
 	    		nome,
-	    		bairro,
-	    		rua,
+	    		endereco,
 	    		email,
 	    		telefone,
 	    		senha,
