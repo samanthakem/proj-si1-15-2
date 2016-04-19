@@ -150,7 +150,7 @@ public class Pessoa {
 		}
 		
 		Pessoa outraPessoa = (Pessoa) objeto;
-		return Objects.equal(this.matricula, outraPessoa.getMatricula());
+		return this.getMatricula().equals(outraPessoa.getMatricula());
 	}
     
     public JsonNode toJson() {
