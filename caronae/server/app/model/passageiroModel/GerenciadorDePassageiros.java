@@ -11,9 +11,12 @@ import exceptions.HttpException;
  * Created by stenio on 4/3/2016.
  */
 public class GerenciadorDePassageiros {
-    private HashMap<String, Passageiro> passageiros = new HashMap<>();
+
     private static GerenciadorDePassageiros gerenciador;
-    private GerenciadorDePessoas gerenciadorDePessoas = GerenciadorDePessoas.getGerenciador();
+
+    private PassageiroDao passageiroDao = new PassageiroDao();
+
+    private PassageiroValidador passageiroValidador = new PassageiroValidador();
 
     private GerenciadorDePassageiros(){};
 
@@ -26,44 +29,40 @@ public class GerenciadorDePassageiros {
 
         return gerenciador;
     }
+
     /**
-     * Recupera um passageiro da coleção de passageiros
-     * @param id O id do passageiro
-     * @return retorna null se o não existir algum passgeiro com a mesma id que a id especificada, caso contrário retorna o passgeiro
+     * Recupera um passageiro
+     * @param {String} matricula
+     *          A matricula do passageiro
+     * @return {Object} passageiro
+     *          Retorna null se não existir algum passageiro com a matricula, caso contrário retorna o passageiro
      */
-    public Passageiro getPassageiro(String id) throws HttpException {
-        Passageiro passageiro = passageiros.get(id);
-
-        if (passageiro == null) {
-            throw new HttpException(404, "Passageiro does not exist");
-        }
-
+    public Passageiro getPassageiro(String matricula) {
+        passageiroValidador.validarExistenciaPassageiro(matricula);
+        Passageiro passageiro = passageiroDao.getPassageiro(matricula);
         return passageiro;
     }
 
     /**
      * Adiciona um passageiro a coleção de passageiros
-     * @param id O id do novo passageiro
-     * @return retorna false se não for possível adicionar o passageiro a coleção, caso contrário retorna true.
+     * @param {Object} motorista
+     *          o motorista a ser adicionado
      */
-    public void addPassageiro(String id) throws HttpException {
-//        if (passageiros.containsKey(id)) {
-//            throw new HttpException(409, "Passageiro already exists");
-//        } else if (!gerenciadorDePessoas.existePessoa(id)) {
-//            throw new HttpException(404, "There is no Pessoa with this id. It is necessary to create a person before creating a Passageiro.");
-//        } else {
-//            Pessoa pessoa = gerenciadorDePessoas.getPessoa(id);
-//
-//            passageiros.put(id, new Passageiro(pessoa));
-//        }
+    public void addPassageiro(Passageiro passageiro) {
+        passageiroValidador.validarCadastro(passageiro);
+        passageiroDao.persistirPassageiro(passageiro);
     }
 
     /**
-     * Verifica se existe algum passageiro com aquele id;
-     * @param id O id do passageiro
-     * @return true se existe um passageiro com o mesmo id, caso contr[ario false
+     * Verifica se existe algum passageiro cadastrado com aquela matricula;
+     * @param matricula A matricula do passageiro
+     * @return true se existe um passageiro com a mesma matricula, caso contrário false
      */
-    public boolean existePassageiro(String id) {
-        return passageiros.containsKey(id);
+    public boolean existePassageiro(String matricula) {
+        return passageiroDao.existePassageiro(matricula);
+    }
+
+    public static void setGerenciador(GerenciadorDePassageiros gerenciador) {
+        GerenciadorDePassageiros.gerenciador = gerenciador;
     }
 }

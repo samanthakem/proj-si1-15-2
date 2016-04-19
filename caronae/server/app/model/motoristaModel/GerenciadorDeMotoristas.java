@@ -1,5 +1,6 @@
 package model.motoristaModel;
 
+import model.passageiroModel.GerenciadorDePassageiros;
 import model.pessoaModel.GerenciadorDePessoas;
 import model.pessoaModel.Pessoa;
 
@@ -60,5 +61,9 @@ public class GerenciadorDeMotoristas {
      */
     public boolean existeMotorista(String matricula) {
         return motoristaDao.existeMotorista(matricula);
+    }
+
+    public static void setGerenciador(GerenciadorDeMotoristas gerenciador) {
+        GerenciadorDeMotoristas.gerenciador = gerenciador;
     }
 }
