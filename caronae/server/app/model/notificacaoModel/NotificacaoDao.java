@@ -13,7 +13,7 @@ import java.util.List;
  * Created by stenio on 4/18/2016.
  */
 public class NotificacaoDao {
-    private NotificacaoMock notificacaoMock;
+    private NotificacaoMock notificacaoMock = new NotificacaoMock();
 
     public Notificacao getNotificacao(String idNotificacao) {
         Notificacao notificacao;

@@ -1,6 +1,7 @@
 package model.motoristaModel;
 
 import exceptions.HttpException;
+import model.pessoaModel.GerenciadorDePessoas;
 import model.pessoaModel.Pessoa;
 
 import java.util.HashMap;
@@ -39,9 +40,8 @@ public class MotoristaMock {
     }
 
     private void fillin() {
-        Pessoa pessoa = new Pessoa("Motorista Maior Da Silva Sauro", "Motorizados", "Renaut, 49",
-                "motorista.meumotorista@caronae.com.br", "83999996666", "admin2", "222222222");
-
+        Pessoa pessoa = GerenciadorDePessoas.getGerenciador().getPessoa("111111111");
+        
         Motorista motorista = new Motorista(pessoa, 3);
         motoristas.put(pessoa.getMatricula(), motorista);
     }

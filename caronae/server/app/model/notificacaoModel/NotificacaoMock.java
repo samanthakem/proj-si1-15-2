@@ -1,8 +1,9 @@
 package model.notificacaoModel;
 
 import exceptions.HttpException;
-
 import model.notificacaoModel.Notificacao.ParaTipo;
+import model.pessoaModel.GerenciadorDePessoas;
+import model.pessoaModel.Pessoa;
 
 import java.util.*;
 
@@ -69,6 +70,9 @@ public class NotificacaoMock {
         }
         Collections.sort(notificacoes, compareByTimestamp(reverse));
 
+        if (limite > notificacoes.size())
+            limite = notificacoes.size();
+
         return notificacoes.subList(0, limite);
     }
 
@@ -103,6 +107,14 @@ public class NotificacaoMock {
     }
 
     public void fillin() {
+        Pessoa pessoa = GerenciadorDePessoas.getGerenciador().getPessoa("111111111");
 
+        Notificacao notificacao = new Notificacao(pessoa, pessoa, "Mandou avisar que funcionou",
+                new Date().getTime(), ParaTipo.MOTORISTA);
+        notificacoes.put(Integer.toString(notificacoes.size()), notificacao);
+
+        notificacao = new Notificacao(pessoa, pessoa, "Mandou avisar que funcionou",
+                new Date().getTime(), ParaTipo.MOTORISTA);
+        notificacoes.put(Integer.toString(notificacoes.size()), notificacao);
     }
 }
