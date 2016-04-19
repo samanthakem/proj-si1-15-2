@@ -1,5 +1,6 @@
 package model.passageiroModel;
 
+import model.caronaModel.Carona;
 import model.pessoaModel.GerenciadorDePessoas;
 import model.pessoaModel.Pessoa;
 
@@ -10,7 +11,7 @@ import exceptions.HttpException;
 /**
  * Created by stenio on 4/3/2016.
  */
-public class GerenciadorDePassageiros {
+public class GerenciadorDePassageiros implements PassageiroService {
     private HashMap<String, Passageiro> passageiros = new HashMap<>();
     private static GerenciadorDePassageiros gerenciador;
     private GerenciadorDePessoas gerenciadorDePessoas = GerenciadorDePessoas.getGerenciador();
@@ -66,4 +67,10 @@ public class GerenciadorDePassageiros {
     public boolean existePassageiro(String id) {
         return passageiros.containsKey(id);
     }
+
+	@Override
+	public void addPassageiroNaCarona(Passageiro passageiro, Carona carona) {
+		// TODO Auto-generated method stub
+		
+	}
 }
