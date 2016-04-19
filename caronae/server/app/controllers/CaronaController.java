@@ -2,6 +2,8 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import model.Endereco;
+import model.Horario;
 import model.caronaModel.Carona;
 import model.caronaModel.GerenciadorDeCaronas;
 import play.mvc.Controller;
@@ -32,9 +34,26 @@ public class CaronaController extends Controller {
      * @return Um JSON com as informações da pessoa se foi possível adicionar, caso contrário a explicação em formato JSON.
      */
     public Result addCarona() {
+    	
     	JsonNode request = request().body().asJson();
+    	
     	String id = Utils.getAtributo("id", request);
-    	Carona carona = new Carona(id);
+    	String idMotorista = Utils.getAtributo("idMotorista", request);
+    	int qntVagasDisponiveis = Integer.parseInt(Utils.getAtributo("qntVagas", request));
+    	
+    	String ruaInicial = Utils.getAtributo("ruaInicial", request);
+    	String bairroInicial = Utils.getAtributo("bairroInicial", request);
+    	String numInicial = Utils.getAtributo("numInicial", request);
+    	Endereco enderecoInicial = new Endereco(numInicial, ruaInicial, bairroInicial);
+    	
+    	String ruaFinal = Utils.getAtributo("ruaInicial", request);
+    	String bairroFinal = Utils.getAtributo("bairroInicial", request);
+    	String numFinal = Utils.getAtributo("numInicial", request);
+    	Endereco enderecoFinal = new Endereco(numFinal, ruaFinal, bairroFinal);
+    	
+    	Horario horario = new Horario();
+    	
+    	Carona carona = new Carona(id, idMotorista, qntVagasDisponiveis, enderecoInicial, enderecoFinal, horario);
         gerenciadorDeCaronas.addCarona(carona);
         return ok(carona.toJson());
     }

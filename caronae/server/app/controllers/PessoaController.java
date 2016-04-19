@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import exceptions.HttpException;
 import model.pessoaModel.GerenciadorDePessoas;
 import model.pessoaModel.Pessoa;
+import model.Endereco;
 import model.sessaoModel.SessaoValidador;
 import play.mvc.Controller;
 import play.mvc.Http;
@@ -31,9 +32,7 @@ public class PessoaController extends Controller {
 
         try {
             Pessoa pessoa = sessaoValidador.validaUsuario(request);
-            //session("connected", pessoa.toJson().toString());
-            long timeNow = System.currentTimeMillis()/1000L;
-            session().put("lastRequest", String.valueOf(timeNow));
+            sessaoValidador.registraPessoaLogada(pessoa);
             //System.out.print(session("connected"));
             //System.out.print(session("lastRequest"));
             result = ok(pessoa.toJson());
@@ -41,6 +40,26 @@ public class PessoaController extends Controller {
             result = status(e.getStatus(), e.getJSONMessage());
         }
         return result;
+    }
+
+    public Result logout(){
+//        System.out.print(session("connected"));
+        session().clear();
+//        System.out.print(session("connected"));
+        return status(200, "Logged out successfully");
+    }
+
+    /**
+     * Recupera da sessao o usuario que está logado no momento
+     * @return Um JSON com as informações da pessoa se foi possível recuperar, caso contrário a explicação em formato JSON.
+     */
+    public Result getUsuarioLogado() {
+        System.out.print(">>>>>>>>>Request Enviado");
+        try {
+            return ok(sessaoValidador.getPessoaLogada());
+        } catch (HttpException e) {
+            return badRequest(e.getJSONMessage());
+        }
     }
 
     /**
@@ -63,15 +82,17 @@ public class PessoaController extends Controller {
         String matricula = Utils.getAtributo("studentId", request);
         String senha = Utils.getAtributo("password", request);
         String nome = Utils.getAtributo("name", request);
-	    String bairro = Utils.getAtributo("address2", request);
-	    String rua = Utils.getAtributo("address1", request);
 	    String email = Utils.getAtributo("email", request);
 	    String telefone = Utils.getAtributo("phone", request);
+	    String bairro = Utils.getAtributo("bairro", request);
+	    String rua = Utils.getAtributo("rua", request);
+	    String num = Utils.getAtributo("num", request);
+	    
+	    Endereco endereco = new Endereco(num, rua, bairro);
 	    
 	    Pessoa pessoa = new Pessoa(
 	    		nome,
-	    		bairro,
-	    		rua,
+	    		endereco,
 	    		email,
 	    		telefone,
 	    		senha,

@@ -2,8 +2,15 @@
 
 var caronaeAppMain = angular.module('caronaeApp');
 
-caronaeAppMain.controller('NotificacoesCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
-  $rootScope.logged = true;
+caronaeAppMain.controller('NotificacoesCtrl', ['$scope', '$rootScope', "$http", "$location", function ($scope, $rootScope , $http, $location) {
+  $http.get("/app/logged").success(function(data) {
+    $rootScope.logged = true;
+  }).error(function(data, status) {
+    console.log(data, status);
+    $scope.go("/");
+  });
+
+
 	$scope.not = {
 		name: "Mariane",
 		message: "aceitou sua oferta para Carona.",

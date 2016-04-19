@@ -18,8 +18,9 @@ caronaeAppPessoa.controller('PessoaCtrl', ["$scope", "$location", "$http", funct
       		email: this.pessoa.email,
       		password: this.pessoa.password,
       		studentId: this.pessoa.studentId,
-      		address1: this.pessoa.address1,
-      		address2: this.pessoa.address2
+      		rua: this.pessoa.rua,
+      		bairro: this.pessoa.bairro,
+      		num: this.pessoa.num
     	};
 
 	    //console.log(playload)
