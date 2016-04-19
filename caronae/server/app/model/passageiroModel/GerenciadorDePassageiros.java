@@ -8,7 +8,7 @@ import java.util.HashMap;
 import exceptions.HttpException;
 
 /**
- * Created by stenio on 4/3/2016.
+ * Created by stenio, aline.
  */
 public class GerenciadorDePassageiros {
 
@@ -45,8 +45,8 @@ public class GerenciadorDePassageiros {
 
     /**
      * Adiciona um passageiro a coleção de passageiros
-     * @param {Object} motorista
-     *          o motorista a ser adicionado
+     * @param {Object} passageiro
+     *          o passageiro a ser adicionado
      */
     public void addPassageiro(Passageiro passageiro) {
         passageiroValidador.validarCadastro(passageiro);

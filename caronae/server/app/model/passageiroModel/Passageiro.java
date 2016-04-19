@@ -20,6 +20,10 @@ public class Passageiro {
      */
     public Passageiro() {}
 
+    /**
+     * Construtor da entidade {@Passageiro}
+     * @param pessoa a pessoa que é o Passageiro
+     */
     public Passageiro(Pessoa pessoa) {
         this.pessoa = pessoa ;
         this.idsMeusHorarios = new ArrayList<>();
