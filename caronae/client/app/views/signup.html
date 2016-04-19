@@ -13,13 +13,17 @@
         </div>
       </div>
       <div class="input form-group" ng-class="{'has-error': noAddress}">
-        <label class="col-xs-3 control-label" for="addressB">Bairro* </label>
-        <div class="col-xs-4">
-          <input class="form-control" type="text" id="addressB" ng-model="pessoaCtrl.pessoa.address2"/>
+        <label class="col-xs-3 control-label" for="bairro">Bairro* </label>
+        <div class="col-xs-3">
+          <input class="form-control" type="text" id="bairro" ng-model="pessoaCtrl.pessoa.bairro"/>
         </div>
-        <label class="col-xs-1 control-label" for="addressR">Rua* </label>
-        <div class="col-xs-4">
-          <input class="form-control" type="text" id="addressR" ng-model="pessoaCtrl.pessoa.address1"/>
+        <label class="col-xs-1 control-label" for="rua">Rua* </label>
+        <div class="col-xs-3">
+          <input class="form-control" type="text" id="rua" ng-model="pessoaCtrl.pessoa.rua"/>
+        </div>
+        <label class="col-xs-1 control-label" for="num">№</label>
+        <div class="col-xs-1">
+          <input class="form-control" type="text" id="num" ng-model="pessoaCtrl.pessoa.num"/>
         </div>
       </div>
       <div class="input form-group" ng-class="{'has-error': noEmail}">
