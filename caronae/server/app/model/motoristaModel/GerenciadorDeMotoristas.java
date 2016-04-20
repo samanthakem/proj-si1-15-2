@@ -1,12 +1,6 @@
 package model.motoristaModel;
 
 import model.caronaModel.Carona;
-import model.pessoaModel.GerenciadorDePessoas;
-import model.pessoaModel.Pessoa;
-
-import java.util.HashMap;
-
-import exceptions.HttpException;
 
 /**
  * Created by stenio, aline.
@@ -67,7 +61,7 @@ public class GerenciadorDeMotoristas implements MotoristaService {
 
 	@Override
 	public void addMotoristaNaCarona(Motorista motorista, Carona carona) {
-		//motorista.setIdMotorista(carona.getId());
+		motorista.setIdCarona(carona.getId());
 		//dao.atualizarMotorista(motorista);
 	}
 }

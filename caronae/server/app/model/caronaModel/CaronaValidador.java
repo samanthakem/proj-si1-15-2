@@ -109,7 +109,7 @@ public class CaronaValidador {
 		if (!entidadeExiste) {
 			throw new DAOException(DAOErroMensagem.CONSULTA_ID_NAO_ENCONTRADO).setCodigoErro(Status.NOT_FOUND)
 				.addParametroParaMensagem(DAOParameterErrors.NOME_ARRAY, "Lista de Caronas")
-				.addParametroParaMensagem(DAOParameterErrors.ID_DA_ENTIDADE, id);
+				.addParametroParaMensagem(DAOParameterErrors.ID_DA_ENTIDADE, id.toString());
 		}
 	}
 }

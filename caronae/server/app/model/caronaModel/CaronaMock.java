@@ -1,7 +1,8 @@
 package model.caronaModel;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-
+import java.util.List;
 import exceptions.HttpException;
 
 /**
@@ -39,10 +40,44 @@ public class CaronaMock {
 		}
         caronas.put(carona.getId(), carona);
     }
+    
+    public int getQuantidadeTotalCaronas() {
+    	return caronas.size();
+    }
 
     private void fillin() {
         Carona carona = new Carona();
         caronas.put(carona.getId(), carona);
     }
+
+	public List<Carona> getCaronasDeMotorista(String matricula, Integer limite) {
+		 List<Carona> caronas = new ArrayList<>();
+		 Carona caronaTemp;
+		 for (String id : this.caronas.keySet()) {
+			 caronaTemp = this.caronas.get(id);
+			 if (caronaTemp.getIdMotorista().equals(matricula)) {
+				 caronas.add(caronaTemp);
+			 }
+		 }
+		 if (limite > caronas.size()) {
+			 limite = caronas.size();
+		 }
+		 return caronas.subList(0, limite);
+	}
+	
+	public List<Carona> getCaronasDePassageiro(String matricula, Integer limite) {
+		List<Carona> caronas = new ArrayList<>();
+		 Carona caronaTemp;
+		 for (String id : this.caronas.keySet()) {
+			 caronaTemp = this.caronas.get(id);
+			 if (caronaTemp.getIdsPassageiros().contains(matricula)) {
+				 caronas.add(caronaTemp);
+			 }
+		 }
+		 if (limite > caronas.size()) {
+			 limite = caronas.size();
+		 }
+		 return caronas.subList(0, limite);
+	}
 
 }

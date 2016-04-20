@@ -70,7 +70,8 @@ public class GerenciadorDePassageiros implements PassageiroService {
 
 	@Override
 	public void addPassageiroNaCarona(Passageiro passageiro, Carona carona) {
-		// TODO Auto-generated method stub
+		passageiro.setIdCarona(carona.getId());
+		//dao.atualizarPassageiro(passageiro);
 		
 	}
 }

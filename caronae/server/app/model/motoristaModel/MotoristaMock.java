@@ -10,9 +10,14 @@ import java.util.HashMap;
  * Created by aline on 18/04/2016.
  */
 public class MotoristaMock {
+	
     private static MotoristaMock motoristaMock;
 
     private HashMap<String, Motorista> motoristas = new HashMap<>();
+    
+    private String idMotorista = "3";
+    
+    private int qntVagas = 4;
 
     public MotoristaMock()  {
          fillin();
@@ -44,7 +49,7 @@ public class MotoristaMock {
         Pessoa pessoa = new Pessoa("Motorista Maior Da Silva Sauro", endereco,
                 "motorista.meumotorista@caronae.com.br", "83999996666", "admin2", "222222222");
 
-        Motorista motorista = new Motorista(pessoa, 3);
+        Motorista motorista = new Motorista(pessoa, idMotorista, qntVagas);
         motoristas.put(pessoa.getMatricula(), motorista);
     }
 }

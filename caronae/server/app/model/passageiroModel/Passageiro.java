@@ -1,17 +1,17 @@
 package model.passageiroModel;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.google.common.base.Objects;
-
-import model.motoristaModel.Motorista;
 import model.pessoaModel.Pessoa;
 import play.libs.Json;
 
 /**
- * Created by stenio on 4/3/2016.
+ * @author Stenio Araujo, Samantha Monteiro
  */
 public class Passageiro {
+	
     private Pessoa pessoa;
+    
+	private Long idCarona;
 
     public Passageiro(Pessoa pessoa) {
         this.pessoa = pessoa ;
@@ -21,9 +21,21 @@ public class Passageiro {
         return pessoa.getMatricula();
     }
     
+    public void setMatricula(String matricula) {
+    	pessoa.setMatricula(matricula);
+    }
+    
     private Pessoa getPessoa() {
 		return this.pessoa;
 	}
+    
+    public void setIdCarona(Long idCarona) {
+		this.idCarona = idCarona;
+	}
+    
+    public Long getIdCarona() {
+    	return idCarona;
+    }
     
     @Override
 	public boolean equals(Object objeto) {
