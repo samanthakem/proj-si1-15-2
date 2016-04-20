@@ -14,6 +14,7 @@ public class MotoristaValidador {
     private static final String MOTORISTA = "Motorista";
     private static final String PESSOA = "Pessoa";
     private static final String MATRICULA = "Matrícula";
+    private static final String ID_CARONA = "Id da carona";
     private static final String QTD_VAGAS_CARRO = "Quantidade de vagas no carro";
     private static final int QTD_MINIMA_VAGAS_CARRO = 1;
 
@@ -48,14 +49,10 @@ public class MotoristaValidador {
     public void validarCamposMotorista(Motorista motorista) {
         validarPessoaCadastrada(motorista.getPessoa());
         validarQtdVagasCarro(motorista.getQuantidadeVagasCarro());
-        validarIdCarona(motorista.getIdCarona());
     }
 
     public void validarQtdVagasCarro(int qtdVagasCarro) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("");
-        sb.append(qtdVagasCarro);
-        UtilsValidacao.validaCampoNaoPreenchido(sb.toString(), QTD_VAGAS_CARRO);
+        UtilsValidacao.validaCampoNaoPreenchido(Integer.toString(qtdVagasCarro), QTD_VAGAS_CARRO);
         if (qtdVagasCarro < QTD_MINIMA_VAGAS_CARRO) {
             throw new ValidacaoFieldsException().addTemplateComParametro(
                     ValidacaoErroMensagem.VALOR_INVALIDO,
@@ -78,7 +75,7 @@ public class MotoristaValidador {
     }
 
     public void validarIdCarona(String idCarona) {
-        // Coloquei aqui, mas acredito que não precise, pois inicialmente esse valor será null mesmo.
+        UtilsValidacao.validaCampoNaoPreenchido(idCarona, ID_CARONA);
     }
 
     /**
