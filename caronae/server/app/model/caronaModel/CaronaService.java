@@ -1,5 +1,7 @@
 package model.caronaModel;
 
+import java.util.List;
+
 /**
  * Interface responsável pelos serviços de {@Carona}
  * 
@@ -23,5 +25,15 @@ public interface CaronaService {
 	 * 		Carona que sera adicionada no sistema
      */
 	void addCarona(Carona carona);
+	
+	/**
+	 * Recupera a quantidade total de caronas no sistema.
+	 * @return {int} numero de caronas
+	 */
+	int getQuantidadeTotalCaronas();
+	
+	List<Carona> getCaronasDePassageiro(String matricula, Integer limite);
+	
+	List<Carona> getCaronasDeMotorista(String matricula, Integer limite);
 	
 }

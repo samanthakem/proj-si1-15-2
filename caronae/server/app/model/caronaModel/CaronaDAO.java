@@ -1,5 +1,7 @@
 package model.caronaModel;
 
+import java.util.List;
+
 import exceptions.DAOErroMensagem;
 import exceptions.DAOException;
 import exceptions.DAOParameterErrors;
@@ -44,6 +46,18 @@ public class CaronaDAO {
     		throw new DAOException(DAOErroMensagem.SALVAR_ENTIDADE_JA_EXISTENTE, ex)
 				.addParametroParaMensagem(DAOParameterErrors.ID_DA_ENTIDADE, carona.getId());
     	}
+	}
+
+	public int getQuantidadeTotalCaronas() {
+		return caronaMock.getQuantidadeTotalCaronas();
+	}
+
+	public List<Carona> getCaronasDeMotorista(String matricula, Integer limite) {
+		return caronaMock.getCaronasDeMotorista(matricula, limite);
+	}
+	
+	public List<Carona> getCaronasDePassageiro(String matricula, Integer limite) {
+		return caronaMock.getCaronasDePassageiro(matricula, limite);
 	}
 
 }

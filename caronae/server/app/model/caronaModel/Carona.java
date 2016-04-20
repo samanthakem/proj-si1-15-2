@@ -2,14 +2,15 @@ package model.caronaModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.databind.JsonNode;
 import model.Endereco;
-import model.Entidade;
 import model.Horario;
+import play.libs.Json;
 
 /**
  * @author Samantha Monteiro
  */
-public class Carona extends Entidade {
+public class Carona {
 	
 	private String id;
 	
@@ -17,7 +18,7 @@ public class Carona extends Entidade {
 
 	private String idMotorista;
 
-	private int qntVagasDisponiveis;
+	private int qntVagasDisponiveis = 4;
 
 	private Endereco pontoInicial;
 
@@ -35,8 +36,6 @@ public class Carona extends Entidade {
 	 * 		id da carona sendo criada
 	 * @param {String} idMotorista
 	 * 		id do motorista responsavel pela carona
-	 * @param {int} qntVagasDisponiveis
-	 * 		quantidade de vagas disponiveis para carona
 	 * @param {Object} pontoInicial
 	 * 		ponto inicial da carona
 	 * @param {Object} destino
@@ -44,11 +43,10 @@ public class Carona extends Entidade {
 	 * @param {Object} horario
 	 * 		horario da carona
 	 */
-	public Carona(String id, String idMotorista, int qntVagasDisponiveis, Endereco pontoInicial, Endereco destino, Horario horario) {
+	public Carona(String id, String idMotorista, Endereco pontoInicial, Endereco destino, Horario horario) {
 		this();
 		setId(id);
 		setIdMotorista(idMotorista);
-		setQntVagasDisponiveis(qntVagasDisponiveis);
 		setPontoInicial(pontoInicial);
 		setDestino(destino);
 		setHorario(horario);
@@ -91,10 +89,6 @@ public class Carona extends Entidade {
 		return qntVagasDisponiveis;
 	}
 
-	public void setQntVagasDisponiveis(int qntVagasDisponiveis) {
-		this.qntVagasDisponiveis = qntVagasDisponiveis;
-	}
-
 	public void setIdMotorista(String idMotorista) {
 		this.idMotorista = idMotorista;
 	}
@@ -110,5 +104,9 @@ public class Carona extends Entidade {
 	public String getId() {
 		return this.id;
 	}
+	
+	public JsonNode toJson() {
+        return Json.toJson(this);
+    }
 	
 }

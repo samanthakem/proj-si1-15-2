@@ -2,7 +2,6 @@ package model.motoristaModel;
 
 import exceptions.HttpException;
 import model.pessoaModel.GerenciadorDePessoas;
-import model.Endereco;
 import model.pessoaModel.Pessoa;
 
 import java.util.HashMap;
@@ -11,9 +10,14 @@ import java.util.HashMap;
  * Created by aline on 18/04/2016.
  */
 public class MotoristaMock {
+	
     private static MotoristaMock motoristaMock;
 
     private HashMap<String, Motorista> motoristas = new HashMap<>();
+    
+    private String idMotorista = "3";
+    
+    private int qntVagas = 4;
 
     public MotoristaMock()  {
          fillin();
@@ -41,9 +45,8 @@ public class MotoristaMock {
     }
 
     private void fillin() {
-        Pessoa pessoa = GerenciadorDePessoas.getGerenciador().getPessoa("111111111");
-        
-        Motorista motorista = new Motorista(pessoa, 3);
+    	Pessoa pessoa = GerenciadorDePessoas.getGerenciador().getPessoa("111111111");
+        Motorista motorista = new Motorista(pessoa, idMotorista, qntVagas);
         motoristas.put(pessoa.getMatricula(), motorista);
     }
 }

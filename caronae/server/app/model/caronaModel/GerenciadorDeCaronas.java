@@ -1,5 +1,7 @@
 package model.caronaModel;
 
+import java.util.List;
+
 import model.motoristaModel.Motorista;
 import model.motoristaModel.MotoristaService;
 import model.passageiroModel.Passageiro;
@@ -40,6 +42,7 @@ public class GerenciadorDeCaronas implements CaronaService {
      * @return {Object} carona
      * 		Retorna retorna a carona
      */
+    @Override
 	public Carona getCarona(String id) {
 		caronaValidador.validarExistenciaCarona(id);
 		Carona carona = dao.getCarona(id);
@@ -69,6 +72,25 @@ public class GerenciadorDeCaronas implements CaronaService {
 			}
         }
     }
+	
+	/**
+	 * Recupera a quantidade total de caronas no sistema.
+	 * @return {int} numero de caronas
+	 */
+	@Override
+	public int getQuantidadeTotalCaronas() {
+		return dao.getQuantidadeTotalCaronas();
+	}
+	
+	@Override
+	public List<Carona> getCaronasDePassageiro(String matricula, Integer limite) {
+		return dao.getCaronasDePassageiro(matricula, limite);
+	}
+	
+	@Override
+	public List<Carona> getCaronasDeMotorista(String matricula, Integer limite) {
+		return dao.getCaronasDeMotorista(matricula, limite);
+	}
 	
 	public static void setGerenciador(GerenciadorDeCaronas gerenciador) {
         GerenciadorDeCaronas.gerenciador = gerenciador;

@@ -1,19 +1,11 @@
 package model.motoristaModel;
 
 import model.caronaModel.Carona;
-import model.passageiroModel.GerenciadorDePassageiros;
-import model.pessoaModel.GerenciadorDePessoas;
-import model.pessoaModel.Pessoa;
-
-import java.util.HashMap;
-
-import exceptions.HttpException;
 
 /**
  * Created by stenio, aline.
  */
 public class GerenciadorDeMotoristas implements MotoristaService {
-	
     
     private static GerenciadorDeMotoristas gerenciador;
 
@@ -40,6 +32,7 @@ public class GerenciadorDeMotoristas implements MotoristaService {
      * @return {Object} motorista
      *          Retorna null se não existir algum motorista com a mesma matricula que a especificada, caso contrário retorna o motorista
      */
+    @Override
     public Motorista getMotorista(String matricula) {
         motoristaValidador.validarExistenciaMotorista(matricula);
         Motorista motorista = motoristaDao.getMotorista(matricula);
@@ -67,7 +60,7 @@ public class GerenciadorDeMotoristas implements MotoristaService {
 
 	@Override
 	public void addMotoristaNaCarona(Motorista motorista, Carona carona) {
-		//motorista.setIdMotorista(carona.getId());
+		motorista.setIdCarona(carona.getId());
 		//dao.atualizarMotorista(motorista);
 	}
 
