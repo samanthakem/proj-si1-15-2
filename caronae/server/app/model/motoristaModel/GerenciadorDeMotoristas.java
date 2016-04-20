@@ -66,12 +66,6 @@ public class GerenciadorDeMotoristas implements MotoristaService {
     }
 
 	@Override
-	public Motorista getMotorista(String idMotorista) {
-		//return dao.getMotorista(idMotorista);
-		return null;
-	}
-
-	@Override
 	public void addMotoristaNaCarona(Motorista motorista, Carona carona) {
 		//motorista.setIdMotorista(carona.getId());
 		//dao.atualizarMotorista(motorista);
