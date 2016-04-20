@@ -40,4 +40,8 @@ public class MotoristaDao {
     public boolean existeMotorista(String matricula) {
         return motoristaMock.existeMotorista(matricula);
     }
+
+    public void atualizarMotorista(Motorista motorista) {
+        motoristaMock.atualizarMotorista(motorista);
+    }
 }

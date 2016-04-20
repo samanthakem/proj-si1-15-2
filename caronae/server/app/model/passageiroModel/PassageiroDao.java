@@ -40,4 +40,8 @@ public class PassageiroDao {
     public boolean existePassageiro(String matricula) {
         return passageiroMock.existePassageiro(matricula);
     }
+
+    public void atualizarPassageiro(Passageiro passageiro) {
+        passageiroMock.atualizarPassageiro(passageiro);
+    }
 }

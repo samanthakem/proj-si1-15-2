@@ -13,7 +13,14 @@ public interface PassageiroService {
 	 * 		Retorna um passageiro
 	 */
 	Passageiro getPassageiro(String idPassageiro);
-	
+
+	/**
+	 * Adiciona um passageiro a coleção de passageiros
+	 * @param {Object} passageiro
+	 * 		Passageiro que sera adicionada no sistema
+	 */
+	void addPassageiro(Passageiro passageiro);
+
 	/**
 	 * Adiciona um passageiro em uma carona
 	 * @param {Object} passageiro
