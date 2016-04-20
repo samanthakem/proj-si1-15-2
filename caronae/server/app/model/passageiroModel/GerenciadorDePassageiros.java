@@ -1,17 +1,12 @@
 package model.passageiroModel;
 
-import model.pessoaModel.GerenciadorDePessoas;
-import model.pessoaModel.Pessoa;
-
-import java.util.HashMap;
-
-import exceptions.HttpException;
+import model.caronaModel.Carona;
 
 /**
  * Created by stenio, aline.
  */
-public class GerenciadorDePassageiros {
-
+public class GerenciadorDePassageiros implements PassageiroService {
+    
     private static GerenciadorDePassageiros gerenciador;
 
     private PassageiroDao passageiroDao = new PassageiroDao();
@@ -65,4 +60,11 @@ public class GerenciadorDePassageiros {
     public static void setGerenciador(GerenciadorDePassageiros gerenciador) {
         GerenciadorDePassageiros.gerenciador = gerenciador;
     }
+    
+	@Override
+	public void addPassageiroNaCarona(Passageiro passageiro, Carona carona) {
+		passageiro.setIdCarona(carona.getId());
+		//dao.atualizarPassageiro(passageiro);
+	}
 }
+

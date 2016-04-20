@@ -8,10 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by stenio on 4/3/2016.
+ * @author Stenio Araujo, Samantha Monteiro
  */
 public class Passageiro {
+	
     private Pessoa pessoa;
+    
+	private String idCarona;
 
     private List<String> idsMeusHorarios;
 
@@ -31,6 +34,18 @@ public class Passageiro {
 
     public String getMatricula() {
         return pessoa.getMatricula();
+    }
+    
+    public void setMatricula(String matricula) {
+    	pessoa.setMatricula(matricula);
+    }
+    
+    public void setIdCarona(String idCarona) {
+		this.idCarona = idCarona;
+	}
+    
+    public String getIdCarona() {
+    	return idCarona;
     }
     
     @Override

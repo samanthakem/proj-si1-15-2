@@ -1,13 +1,11 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
-
 import model.Endereco;
 import model.Horario;
 import model.caronaModel.Carona;
 import model.caronaModel.GerenciadorDeCaronas;
 import play.mvc.Controller;
-import play.mvc.Http.Request;
 import play.mvc.Result;
 import util.Utils;
 
@@ -39,7 +37,6 @@ public class CaronaController extends Controller {
     	
     	String id = Utils.getAtributo("id", request);
     	String idMotorista = Utils.getAtributo("idMotorista", request);
-    	int qntVagasDisponiveis = Integer.parseInt(Utils.getAtributo("qntVagas", request));
     	
     	String ruaInicial = Utils.getAtributo("ruaInicial", request);
     	String bairroInicial = Utils.getAtributo("bairroInicial", request);
@@ -53,7 +50,7 @@ public class CaronaController extends Controller {
     	
     	Horario horario = new Horario();
     	
-    	Carona carona = new Carona(id, idMotorista, qntVagasDisponiveis, enderecoInicial, enderecoFinal, horario);
+    	Carona carona = new Carona(id, idMotorista, enderecoInicial, enderecoFinal, horario);
         gerenciadorDeCaronas.addCarona(carona);
         return ok(carona.toJson());
     }
