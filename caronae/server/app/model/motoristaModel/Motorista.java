@@ -5,7 +5,7 @@ import model.pessoaModel.Pessoa;
 import play.libs.Json;
 
 /**
- * Created by stenio, aline.
+ * Stenio, Samantha, Aline
  */
 public class Motorista {
 

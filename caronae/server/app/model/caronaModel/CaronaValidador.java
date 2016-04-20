@@ -1,6 +1,6 @@
 package model.caronaModel;
 
-import javax.ws.rs.core.Response.Status;
+import play.mvc.Http.Status;
 import exceptions.DAOErroMensagem;
 import exceptions.DAOException;
 import exceptions.DAOParameterErrors;
@@ -109,7 +109,7 @@ public class CaronaValidador {
 		if (!entidadeExiste) {
 			throw new DAOException(DAOErroMensagem.CONSULTA_ID_NAO_ENCONTRADO).setCodigoErro(Status.NOT_FOUND)
 				.addParametroParaMensagem(DAOParameterErrors.NOME_ARRAY, "Lista de Caronas")
-				.addParametroParaMensagem(DAOParameterErrors.ID_DA_ENTIDADE, id.toString());
+				.addParametroParaMensagem(DAOParameterErrors.ID_DA_ENTIDADE, id);
 		}
 	}
 }

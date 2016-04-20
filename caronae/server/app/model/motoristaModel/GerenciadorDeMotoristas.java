@@ -6,7 +6,6 @@ import model.caronaModel.Carona;
  * Created by stenio, aline.
  */
 public class GerenciadorDeMotoristas implements MotoristaService {
-	
     
     private static GerenciadorDeMotoristas gerenciador;
 
@@ -64,4 +63,8 @@ public class GerenciadorDeMotoristas implements MotoristaService {
 		motorista.setIdCarona(carona.getId());
 		//dao.atualizarMotorista(motorista);
 	}
+
+    public static void setGerenciador(GerenciadorDeMotoristas gerenciador) {
+        GerenciadorDeMotoristas.gerenciador = gerenciador;
+    }
 }
