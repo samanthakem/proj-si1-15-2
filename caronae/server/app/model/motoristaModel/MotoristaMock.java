@@ -2,6 +2,7 @@ package model.motoristaModel;
 
 import exceptions.HttpException;
 import model.pessoaModel.GerenciadorDePessoas;
+import model.Endereco;
 import model.pessoaModel.Pessoa;
 
 import java.util.HashMap;
