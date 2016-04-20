@@ -1,9 +1,6 @@
 package model.passageiroModel;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.google.common.base.Objects;
-
-import model.motoristaModel.Motorista;
 import model.pessoaModel.Pessoa;
 import play.libs.Json;
 
@@ -35,10 +32,6 @@ public class Passageiro {
     public String getMatricula() {
         return pessoa.getMatricula();
     }
-    
-    private Pessoa getPessoa() {
-		return this.pessoa;
-	}
     
     @Override
 	public boolean equals(Object objeto) {
