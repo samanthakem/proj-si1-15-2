@@ -25,9 +25,8 @@ public class Motorista {
      * @param pessoa a Pessoa que é o Motorista
      * @param quantidadeVagasCarro a quantidade de vagas no carro do Motorista
      */
-    public Motorista(Pessoa pessoa, String idCarona, int quantidadeVagasCarro) {
+    public Motorista(Pessoa pessoa, int quantidadeVagasCarro) {
     	setPessoa(pessoa);
-    	setIdCarona(idCarona);
         setQuantidadeVagasCarro(quantidadeVagasCarro);
     }
 

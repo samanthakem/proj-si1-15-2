@@ -29,6 +29,10 @@ public class PassageiroMock {
         passageiros.put(passageiro.getMatricula(), passageiro);
     }
 
+    public void atualizarPassageiro(Passageiro passageiro) {
+        //TODO
+    }
+
     public Passageiro get(String matricula) {
         if (!existePassageiro(matricula)) {
             throw new HttpException(404, "Passageiro does not exist");

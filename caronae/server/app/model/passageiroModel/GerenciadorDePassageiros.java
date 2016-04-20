@@ -64,7 +64,7 @@ public class GerenciadorDePassageiros implements PassageiroService {
 	@Override
 	public void addPassageiroNaCarona(Passageiro passageiro, Carona carona) {
 		passageiro.setIdCarona(carona.getId());
-		//dao.atualizarPassageiro(passageiro);
+        passageiroDao.atualizarPassageiro(passageiro);
 	}
 }
 

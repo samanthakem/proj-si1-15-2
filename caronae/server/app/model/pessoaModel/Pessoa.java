@@ -22,10 +22,13 @@ public class Pessoa {
     
     private Endereco endereco;
 
+    /**
+     * Construtor padrão.
+     */
     public Pessoa() {}
 
     /**
-     * Construtor padrão.
+     * Construtor que recebe todos os parâmetros.
      * @param nome o nome da Pessoa
      * @param endereco o endereco da Pessoa
      * @param email o email da Pessoa

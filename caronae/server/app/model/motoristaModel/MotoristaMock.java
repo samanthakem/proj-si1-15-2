@@ -44,9 +44,13 @@ public class MotoristaMock {
         motoristas.put(motorista.getMatricula(), motorista);
     }
 
+    public void atualizarMotorista(Motorista motorista) {
+        //TODO
+    }
+
     private void fillin() {
     	Pessoa pessoa = GerenciadorDePessoas.getGerenciador().getPessoa("111111111");
-        Motorista motorista = new Motorista(pessoa, idMotorista, qntVagas);
+        Motorista motorista = new Motorista(pessoa, qntVagas);
         motoristas.put(pessoa.getMatricula(), motorista);
     }
 }
