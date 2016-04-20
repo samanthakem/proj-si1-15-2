@@ -1,5 +1,8 @@
 package model.motoristaModel;
 
+import exceptions.DAOErroMensagem;
+import exceptions.DAOException;
+import exceptions.DAOParameterErrors;
 import exceptions.HttpException;
 
 /**
@@ -18,7 +21,9 @@ public class MotoristaDao {
         try {
             motorista = motoristaMock.get(matricula);
         } catch (HttpException ex) {
-            //throw new DAOException();
+            throw new DAOException(DAOErroMensagem.CONSULTA_ID_NAO_ENCONTRADO, ex)
+                    .addParametroParaMensagem(DAOParameterErrors.NOME_ARRAY, "Lista de Motoristas")
+                    .addParametroParaMensagem(DAOParameterErrors.ID_DA_ENTIDADE, matricula);
         }
         return motorista;
     }
@@ -27,7 +32,8 @@ public class MotoristaDao {
         try {
             motoristaMock.add(motorista);
         } catch (HttpException ex) {
-            //throw new DAOException();
+            throw new DAOException(DAOErroMensagem.SALVAR_ENTIDADE_JA_EXISTENTE, ex)
+                    .addParametroParaMensagem(DAOParameterErrors.ID_DA_ENTIDADE, motorista.getMatricula());
         }
     }
 
