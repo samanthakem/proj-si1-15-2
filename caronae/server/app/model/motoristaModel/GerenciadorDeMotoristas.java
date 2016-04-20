@@ -1,6 +1,7 @@
 package model.motoristaModel;
 
 import model.caronaModel.Carona;
+import model.passageiroModel.GerenciadorDePassageiros;
 import model.pessoaModel.GerenciadorDePessoas;
 import model.pessoaModel.Pessoa;
 
@@ -75,4 +76,8 @@ public class GerenciadorDeMotoristas implements MotoristaService {
 		//motorista.setIdMotorista(carona.getId());
 		//dao.atualizarMotorista(motorista);
 	}
+
+    public static void setGerenciador(GerenciadorDeMotoristas gerenciador) {
+        GerenciadorDeMotoristas.gerenciador = gerenciador;
+    }
 }
