@@ -6,6 +6,8 @@ public enum ValidacaoErroMensagem {
 		ValidacaoParameterErrors.OBJETO + " cant be empty"
 	), FORMATO_INVALIDO (
 		ValidacaoParameterErrors.OBJETO + " has invalid format"
+	), VALOR_INVALIDO (
+			ValidacaoParameterErrors.OBJETO + " has invalid value"
 	);
 
 	private final String template;
