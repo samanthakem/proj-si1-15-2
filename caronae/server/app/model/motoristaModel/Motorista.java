@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import model.caronaModel.Carona;
 import model.pessoaModel.Pessoa;
 import play.libs.Json;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,6 +93,20 @@ public class Motorista {
     public List<Carona> getCaronas() {
         return minhasCaronas;
     }
+    
+    @Override
+	public boolean equals(Object objeto) {
+		if (this == objeto) {
+			return true;
+		}
+		
+		if (!(objeto instanceof Motorista)) {
+			return false;
+		}
+		
+		Motorista outroMotorista = (Motorista) objeto;
+		return this.getPessoa().equals(outroMotorista.getPessoa());
+	}
 
     //TODO implementar método getCarona
 }

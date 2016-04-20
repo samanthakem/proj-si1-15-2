@@ -32,8 +32,22 @@ public class Passageiro {
     public String getMatricula() {
         return pessoa.getMatricula();
     }
+    
+    @Override
+	public boolean equals(Object objeto) {
+		if (this == objeto) {
+			return true;
+		}
+		
+		if (!(objeto instanceof Passageiro)) {
+			return false;
+		}
+		
+		Passageiro outroPassageiro = (Passageiro) objeto;
+		return this.getPessoa().equals(outroPassageiro.getPessoa());
+	}
 
-    /**
+	/**
      * A informação do passageiro em formato JSON
      * @return A informação do Passageiro
      */

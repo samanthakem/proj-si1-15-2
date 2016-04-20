@@ -1,6 +1,6 @@
 package model.caronaModel;
 
-import javax.ws.rs.core.Response.Status;
+import play.mvc.Http.Status;
 import exceptions.DAOErroMensagem;
 import exceptions.DAOException;
 import exceptions.DAOParameterErrors;

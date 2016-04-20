@@ -1,7 +1,6 @@
 package model.motoristaModel;
 
 import model.caronaModel.Carona;
-import model.passageiroModel.GerenciadorDePassageiros;
 import model.pessoaModel.GerenciadorDePessoas;
 import model.pessoaModel.Pessoa;
 
@@ -12,14 +11,25 @@ import exceptions.HttpException;
 /**
  * Created by stenio, aline.
  */
+<<<<<<< HEAD
 public class GerenciadorDeMotoristas implements MotoristaService {
 	
+    private HashMap<Integer, Motorista> motoristas = new HashMap<>();
     
+    private static GerenciadorDeMotoristas gerenciador;
+    
+    private MotoristaDAO dao = new MotoristaDAO();
+    
+    private GerenciadorDePessoas gerenciadorDePessoas = GerenciadorDePessoas.getGerenciador();
+=======
+public class GerenciadorDeMotoristas {
+
     private static GerenciadorDeMotoristas gerenciador;
 
     private MotoristaDao motoristaDao = new MotoristaDao();
 
     private MotoristaValidador motoristaValidador = new MotoristaValidador();
+>>>>>>> master
 
     private GerenciadorDeMotoristas() {};
 
@@ -64,14 +74,20 @@ public class GerenciadorDeMotoristas implements MotoristaService {
     public boolean existeMotorista(String matricula) {
         return motoristaDao.existeMotorista(matricula);
     }
+<<<<<<< HEAD
+
+	@Override
+	public Motorista getMotorista(String idMotorista) {
+		//return dao.getMotorista(idMotorista);
+		return null;
+	}
 
 	@Override
 	public void addMotoristaNaCarona(Motorista motorista, Carona carona) {
 		//motorista.setIdMotorista(carona.getId());
 		//dao.atualizarMotorista(motorista);
 	}
-
-    public static void setGerenciador(GerenciadorDeMotoristas gerenciador) {
-        GerenciadorDeMotoristas.gerenciador = gerenciador;
-    }
 }
+=======
+}
+>>>>>>> master

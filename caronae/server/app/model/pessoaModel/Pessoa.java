@@ -1,12 +1,14 @@
 package model.pessoaModel;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.google.common.base.Objects;
 import model.Endereco;
-import model.Entidade;
+import play.libs.Json;
 
 /**
  * Created by stenio on 4/3/2016.
  */
-public class Pessoa extends Entidade {
+public class Pessoa {
 
     private String nome;
     
@@ -136,4 +138,23 @@ public class Pessoa extends Entidade {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+    
+    @Override
+	public boolean equals(Object objeto) {
+		if (this == objeto) {
+			return true;
+		}
+		
+		if (!(objeto instanceof Pessoa)) {
+			return false;
+		}
+		
+		Pessoa outraPessoa = (Pessoa) objeto;
+		return this.getMatricula().equals(outraPessoa.getMatricula());
+	}
+    
+    public JsonNode toJson() {
+        return Json.toJson(this);
+    }
+
 }

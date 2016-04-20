@@ -1,9 +1,6 @@
 package exceptions;
 
-import javax.ws.rs.core.Response.Status;
-import exceptions.DAOErroMensagem;
-import exceptions.DAOParameterErrors;
-import exceptions.ParametersExceptions;
+import play.mvc.Http.Status;
 
 public class DAOException extends CaronaeException {
 	
@@ -15,7 +12,7 @@ public class DAOException extends CaronaeException {
 		super(ex);
 		this.template = template;
 		if (ex instanceof HttpException) {
-			setCodigoErro(Status.NOT_FOUND);
+			setCodigoErro(((HttpException) ex).getStatus());
 		} else {
 			setCodigoErro(Status.BAD_REQUEST);
 		}
@@ -32,11 +29,9 @@ public class DAOException extends CaronaeException {
 			mensagem = mensagem.replace(((DAOParameterErrors) key).name(),
 					parameters.get(key));
 		}
-		return mensagem + "%%" + getCodigoErro() ;
+		return mensagem;
 	}
 
 	@Override
-	public int getCodigoErro() {
-		return codigoErro.getStatusCode();
-	}
+	public int getCodigoErro() { return this.codigoErro; }
 }

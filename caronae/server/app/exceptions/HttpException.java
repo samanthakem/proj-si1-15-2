@@ -1,7 +1,5 @@
 package exceptions;
 
-import javax.ws.rs.core.Response.Status;
-
 import com.fasterxml.jackson.databind.JsonNode;
 
 import play.libs.Json;
