@@ -56,4 +56,14 @@ public class Horario {
         this.idHorario = idHorario;
     }
 
+    @Override
+    public boolean equals(Object objeto) {
+        if (!(objeto instanceof Horario)) {
+            return false;
+        }
+
+        Horario segundoHorario = (Horario) objeto;
+        return this.getDia().equals(segundoHorario.getDia()) && this.getHora().equals(segundoHorario.getHora());
+    }
+
 }
