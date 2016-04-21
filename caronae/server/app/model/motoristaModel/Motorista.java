@@ -18,7 +18,9 @@ public class Motorista {
     /**
      * Construtor padrão.
      */
-    public Motorista() {}
+    public Motorista() {
+    	
+    }
 
     /**
      * Construtor que recebe todos os parametros.
@@ -29,38 +31,58 @@ public class Motorista {
     	setPessoa(pessoa);
         setQuantidadeVagasCarro(quantidadeVagasCarro);
     }
-
+    
+    /**
+     * Recupera a matrícula da pessoa que é motorista
+     * @return matricula
+     */
     public String getMatricula() {
         return pessoa.getMatricula();
     }
     
+    /**
+     * Modifica a matrícula da pessoa que é motorista
+     * @param matricula
+     */
     public void setMatricula(String matricula) {
     	pessoa.setMatricula(matricula);
     }
 	
+    /**
+     * Modifica a ID da carona
+     * @param idCarona
+     */
 	public void setIdCarona(String idCarona) {
 		this.idCarona = idCarona;
 	}
 	
+	/**
+	 * Recupera a ID da carona
+	 * @return idCarona
+	 */
 	public String getIdCarona() {
 		return idCarona;
 	}
 
     /**
-     * Recupera a Pessoa que é o Motorista
-     * @return a Pessoa que é o Motorista
+     * Recupera a Pessoa
+     * @return a Pessoa 
      */
     public Pessoa getPessoa() {
         return pessoa;
     }
     
+    /**
+     * Modifica a pessoa
+     * @param pessoa
+     */
     public void setPessoa(Pessoa pessoa) {
     	this.pessoa = pessoa;
     }
 
     /**
      * Recupera a quantidade de vagas no carro do Motorista
-     * @return a quantidade de vagas no carro do Motorista
+     * @return quantidadeVagasCarro a quantidade de vagas no carro do Motorista
      */
     public int getQuantidadeVagasCarro() {
         return quantidadeVagasCarro;
@@ -76,12 +98,17 @@ public class Motorista {
     
     /**
      * A informação do Motorista em formato JSON
-     * @return A informação do Motorista
+     * @return Json.parse() A informação do Motorista
      */
     public JsonNode toJson() {
         return Json.parse("{\"id\":\"" + this.pessoa.getMatricula() + "\"}");
     }
     
+    /**
+     * Sobrescreve a comparação entre motoristas
+     * @param objeto
+     * @return true se o objeto for motorista e tiver mesma pessoa do objeto, caso contrário false
+     */
     @Override
 	public boolean equals(Object objeto) {
 		if (this == objeto) {

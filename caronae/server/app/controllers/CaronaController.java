@@ -29,7 +29,7 @@ public class CaronaController extends Controller {
     
     /**
      * Adiciona uma carona a coleção de caronas
-     * @return Um JSON com as informações da Carona se foi possível adicionar, caso contrário a explicação em formato JSON.
+     * @return Um JSON com as informações da pessoa se foi possível adicionar, caso contrário a explicação em formato JSON.
      */
     public Result addCarona() {
     	

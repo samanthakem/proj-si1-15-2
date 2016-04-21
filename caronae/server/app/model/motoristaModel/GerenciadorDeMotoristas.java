@@ -12,11 +12,15 @@ public class GerenciadorDeMotoristas implements MotoristaService {
     private MotoristaDao motoristaDao = new MotoristaDao();
 
     private MotoristaValidador motoristaValidador = new MotoristaValidador();
-
-    private GerenciadorDeMotoristas() {};
+    
+    /**
+     * Construtor padrão da classe
+     */
+    private GerenciadorDeMotoristas() {
+    }
 
     /**
-     * @return A instancia de GerenciadorDeMotoristas
+     * @return gerenciador A instância de GerenciadorDeMotoristas
      */
     public static GerenciadorDeMotoristas getGerenciador() {
         if (gerenciador == null)
@@ -57,13 +61,22 @@ public class GerenciadorDeMotoristas implements MotoristaService {
     public boolean existeMotorista(String matricula) {
         return motoristaDao.existeMotorista(matricula);
     }
-
+    
+    /**
+     * Modifica qual carona o motorista faz parte
+     * @param motorista o motorista
+     * @param carona a carona do motorista
+     */
 	@Override
 	public void addMotoristaNaCarona(Motorista motorista, Carona carona) {
 		motorista.setIdCarona(carona.getId());
         motoristaDao.atualizarMotorista(motorista);
 	}
-
+	
+	/**
+	 * Modifica o gerenciador de motoristas
+	 * @param gerenciador
+	 */
     public static void setGerenciador(GerenciadorDeMotoristas gerenciador) {
         GerenciadorDeMotoristas.gerenciador = gerenciador;
     }

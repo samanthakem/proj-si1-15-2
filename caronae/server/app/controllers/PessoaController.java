@@ -2,15 +2,18 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import exceptions.HttpException;
-import model.Endereco;
 import model.pessoaModel.GerenciadorDePessoas;
 import model.pessoaModel.Pessoa;
+import model.Endereco;
 import model.sessaoModel.SessaoValidador;
 import play.mvc.Controller;
+import play.mvc.Http;
 import play.mvc.Result;
 import util.Utils;
-
-import java.io.File;
+import play.mvc.Http.Request;
+import java.util.Set;
+import java.util.Map;
+import java.util.Arrays;
 
 /**
  * @author Stenio Elson, Samantha Monteiro
@@ -51,6 +54,7 @@ public class PessoaController extends Controller {
      * @return Um JSON com as informações da pessoa se foi possível recuperar, caso contrário a explicação em formato JSON.
      */
     public Result getUsuarioLogado() {
+        System.out.print(">>>>>>>>>Request Enviado");
         try {
             return ok(sessaoValidador.getPessoaLogada());
         } catch (HttpException e) {
@@ -83,10 +87,8 @@ public class PessoaController extends Controller {
 	    String bairro = Utils.getAtributo("bairro", request);
 	    String rua = Utils.getAtributo("rua", request);
 	    String num = Utils.getAtributo("num", request);
-        String foto = Utils.getAtributo("foto", request);
-        System.out.println();
-
-        Endereco endereco = new Endereco(num, rua, bairro);
+	    
+	    Endereco endereco = new Endereco(num, rua, bairro);
 	    
 	    Pessoa pessoa = new Pessoa(
 	    		nome,
@@ -98,19 +100,5 @@ public class PessoaController extends Controller {
 
         gerenciadorDePessoas.addPessoa(pessoa);
         return ok(pessoa.toJson());
-    }
-
-    public Result upload() {
-        play.mvc.Http.MultipartFormData<File> body = request().body().asMultipartFormData();
-        play.mvc.Http.MultipartFormData.FilePart<File> picture = body.getFile("foto");
-        System.out.println("jalskdjfkl");
-        if (picture != null) {
-            String fileName = picture.getFilename();
-            String contentType = picture.getContentType();
-            java.io.File file = picture.getFile();
-            return ok("File uploaded "+fileName + " " + contentType);
-        } else {
-            return badRequest("Arquivo nao chegou");
-        }
     }
 }

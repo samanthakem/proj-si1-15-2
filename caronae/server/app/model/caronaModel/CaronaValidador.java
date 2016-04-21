@@ -101,7 +101,7 @@ public class CaronaValidador {
 	 * 		ID referente a carona a ser procurada
 	 */
 	public void validarExistenciaCarona(String id) {
-			if (id == null) {
+		if (id == null) {
 			throw new DAOException(DAOErroMensagem.CONSULTA_ID_NULO).setCodigoErro(Status.NOT_FOUND)
 				.addParametroParaMensagem(DAOParameterErrors.NOME_ARRAY, "Lista de Caronas");
 		}
