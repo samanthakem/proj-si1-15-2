@@ -7,17 +7,24 @@ import model.pessoaModel.Pessoa;
  * Created by stenio on 4/19/2016.
  */
 public class NotificacaoPedidoCarona extends Notificacao {
-    private boolean accepted = false;
+    private enum StatusPedido {
+        WAITING, ACCEPTED, REJECTED
+    }
+
+    private StatusPedido accepted = StatusPedido.WAITING;
+
     private Carona carona;
 
     public NotificacaoPedidoCarona(String idNotificacao, Pessoa de, Pessoa para, String razao, long timestamp, ParaTipo paraTipo) {
         super(idNotificacao, de, para, razao, timestamp, paraTipo);
     }
 
-    public boolean accept() {
-        accepted = true;
+    public void accept() {
+        accepted = StatusPedido.ACCEPTED;
+    }
 
-        return accepted;
+    public void reject() {
+        accepted = StatusPedido.REJECTED;
     }
 
     public NotificacaoPedidoCarona setCarona(Carona carona) {
@@ -30,7 +37,15 @@ public class NotificacaoPedidoCarona extends Notificacao {
         return this.carona;
     }
 
-    public boolean getStatus() {
-        return this.accepted;
+    public boolean isAccepted() {
+        return accepted == StatusPedido.ACCEPTED;
+    }
+
+    public boolean isRejected() {
+        return accepted == StatusPedido.REJECTED;
+    }
+
+    public boolean isWaiting() {
+        return accepted == StatusPedido.WAITING;
     }
 }
