@@ -24,14 +24,14 @@ caronaeAppPessoa.controller('PessoaCtrl', ["$scope", "$location", "$http", funct
     	};
 
 	    //console.log(playload)
-	    $http.post("app/pessoas", data).success(function(data, status) {
+        $http.post("app/pessoas", data).success(function(data, status) {
 	      $scope.go("/main");
 	    }).error(function(data, status) {
 	    	console.log(data);
 	      $scope.msg_error= true;
 	      console.log(status);
 	    });
-		
+
 	};
 
 }]);
