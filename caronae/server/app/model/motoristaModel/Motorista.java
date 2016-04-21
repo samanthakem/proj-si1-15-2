@@ -18,16 +18,17 @@ public class Motorista {
     /**
      * Construtor padrão.
      */
-    public Motorista() {}
+    public Motorista() {
+    	
+    }
 
     /**
      * Construtor que recebe todos os parametros.
      * @param pessoa a Pessoa que é o Motorista
      * @param quantidadeVagasCarro a quantidade de vagas no carro do Motorista
      */
-    public Motorista(Pessoa pessoa, String idCarona, int quantidadeVagasCarro) {
+    public Motorista(Pessoa pessoa, int quantidadeVagasCarro) {
     	setPessoa(pessoa);
-    	setIdCarona(idCarona);
         setQuantidadeVagasCarro(quantidadeVagasCarro);
     }
     
@@ -64,8 +65,8 @@ public class Motorista {
 	}
 
     /**
-     * Recupera a Pessoa que é o Motorista
-     * @return a Pessoa que é o Motorista
+     * Recupera a Pessoa
+     * @return a Pessoa 
      */
     public Pessoa getPessoa() {
         return pessoa;
@@ -81,7 +82,7 @@ public class Motorista {
 
     /**
      * Recupera a quantidade de vagas no carro do Motorista
-     * @return a quantidade de vagas no carro do Motorista
+     * @return quantidadeVagasCarro a quantidade de vagas no carro do Motorista
      */
     public int getQuantidadeVagasCarro() {
         return quantidadeVagasCarro;
@@ -97,7 +98,7 @@ public class Motorista {
     
     /**
      * A informação do Motorista em formato JSON
-     * @return A informação do Motorista
+     * @return Json.parse() A informação do Motorista
      */
     public JsonNode toJson() {
         return Json.parse("{\"id\":\"" + this.pessoa.getMatricula() + "\"}");

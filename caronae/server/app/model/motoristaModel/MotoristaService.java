@@ -12,7 +12,14 @@ public interface MotoristaService {
 	 * 		Retorna um motorista
 	 */
 	Motorista getMotorista(String idMotorista);
-	
+
+	/**
+	 * Adiciona um motorista a coleção de motoristas
+	 * @param {Object} motorista
+	 * 		Motorista que sera adicionada no sistema
+	 */
+	void addMotorista(Motorista motorista);
+
 	/**
 	 * Adiciona um motorista em uma carona
 	 * @param {Object} motorista
