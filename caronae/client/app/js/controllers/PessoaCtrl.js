@@ -45,7 +45,7 @@ caronaeAppPessoa.controller('PessoaCtrl', ["$scope", "$location", "$http", funct
 			console.log(data);
 		    alert("Foto não enviada. Tente novamente.");
 	    });
-		
+
 	};
 
 }]);

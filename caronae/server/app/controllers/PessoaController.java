@@ -54,7 +54,6 @@ public class PessoaController extends Controller {
      * @return Um JSON com as informações da pessoa se foi possível recuperar, caso contrário a explicação em formato JSON.
      */
     public Result getUsuarioLogado() {
-        System.out.print(">>>>>>>>>Request Enviado");
         try {
             return ok(sessaoValidador.getPessoaLogada());
         } catch (HttpException e) {
@@ -97,8 +96,8 @@ public class PessoaController extends Controller {
 	    		telefone,
 	    		senha,
 	    		matricula);
-
         gerenciadorDePessoas.addPessoa(pessoa);
+        sessaoValidador.registraPessoaLogada(pessoa);
         return ok(pessoa.toJson());
     }
 }
