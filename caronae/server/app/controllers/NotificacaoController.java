@@ -8,6 +8,7 @@ import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,17 +33,21 @@ public class NotificacaoController extends Controller {
         return ok(notificacao.toJson());
     }
 
-    public Result getPassageiroNotificacoes(String matricula, Integer limite) {
-        return getNotificacoes(matricula, limite, ParaTipo.PASSAGEIRO);
+    public Result getPassageiroNotificacoes(String matricula, long start, long end, boolean reverse, Integer limite) {
+        if (end == -1) end = new Date().getTime();
+
+        return getNotificacoes(matricula, start, end, reverse, limite, ParaTipo.PASSAGEIRO);
     }
 
-    public Result getMotoristaNotificacoes(String matricula, Integer limite) {
-        return getNotificacoes(matricula, limite, ParaTipo.MOTORISTA);
+    public Result getMotoristaNotificacoes(String matricula, long start, long end, boolean reverse, Integer limite) {
+        if (end == -1) end = new Date().getTime();
+
+        return getNotificacoes(matricula, start, end, reverse, limite, ParaTipo.MOTORISTA);
     }
 
-    private Result getNotificacoes(String matricula, Integer limite, Notificacao.ParaTipo tipo) {
-        List<Notificacao> notificacoes = gerenciadorDeNotificacoes.getNotificacoes(matricula, limite, tipo);
-
+    private Result getNotificacoes(String matricula, long start, long end, boolean reverse, Integer limite, Notificacao.ParaTipo tipo) {
+        List<Notificacao> notificacoes = gerenciadorDeNotificacoes.getNotificacoes(matricula, start, end, limite, reverse, tipo);
+//q
         return ok(Json.toJson(notificacoes));
     }
 }

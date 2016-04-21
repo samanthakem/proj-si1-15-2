@@ -42,7 +42,7 @@ public class MotoristaValidador {
     }
 
     /**
-     * Valida se todos os campos do motorista sao validos.
+     * Verifica se todos os campos do motorista sao validos.
      * @param {Object} motorista
      * 		motorista cujos campos serao validados
      */
@@ -50,7 +50,11 @@ public class MotoristaValidador {
         validarPessoaCadastrada(motorista.getPessoa());
         validarQtdVagasCarro(motorista.getQuantidadeVagasCarro());
     }
-
+    
+    /**
+     * Verifica se a quantidade de vagas no carro é válida
+     * @param qtdVagasCarro
+     */
     public void validarQtdVagasCarro(int qtdVagasCarro) {
         UtilsValidacao.validaCampoNaoPreenchido(Integer.toString(qtdVagasCarro), QTD_VAGAS_CARRO);
         if (qtdVagasCarro < QTD_MINIMA_VAGAS_CARRO) {
@@ -59,7 +63,10 @@ public class MotoristaValidador {
                     ValidacaoParameterErrors.OBJETO, QTD_VAGAS_CARRO);
         }
     }
-
+    /**
+     * Verifica se uma pessoa está cadastrada
+     * @param pessoa
+     */
     public void validarPessoaCadastrada(Pessoa pessoa) {
         if (pessoa == null) {
             throw new ValidacaoFieldsException().addTemplateComParametro(
@@ -73,7 +80,11 @@ public class MotoristaValidador {
                     .addParametroParaMensagem(DAOParameterErrors.ID_DA_ENTIDADE, pessoa.getMatricula());
         }
     }
-
+    
+    /**
+     * Verifica se uma ID de carona é válida
+     * @param idCarona
+     */
     public void validarIdCarona(String idCarona) {
         UtilsValidacao.validaCampoNaoPreenchido(idCarona, ID_CARONA);
     }

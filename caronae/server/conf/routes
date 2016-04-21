@@ -26,8 +26,10 @@ GET /caronas/:id                    controllers.CaronaController.getCarona(id: S
 POST /caronas                       controllers.CaronaController.addCarona()
 
 #Routes used for Notificacoes
-GET /motoristas/:id/notificacoes    controllers.NotificacaoController.getMotoristaNotificacoes(id: String, limite: Integer ?= 10)
+GET /app/motoristas/:id/notificacoes    controllers.NotificacaoController.getMotoristaNotificacoes(id: String, start: Long ?= 0, end: Long ?= -1, reverse: Boolean ?= true, limite: Integer ?= 10)
 
 POST    /app/login              controllers.PessoaController.login()
 GET     /app/logged             controllers.PessoaController.getUsuarioLogado()
 GET     /app/logout             controllers.PessoaController.logout()
+
+POST /app/upload                controllers.PessoaController.upload()

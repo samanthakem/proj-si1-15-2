@@ -11,11 +11,19 @@ import exceptions.HttpException;
 public class MotoristaDao {
 
     private MotoristaMock motoristaMock;
-
+    
+    /**
+     * Construtor de MotoristaDao
+     */
     public MotoristaDao() {
         motoristaMock = MotoristaMock.getMotoristaMock();
     }
-
+    
+    /**
+     * Recupera o motorista através da matrícula
+     * @param matricula
+     * @return motorista
+     */
     public Motorista getMotorista(String matricula) {
         Motorista motorista = null;
         try {
@@ -27,7 +35,11 @@ public class MotoristaDao {
         }
         return motorista;
     }
-
+    
+    /**
+     * Armazena o novo motorista recebido
+     * @param motorista
+     */
     public void persistirMotorista(Motorista motorista) {
         try {
             motoristaMock.add(motorista);
@@ -36,11 +48,17 @@ public class MotoristaDao {
                     .addParametroParaMensagem(DAOParameterErrors.ID_DA_ENTIDADE, motorista.getMatricula());
         }
     }
-
+    
+    /**
+     * Procura um motorista através da matrícula
+     * @param matricula
+     * @return true se encontra, caso contrário false
+     */
     public boolean existeMotorista(String matricula) {
         return motoristaMock.existeMotorista(matricula);
     }
-
+    
+    
     public void atualizarMotorista(Motorista motorista) {
         motoristaMock.atualizarMotorista(motorista);
     }

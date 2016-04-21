@@ -3,40 +3,41 @@
 var caronaeAppMain = angular.module('caronaeApp');
 
 caronaeAppMain.controller('NotificacoesCtrl', ['$scope', '$rootScope', "$http", "$location", function ($scope, $rootScope , $http, $location) {
-  $http.get("/app/logged").success(function(data) {
-    $rootScope.logged = true;
-  }).error(function(data, status) {
-    console.log(data, status);
-    $scope.go("/");
-  });
-
-
-	$scope.not = {
-		name: "Mariane",
-		message: "aceitou sua oferta para Carona.",
-		imageURL: "http://www.clker.com/cliparts/5/7/4/8/13099629981030824019profile.svg.med.png",
-		time: new Date()
-	};
-	$scope.not2 = {
-		name: "Stenio Elson",
-		message: "pediu uma Carona para você.",
-		imageURL: "http://server.stenioelson.com.br/public/stenio.jpg",
-		time: new Date(),
-		request: {
-			destination: "Pedregal",
-			when: "Seg 04:00 PM",
-			accepted: false,
-			choosen: false,
-			telephone: "99999-9999",
-		}
-	};
-	$scope.notifications = [$scope.not, $scope.not2];
+	$http.get("/app/logged").success(function(data) {
+		$rootScope.logged = true;
+	}).error(function(data, status) {
+		console.log(data, status);
+		$rootScope.go("/");
+	});
+	
+	var contexto = "";
+	if ($rootScope.perspective.driver) {
+		contexto = "/app/motoristas/"+$scope.user.matricula;
+	} else if ($rootScope.perspective.rider) {
+		contexto = "/app/passageiros/"+$scope.user.matricula;
+	} else {
+		alert("Você precisa selecinar algum contexto pra poder ver suas notificações");
+		$rootScope.go("/main");
+		return;
+	}
+	
+	$scope.notifications = [];
+	$scope.timestampLastNotification = 0;
+	
+	$http.get(contexto+"/notificacoes").success(function(data) {
+		adicionarNotificacoes(data);
+	});
 
 	$scope.more = function() {
-		for (var i = 0; i < 3; i++) {
-			var copy1 = angular.copy($scope.not);
-
-			$scope.notifications.push(copy1);
+		$http.get(contexto+"/notificacoes?end=" + ($scope.timestampLastNotification - 1)).success(function(data) {
+			adicionarNotificacoes(data);
+		});
+	}
+	
+	var adicionarNotificacoes = function(data) {
+		for (var i = 0; i < data.length; i++) {
+			$scope.notifications.push(data[i]);
+			$scope.timestampLastNotification = data[i].timestamp;
 		}
 	}
 
