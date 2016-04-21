@@ -25,7 +25,6 @@ caronaeAppSignup.controller('SignupCtrl', function ($scope,   $location) {
 
   $scope.continueSignup = function() {
     if($scope.newUser.name == null || $scope.newUser.name === ""){
-      console.log("entrou if name  signup");
       $scope.warningFlag=true;
       $scope.noName=true;
     }else if($scope.newUser.addressB == null || $scope.newUser.addressB === ""){
@@ -83,8 +82,8 @@ caronaeAppSignup.controller('SignupCtrl', function ($scope,   $location) {
       $scope.noId=false;
       $scope.noPassword=false;
       $scope.warningFlag=false;
-
       $scope.signupFlag = false;
+	  
       $scope.chooseTypeFlag=true;
       //$location.hash("#cadastrar");
     }

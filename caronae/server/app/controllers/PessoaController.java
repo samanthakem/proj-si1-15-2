@@ -10,6 +10,8 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import util.Utils;
 
+import java.io.File;
+
 /**
  * @author Stenio Elson, Samantha Monteiro
  */
@@ -81,8 +83,10 @@ public class PessoaController extends Controller {
 	    String bairro = Utils.getAtributo("bairro", request);
 	    String rua = Utils.getAtributo("rua", request);
 	    String num = Utils.getAtributo("num", request);
-	    
-	    Endereco endereco = new Endereco(num, rua, bairro);
+        String foto = Utils.getAtributo("foto", request);
+        System.out.println();
+
+        Endereco endereco = new Endereco(num, rua, bairro);
 	    
 	    Pessoa pessoa = new Pessoa(
 	    		nome,
@@ -94,5 +98,19 @@ public class PessoaController extends Controller {
 
         gerenciadorDePessoas.addPessoa(pessoa);
         return ok(pessoa.toJson());
+    }
+
+    public Result upload() {
+        play.mvc.Http.MultipartFormData<File> body = request().body().asMultipartFormData();
+        play.mvc.Http.MultipartFormData.FilePart<File> picture = body.getFile("foto");
+        System.out.println("jalskdjfkl");
+        if (picture != null) {
+            String fileName = picture.getFilename();
+            String contentType = picture.getContentType();
+            java.io.File file = picture.getFile();
+            return ok("File uploaded "+fileName + " " + contentType);
+        } else {
+            return badRequest("Arquivo nao chegou");
+        }
     }
 }

@@ -31,3 +31,5 @@ GET /app/motoristas/:id/notificacoes    controllers.NotificacaoController.getMot
 POST    /app/login              controllers.PessoaController.login()
 GET     /app/logged             controllers.PessoaController.getUsuarioLogado()
 GET     /app/logout             controllers.PessoaController.logout()
+
+POST /app/upload                controllers.PessoaController.upload()
