@@ -7,15 +7,15 @@
 		  <img src="{{notification.imageURL}}" class="img-responsive">
 		</div>
 		<div class="message pull-left col-xs-10 col-sm-11">
-		  <p><b>{{notification.name}} </b>{{notification.message}}</p>
-		  <div ng-if="notification.request">
-			  <p><b>Para: </b> {{notification.request.destination}}</br><b>Quando: </b>{{notification.request.when}}
-			<p ng-if="notification.request.accepted">
-				<b>Telefone: </b> {{notification.request.telephone}}
+		  <p><b>{{notification.de.nome}} </b>{{notification.razao}}</p>
+		  <div ng-if="notification.carona">
+			  <p><b>Para: </b> {{notification.carona.destino.rua}}, {{notification.carona.destino.bairro}}</br><b>Quando: </b>{{notification.request.when}}
+			<p ng-if="notification.accepted">
+				<b>Telefone: </b> {{notification.de.telefone}}
 			</p>
-			  <div class="date text-right">
-				{{notification.time | date: 'medium'}}
-			  </div>
+		  </div>
+		  <div class="date text-right">
+			{{notification.timestamp | date: 'medium'}}
 		  </div>
 		</div>
 		<div class="clearfix"></div>
