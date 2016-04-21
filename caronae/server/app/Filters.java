@@ -1,4 +1,6 @@
 import javax.inject.*;
+
+import filters.LoggingFilter;
 import play.*;
 import play.mvc.EssentialFilter;
 import play.http.HttpFilters;
@@ -26,9 +28,9 @@ public class Filters implements HttpFilters {
     private final EssentialFilter exampleFilter;
 
     @Inject
-    public Filters(Environment env, ExampleFilter exampleFilter) {
+    public Filters(Environment env, LoggingFilter loggingFilter) {
         this.env = env;
-        this.exampleFilter = exampleFilter;
+        this.exampleFilter = loggingFilter;
     }
 
     @Override
