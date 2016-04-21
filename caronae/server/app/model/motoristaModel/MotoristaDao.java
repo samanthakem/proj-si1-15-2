@@ -1,5 +1,6 @@
 package model.motoristaModel;
 
+import exceptions.DAOException;
 import exceptions.HttpException;
 
 /**
@@ -8,11 +9,19 @@ import exceptions.HttpException;
 public class MotoristaDao {
 
     private MotoristaMock motoristaMock;
-
+    
+    /**
+     * Construtor de MotoristaDao
+     */
     public MotoristaDao() {
         motoristaMock = MotoristaMock.getMotoristaMock();
     }
-
+    
+    /**
+     * Recupera o motorista através da matrícula
+     * @param matricula
+     * @return motorista
+     */
     public Motorista getMotorista(String matricula) {
         Motorista motorista = null;
         try {
@@ -22,15 +31,23 @@ public class MotoristaDao {
         }
         return motorista;
     }
-
+    
+    /**
+     * Armazena o novo motorista recebido
+     * @param motorista
+     */
     public void persistirMotorista(Motorista motorista) {
         try {
             motoristaMock.add(motorista);
         } catch (HttpException ex) {
-            //throw new DAOException();
+            throw new DAOException(null);
         }
     }
-
+    /**
+     * Procura um motorista através da matrícula
+     * @param matricula
+     * @return true se encontra, caso contrário false
+     */
     public boolean existeMotorista(String matricula) {
         return motoristaMock.existeMotorista(matricula);
     }

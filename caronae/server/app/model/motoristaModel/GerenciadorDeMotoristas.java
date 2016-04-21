@@ -57,13 +57,22 @@ public class GerenciadorDeMotoristas implements MotoristaService {
     public boolean existeMotorista(String matricula) {
         return motoristaDao.existeMotorista(matricula);
     }
-
+    
+    /**
+     * Modificando qual carona o motorista faz parte
+     * @param motorista o motorista
+     * @param carona a carona do motorista
+     */
 	@Override
 	public void addMotoristaNaCarona(Motorista motorista, Carona carona) {
 		motorista.setIdCarona(carona.getId());
 		//dao.atualizarMotorista(motorista);
 	}
-
+	
+	/**
+	 * Modifica o gerenciador de motoristas
+	 * @param gerenciador
+	 */
     public static void setGerenciador(GerenciadorDeMotoristas gerenciador) {
         GerenciadorDeMotoristas.gerenciador = gerenciador;
     }

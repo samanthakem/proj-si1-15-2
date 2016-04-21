@@ -30,19 +30,35 @@ public class Motorista {
     	setIdCarona(idCarona);
         setQuantidadeVagasCarro(quantidadeVagasCarro);
     }
-
+    
+    /**
+     * Recupera a matrícula da pessoa que é motorista
+     * @return matricula
+     */
     public String getMatricula() {
         return pessoa.getMatricula();
     }
     
+    /**
+     * Modifica a matrícula da pessoa que é motorista
+     * @param matricula
+     */
     public void setMatricula(String matricula) {
     	pessoa.setMatricula(matricula);
     }
 	
+    /**
+     * Modifica a ID da carona
+     * @param idCarona
+     */
 	public void setIdCarona(String idCarona) {
 		this.idCarona = idCarona;
 	}
 	
+	/**
+	 * Recupera a ID da carona
+	 * @return idCarona
+	 */
 	public String getIdCarona() {
 		return idCarona;
 	}
@@ -55,6 +71,10 @@ public class Motorista {
         return pessoa;
     }
     
+    /**
+     * Modifica a pessoa
+     * @param pessoa
+     */
     public void setPessoa(Pessoa pessoa) {
     	this.pessoa = pessoa;
     }
@@ -83,6 +103,11 @@ public class Motorista {
         return Json.parse("{\"id\":\"" + this.pessoa.getMatricula() + "\"}");
     }
     
+    /**
+     * Sobrescreve a comparação entre motoristas
+     * @param objeto
+     * @return true se o objeto for motorista e tiver mesma pessoa do objeto, caso contrário false
+     */
     @Override
 	public boolean equals(Object objeto) {
 		if (this == objeto) {
