@@ -35,19 +35,6 @@ public class NotificacaoMock {
     }
 
     /**
-     * Retorna uma lista das ultimas notificacoes para uma Pessoa
-     * @param {String}
-     *      matricula A matricula da pessoa para a qual a notificacao eh destinada
-     * @param {Long}
-     *      limite quantidade maxima de Notificacoes que podem ter na lista
-     * @return {List}
-     *      A lista com Notificacoes ordenadas
-     */
-    public List<Notificacao> getNotificacoes(String matricula, int limite, ParaTipo tipo) {
-        return getNotificacoes(matricula, 0, new Date().getTime(), limite, true, tipo);
-    }
-
-    /**
      * Retorna uma lista de <b>limite</b> notificacoes do timestamp inicio, ate o timestamp fim para uma Pessoa
      * @param {String}
      *      matricula A matricula da pessoa para a qual a notificacao eh destinada
@@ -121,11 +108,11 @@ public class NotificacaoMock {
         notificacoes.put(notificacao.getIdNotificacao(), notificacao);
 
         notificacao = new Notificacao(Integer.toString(notificacoes.size()), pessoa, pessoa, "Mandou avisar que funcionou",
-                new Date().getTime(), ParaTipo.MOTORISTA);
+                new Date().getTime()+1, ParaTipo.MOTORISTA);
         notificacoes.put(notificacao.getIdNotificacao(), notificacao);
 
         NotificacaoPedidoCarona pedidoCarona = new NotificacaoPedidoCarona(Integer.toString(notificacoes.size()), pessoa, pessoa, "Pediu caroninha!",
-                new Date().getTime(), ParaTipo.MOTORISTA);
+                new Date().getTime()+2, ParaTipo.MOTORISTA);
         notificacoes.put(pedidoCarona.getIdNotificacao(), pedidoCarona);
     }
 }

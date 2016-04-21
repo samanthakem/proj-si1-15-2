@@ -36,11 +36,6 @@ public class NotificacaoDao {
         }
     }
 
-    public List<Notificacao> getNotificacoes(String matricula, int limite, ParaTipo tipo) {
-        return notificacaoMock.getNotificacoes(matricula, limite, tipo);
-    }
-
-
     public List<Notificacao> getNotificacoes(String matricula, long inicio, long fim, int limite, boolean reverse, ParaTipo tipo) {
         return notificacaoMock.getNotificacoes(matricula, inicio, fim, limite, reverse, tipo);
     }
