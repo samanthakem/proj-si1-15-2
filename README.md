@@ -34,14 +34,25 @@ git clone https://github.com/samanthakem/proj-si1-15-2.git
 5. Com o node.js em sua máquina, execute o sequinte comando no terminal:
 
 ```bash
-npm install -g grunt-cli yo bower ruby-dev
+npm install -g grunt-cli yo bower
 ``` 
 
-6. Com o ruby instalado, agora você poderá instalar compass:
+6. Instale o ruby-dev em sua máquina, pare que seja possível instlar o compass.
+
+- Para Windows: http://rubyinstaller.org/downloads/
+
+- Para Debian:
+
+```bash
+apt-get install ruby-dev
+```
+- Para Mac: https://github.com/rbenv/rbenv
+
+7. Com o ruby instalado, agora você poderá instalar compass:
 
 - Ver tutorial em: http://compass-style.org/install/
 
-7. Agora, vá na pasta client e instale as dependencias através dos seguintes comandos:
+8. Agora, vá na pasta client e instale as dependencias através dos seguintes comandos:
 
 ```bash
 npm install 
