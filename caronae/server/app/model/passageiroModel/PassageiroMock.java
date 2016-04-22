@@ -2,6 +2,7 @@ package model.passageiroModel;
 
 import exceptions.HttpException;
 import model.Endereco;
+import model.pessoaModel.GerenciadorDePessoas;
 import model.pessoaModel.Pessoa;
 
 import java.util.HashMap;
@@ -45,11 +46,20 @@ public class PassageiroMock {
     }
 
     private void fillin() {
+        GerenciadorDePessoas ger = GerenciadorDePessoas.getGerenciador();
+
         Endereco meuEndereco = new Endereco("00", "Rua dos bobos", "Centro");
         Pessoa pessoa = new Pessoa("Passageiro Maior Da Silva Sauro", meuEndereco,
                 "passageiro.meupassageiro@caronae.com.br", "83999996666", "admin3", "333333333");
 
+        ger.addPessoa(pessoa);
+
         Passageiro passageiro = new Passageiro(pessoa);
+        passageiros.put(pessoa.getMatricula(), passageiro);
+
+        pessoa = ger.getPessoa("111111111");
+
+        passageiro = new Passageiro(pessoa);
         passageiros.put(pessoa.getMatricula(), passageiro);
     }
 }

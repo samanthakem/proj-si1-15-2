@@ -4,10 +4,10 @@
 	  <div class="col-md-12">
 		<ul class="nav nav-tabs">
 		  <li class="col-xs-6 text-center" ng-class="{active: editingIda}">
-			<a role="button" ng-click="edit('Ida')">Ida para a UFCG</a>
+			<a role="button" ng-click="edit('IDA')">Ida para a UFCG</a>
 		  </li>
 		  <li class="col-xs-6 text-center" ng-class="{active: editingVolta}">
-			<a role="button" ng-click="edit('Volta')">Volta da UFCG</a>
+			<a role="button" ng-click="edit('VOLTA')">Volta da UFCG</a>
 		  </li>
 		</ul>
 	  </div>
@@ -18,7 +18,7 @@
 	  <li class="list-group-item" ng-repeat="(day, times) in tabBeingEdited" ng-if="times.length != 0">
 		<div class="day_times">
 		  <spam class="pull-left day">{{day}}:</spam>
-		  <button type="button" class="btn btn-success btn-xs" ng-click="remove(day, time)" ng-repeat="time in times | orderBy">{{time | date: "hh:mm a"}}</button>
+		  <button type="button" class="btn btn-success btn-xs" ng-click="remove(day, time)" ng-repeat="time in times | orderBy">{{time}}</button>
 		</div>
 		<div class="clearfix"></div>
 	  </li>

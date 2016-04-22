@@ -1,5 +1,8 @@
 package model.caronaModel;
 
+import model.Endereco;
+import model.Horario;
+
 import java.util.List;
 
 /**
@@ -35,5 +38,7 @@ public interface CaronaService {
 	List<Carona> getCaronasDePassageiro(String matricula, Integer limite);
 	
 	List<Carona> getCaronasDeMotorista(String matricula, Integer limite);
+
+	List<Carona> getCaronas(Endereco origem, Endereco destino, Horario horario, Integer limite);
 	
 }

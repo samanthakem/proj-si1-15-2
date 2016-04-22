@@ -45,7 +45,7 @@ public class ValidacaoFieldsException extends CaronaeException {
 				builder.append(" | ");
 			}
 		}
-		return builder.toString() + "%%" + getCodigoErro();
+		return builder.toString();
 	}
 	
 	public ValidacaoFieldsException addTemplateComParametro(

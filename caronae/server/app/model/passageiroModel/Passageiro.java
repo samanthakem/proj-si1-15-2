@@ -1,6 +1,8 @@
 package model.passageiroModel;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import exceptions.HttpException;
+import model.Horario;
 import model.pessoaModel.Pessoa;
 import play.libs.Json;
 
@@ -16,7 +18,7 @@ public class Passageiro {
     
 	private String idCarona;
 
-    private List<String> idsMeusHorarios;
+    private List<Horario> horarios;
 
     /**
      * Construtor padrão
@@ -29,7 +31,7 @@ public class Passageiro {
      */
     public Passageiro(Pessoa pessoa) {
         this.pessoa = pessoa ;
-        this.idsMeusHorarios = new ArrayList<>();
+        this.horarios = new ArrayList<>();
     }
 
     public String getMatricula() {
@@ -79,27 +81,73 @@ public class Passageiro {
     }
 
     /**
-     * Adiciona um id de Horario na lista de horarios do Passageiro
-     * @param id id de Horario
+     * Adiciona um Horario na lista de horarios do Passageiro
+     * @param horario Horario
      */
-    public void addHorario(String id) {
-        idsMeusHorarios.add(id);
+    public void addHorario(Horario horario) {
+        if (!existeHorario(horario))
+            horarios.add(horario);
+        else
+            throw new HttpException(409, "Horario ja existe");
+    }
+
+    /**
+     * Remove um Horario na lista de horarios do Passageiro
+     * @param horario Horario
+     */
+    public void removeHorario(Horario horario) {
+        horarios.remove(horario);
+    }
+
+    /**
+     * Recupera os horários de ida do Passageiro
+     * @return os horários do Passageiro
+     */
+    public List<Horario> getHorariosIda() { return getHorarios(Horario.Tipo.IDA); }
+
+    /**
+     * Recupera os horários de volta do Passageiro
+     * @return os horários do Passageiro
+     */
+    public List<Horario> getHorariosVolta() { return getHorarios(Horario.Tipo.VOLTA); }
+
+    public List<Horario> getHorarios(Horario.Tipo tipo) {
+        List<Horario> horariosIda = new ArrayList<>();
+
+        for (Horario horario : horarios)
+            if (horario.getTipo().equals(tipo))
+                horariosIda.add(horario);
+
+        return horariosIda;
     }
 
     /**
      * Recupera os horários do Passageiro
      * @return os horários do Passageiro
      */
-    public List<String> getIdsHorarios() {
-        return idsMeusHorarios;
+    public List<Horario> getHorarios() { return horarios; }
+
+    public Horario getHorario(String idHorario) {
+        Horario horario = null;
+
+        for (Horario h: horarios) {
+            if (h.getIdHorario().equals(idHorario)) {
+                horario = h;
+                break;
+            }
+        }
+
+        if (horario == null) throw new HttpException(404, "Nao existe horario com esta ID");
+
+        return horario;
     }
 
     /**
      * Verifica se um horário está presente na lista de horarios do Passageiro
-     * @param id id do Horario
+     * @param horario id do Horario
      * @return true, se o horarios está na lista, false, caso contrário
      */
-    public boolean contemHorario(String id) {
-        return idsMeusHorarios.contains(id);
+    public boolean existeHorario(Horario horario) {
+        return horarios.contains(horario);
     }
 }
