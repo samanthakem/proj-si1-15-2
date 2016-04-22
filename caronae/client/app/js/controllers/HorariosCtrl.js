@@ -36,7 +36,7 @@ caronaeAppHorarios.controller('HorariosCtrl', ["$scope", "$rootScope", "$http", 
 
 	$scope.tabBeingEdited = $scope.tab["Ida"];
 
-	$scope.add = function(date) {
+	$scope.add = function(date) {]
 		if (date && $scope.tabBeingEdited[date.day].indexOf(date.time) > -1) {
 			alert("Voce ja adicionou este horario.");
 		} else if (date && $scope.tabBeingEdited[date.day] && date.time){
@@ -62,7 +62,7 @@ caronaeAppHorarios.controller('HorariosCtrl', ["$scope", "$rootScope", "$http", 
 			var index = $scope.tabBeingEdited[day].indexOf(time);
 			if (index > -1) {
 				$scope.tabBeingEdited[day].splice(index, 1);
-			$scope.qntTimes[$scope.tabOpen] -= 1;
+				$scope.qntTimes[$scope.tabOpen] -= 1;
 			}
 		}
 	}

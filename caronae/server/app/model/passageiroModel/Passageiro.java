@@ -1,6 +1,7 @@
 package model.passageiroModel;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import model.Horario;
 import model.pessoaModel.Pessoa;
 import play.libs.Json;
 
@@ -16,7 +17,9 @@ public class Passageiro {
     
 	private String idCarona;
 
-    private List<String> idsMeusHorarios;
+    private List<Horario> horariosIda;
+
+    private List<Horario> horariosVolta;
 
     /**
      * Construtor padrão
@@ -29,7 +32,8 @@ public class Passageiro {
      */
     public Passageiro(Pessoa pessoa) {
         this.pessoa = pessoa ;
-        this.idsMeusHorarios = new ArrayList<>();
+        this.horariosIda = new ArrayList<>();
+        this.horariosVolta = new ArrayList<>();
     }
 
     public String getMatricula() {
@@ -79,27 +83,70 @@ public class Passageiro {
     }
 
     /**
-     * Adiciona um id de Horario na lista de horarios do Passageiro
-     * @param id id de Horario
+     * Adiciona um Horario de ida na lista de horarios do Passageiro
+     * @param horario Horario
      */
-    public void addHorario(String id) {
-        idsMeusHorarios.add(id);
+    public void addHorarioIda(Horario horario) {
+        if (!existeHorarioIda(horario))
+            horariosIda.add(horario);
     }
 
     /**
-     * Recupera os horários do Passageiro
+     * Reomve um Horario de volta na lista de horarios do Passageiro
+     * @param horario Horario
+     */
+    public void removeHorarioVolta(Horario horario) {
+        horariosVolta.remove(horario);
+    }
+
+    /**
+     * Remove um Horario de ida na lista de horarios do Passageiro
+     * @param horario Horario
+     */
+    public void removeHorarioIda(Horario horario) {
+        horariosIda.remove(horario);
+    }
+
+    /**
+     * Adiciona um Horario de volta na lista de horarios do Passageiro
+     * @param horario Horario
+     */
+    public void addHorarioVolta(Horario horario) {
+        if (!existeHorarioVolta(horario))
+            horariosVolta.add(horario);
+    }
+
+    /**
+     * Recupera os horários de ida do Passageiro
      * @return os horários do Passageiro
      */
-    public List<String> getIdsHorarios() {
-        return idsMeusHorarios;
+    public List<Horario> getHorariosIda() {
+        return horariosIda;
     }
 
     /**
-     * Verifica se um horário está presente na lista de horarios do Passageiro
-     * @param id id do Horario
+     * Recupera os horários de volta do Passageiro
+     * @return os horários do Passageiro
+     */
+    public List<Horario> getHorariosVolta() {
+        return horariosVolta;
+    }
+
+    /**
+     * Verifica se um horário está presente na lista de horarios de ida do Passageiro
+     * @param horario id do Horario
      * @return true, se o horarios está na lista, false, caso contrário
      */
-    public boolean contemHorario(String id) {
-        return idsMeusHorarios.contains(id);
+    public boolean existeHorarioIda(Horario horario) {
+        return horariosIda.contains(horario);
+    }
+
+    /**
+     * Verifica se um horário está presente na lista de horarios de volta do Passageiro
+     * @param horario id do Horario
+     * @return true, se o horarios está na lista, false, caso contrário
+     */
+    public boolean existeHorarioVolta(Horario horario) {
+        return horariosVolta.contains(horario);
     }
 }
