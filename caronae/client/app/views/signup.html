@@ -2,76 +2,76 @@
   <form name="signupForm" novalidate>
     <div class="jumbotron row">
       <div class="center"><h3>Cadastro Pessoal</h3></div>
-        <div class="alert alert-danger" ng-if="warningFlag">
-          <info>Preencha todos os campos obrigatórios corretamente.</info>
-        </div>
+      <div class="alert alert-danger" ng-if="warningFlag">
+        <info>Preencha todos os campos obrigatórios corretamente.</info>
+      </div>
 
-        <div class="input form-group"  ng-class="{'has-error': noName}">
-          <label class="col-md-1 control-label" for="fullName">Nome* </label>
-          <div class="col-md-11">
-            <input class="form-control" type="text" id="fullName" ng-model="pessoaCtrl.pessoa.name">
-          </div>
+      <div class="input form-group" ng-class="{'has-error': noName}">
+        <label class="col-md-1 control-label" for="fullName">Nome* </label>
+        <div class="col-md-11">
+          <input class="form-control" type="text" id="fullName" ng-model="pessoaCtrl.pessoa.name">
         </div>
-        <div class="input form-group" ng-class="{'has-error': noAddress}">
-          <label class="col-md-1 control-label" for="bairro">Bairro* </label>
-          <div class="col-md-4">
-            <input class="form-control" type="text" id="bairro" ng-model="pessoaCtrl.pessoa.bairro"/>
-          </div>
-          <label class="col-md-1 control-label" for="rua">Rua* </label>
-          <div class="col-md-4">
-            <input class="form-control" type="text" id="rua" ng-model="pessoaCtrl.pessoa.rua"/>
-          </div>
-          <label class="col-md-1 control-label" for="num">№</label>
-          <div class="col-xs-1">
-            <input class="form-control" type="text" id="num" ng-model="pessoaCtrl.pessoa.num"/>
-          </div>
+      </div>
+      <div class="input form-group" ng-class="{'has-error': noAddress}">
+        <label class="col-md-1 control-label" for="bairro">Bairro* </label>
+        <div class="col-md-4">
+          <input class="form-control" type="text" id="bairro" ng-model="pessoaCtrl.pessoa.bairro"/>
         </div>
-        <div class="input form-group" ng-class="{'has-error': noEmail}">
-          <label class="col-md-1 control-label" for="emailaddress">Email* </label>
-          <div class="col-md-7">
-            <input class="form-control" type="email" id="emailaddress" ng-model="pessoaCtrl.pessoa.email" placeholder="ex: contato@caronae.com"/>
-          </div>
-          <label class="col-md-1 control-label" for="studentId" >Matrícula* </label>
-          <div class="col-md-3" ng-class="{'has-error': noId}">
-            <input class="form-control" type="text" id="studentId" ng-model="pessoaCtrl.pessoa.studentId" pattern="^[0-9]*$" placeholder="ex: 111111111"/>
-          </div>
+        <label class="col-md-1 control-label" for="rua">Rua* </label>
+        <div class="col-md-4">
+          <input class="form-control" type="text" id="rua" ng-model="pessoaCtrl.pessoa.rua"/>
         </div>
-        <div class="input form-group">
-          <label class="col-md-1 control-label" for="telephone">Telefone* </label>
-          <div class="col-md-5" ng-class="{'has-error': noPhone}">
-            <input class="form-control" type="text" id="telephone" ng-model="pessoaCtrl.pessoa.phone" placeholder="(xx) 9xxxx-xxxx"/>
-          </div>
-          <label class="col-md-1 control-label" for="password">Senha* </label>
-          <div class="col-md-5" ng-class="{'has-error': noPassword}">
-            <input class="form-control" type="password" id="password" ng-model="pessoaCtrl.pessoa.password" />
-          </div>
+        <label class="col-md-1 control-label" for="num">№</label>
+        <div class="col-xs-1">
+          <input class="form-control" type="text" id="num" ng-model="pessoaCtrl.pessoa.num"/>
         </div>
-        <div class="input form-group">
-          <label class="col-md-1 control-label" for="foto">Foto de Perfil </label>
-			<input type="file" id="foto" accept="image/*" ng-model="foto">
-		</div>
+      </div>
+      <div class="input form-group" ng-class="{'has-error': noEmail}">
+        <label class="col-md-1 control-label" for="emailaddress">Email* </label>
+        <div class="col-md-7">
+          <input class="form-control" type="email" id="emailaddress" ng-model="pessoaCtrl.pessoa.email"
+                 placeholder="ex: contato@caronae.com"/>
+        </div>
+        <label class="col-md-1 control-label" for="studentId">Matrícula* </label>
+        <div class="col-md-3" ng-class="{'has-error': noId}">
+          <input class="form-control" type="text" id="studentId" ng-model="pessoaCtrl.pessoa.studentId"
+                 pattern="^[0-9]*$" placeholder="ex: 111111111"/>
+        </div>
+      </div>
+      <div class="input form-group">
+        <label class="col-md-1 control-label" for="telephone">Telefone* </label>
+        <div class="col-md-5" ng-class="{'has-error': noPhone}">
+          <input class="form-control" type="text" id="telephone" ng-model="pessoaCtrl.pessoa.phone"
+                 placeholder="(xx) 9xxxx-xxxx"/>
+        </div>
+        <label class="col-md-1 control-label" for="password">Senha* </label>
+        <div class="col-md-5" ng-class="{'has-error': noPassword}">
+          <input class="form-control" type="password" id="password" ng-model="pessoaCtrl.pessoa.password"/>
+        </div>
+      </div>
       <div id="typeSection">
-    <div class="center"><h3>Cadastrar-me como:</h3></div>
-    <div class="input form-group" ng-model="pessoaCtrl.pessoa.passenger">
-      <label for="passanger">
-        <input id="passanger" type="checkbox" />
-        Passageiro
-      </label>
+        <div class="center"><h3>Cadastrar-me como:</h3></div>
+        <div class="input form-group" ng-model="pessoaCtrl.pessoa.passenger">
+          <label for="passanger">
+            <input id="passanger" type="checkbox"/>
+            Passageiro
+          </label>
+        </div>
+        <div class="input form-group">
+          <label for="driver">
+            <input id="driver" type="checkbox" ng-model="pessoaCtrl.pessoa.driver"/>
+            Motorista
+          </label>
+        </div>
+        <div class="input form-group" ng-if="pessoaCtrl.pessoa.driver">
+          <label>Número de vagas para passageiros no meu carro
+            <input type="number" ng-model="pessoaCtrl.pessoa.numberAvailable"/>
+          </label>
+        </div>
+        <button id="cadastrar" class="btn btn-success btn-block btn-lg" ng-click="pessoaCtrl.salvar()">Cadastrar
+        </button>
+      </div>
     </div>
-    <div class="input form-group">
-      <label for="driver">
-        <input id="driver" type="checkbox" ng-model="pessoaCtrl.pessoa.driver"/>
-        Motorista
-      </label>
-    </div>
-    <div class="input form-group" ng-if="pessoaCtrl.pessoa.driver">
-      <label>Número de vagas para passageiros no meu carro
-        <input type="number" ng-model="pessoaCtrl.pessoa.numberAvailable"/>
-      </label>
-    </div>
-    <button id="cadastrar" class="btn btn-success btn-block btn-lg" ng-click="pessoaCtrl.salvar()">Cadastrar</button>
-  </div>
-  </div>
   </form>
 </div>
 
