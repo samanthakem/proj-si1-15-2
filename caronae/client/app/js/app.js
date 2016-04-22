@@ -1,6 +1,6 @@
 'use strict';
 
-var caronaeApp = angular.module('caronaeApp', ['ngAnimate', 'ngCookies', 'ngResource', 'ngRoute', 'ngSanitize','ngTouch','angularFileUpload']);
+var caronaeApp = angular.module('caronaeApp', ['ngAnimate', 'ngCookies', 'ngResource', 'ngRoute', 'ngSanitize','ngTouch']);
 
 caronaeApp.config(function ($routeProvider) {
   $routeProvider
