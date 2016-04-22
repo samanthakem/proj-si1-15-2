@@ -1,11 +1,13 @@
 package model.caronaModel;
 
-import java.util.List;
-
+import model.Endereco;
+import model.Horario;
 import model.motoristaModel.Motorista;
 import model.motoristaModel.MotoristaService;
 import model.passageiroModel.Passageiro;
 import model.passageiroModel.PassageiroService;
+
+import java.util.List;
 
 /**
  * Classe responsavel por implementar os servicos da entidade {@Carona}
@@ -90,6 +92,11 @@ public class GerenciadorDeCaronas implements CaronaService {
 	@Override
 	public List<Carona> getCaronasDeMotorista(String matricula, Integer limite) {
 		return dao.getCaronasDeMotorista(matricula, limite);
+	}
+
+	@Override
+	public List<Carona> getCaronas(Endereco origem, Endereco destino, Horario horario, Integer limite) {
+		return dao.getCaronas(origem, destino, horario, limite);
 	}
 	
 	public static void setGerenciador(GerenciadorDeCaronas gerenciador) {

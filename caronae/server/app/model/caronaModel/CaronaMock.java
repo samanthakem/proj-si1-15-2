@@ -1,9 +1,12 @@
 package model.caronaModel;
 
+import exceptions.HttpException;
+import model.Endereco;
+import model.Horario;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import exceptions.HttpException;
 
 /**
  * @author Samantha Monteiro
@@ -63,6 +66,26 @@ public class CaronaMock {
 			 limite = caronas.size();
 		 }
 		 return caronas.subList(0, limite);
+	}
+
+	public List<Carona> getCaronas(Endereco origem, Endereco destino, Horario horario, Integer limite) {
+		List<Carona> caronas = new ArrayList<>();
+
+		for (Carona carona: this.caronas.values()) {
+			if (carona.getPontoInicial().equals(origem)
+				&& carona.getDestino().equals(destino)
+				&& carona.getHorario().equals(horario))
+			{
+				caronas.add(carona);
+			}
+		}
+
+
+		if (limite > caronas.size()) {
+			limite = caronas.size();
+		}
+
+		return caronas.subList(0, limite);
 	}
 	
 	public List<Carona> getCaronasDePassageiro(String matricula, Integer limite) {
