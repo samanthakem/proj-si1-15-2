@@ -17,7 +17,7 @@
 
   <!-- USER WELCOME-->
   <div id="main">
-    <section>
+    <section class="row">
       <div class="col-md-3">
         <img src="{{user.imageURL}}" class="img-responsive">
       </div>
@@ -29,7 +29,34 @@
       </div>
     </section>
 
-    <section>
+    <section class="row">
+      <div class="bs col-md-9">
+        <h2>Suas Caronas</h2>
+        <div class="col-md-7">
+          <div ng-if="caronas.length == 0">
+            <p>Você ainda não tem caronas cadastradas</p>
+          </div>
+          <div class="list-group" ng-repeat="carona in caronas">
+            <a href="" class="list-group-item" ng-click="detalhes(carona)">
+              <div class="col-md-7">Destino: {{carona.destino}}</div>
+              <div class="text-right">Data: {{carona.data}}</div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-5 panel panel-default" ng-if="caronas.length != 0">
+          <div class="panel-heading">Detalhes</div>
+          <div class="panel-body">
+            <div class="col-md-8"><p>Motorista: {{caronaAtiva.motorista}}</p></div>
+            <div class="col-md-4"><p>Data: {{caronaAtiva.data}}</p></div>
+            <div class="col-md-12"><p>Origem: {{caronaAtiva.origem}}</p></div>
+            <div class="col-md-12"><p>Destino: {{caronaAtiva.destino}}</p></div>
+
+            <p class="col-md-12" >Passageiros: </p>
+            <div class="col-md-12" ng-repeat="passageiro in caronaAtiva.passageiros"><p>{{passageiro}}</p></div>
+          </div>
+        </div>
+
+      </div>
     </section>
   </div>
 </div>

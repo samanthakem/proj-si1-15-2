@@ -1,7 +1,6 @@
 package model.pessoaModel;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.google.common.base.Objects;
 import model.Endereco;
 import play.libs.Json;
 

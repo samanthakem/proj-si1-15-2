@@ -1,11 +1,13 @@
 package model.caronaModel;
 
-import java.util.List;
-
 import exceptions.DAOErroMensagem;
 import exceptions.DAOException;
 import exceptions.DAOParameterErrors;
 import exceptions.HttpException;
+import model.Endereco;
+import model.Horario;
+
+import java.util.List;
 
 public class CaronaDAO {
 	
@@ -58,6 +60,10 @@ public class CaronaDAO {
 	
 	public List<Carona> getCaronasDePassageiro(String matricula, Integer limite) {
 		return caronaMock.getCaronasDePassageiro(matricula, limite);
+	}
+
+	public List<Carona> getCaronas(Endereco origem, Endereco destino, Horario horario, Integer limite) {
+		return caronaMock.getCaronas(origem, destino, horario, limite);
 	}
 
 }
