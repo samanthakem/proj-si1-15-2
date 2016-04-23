@@ -13,11 +13,10 @@ import org.junit.Test;
 
 public class TestCaronaDao {
 	CaronaDAO carona1;
-	CaronaDAO carona2;
+	
 	@Before
 	public void setUp() throws Exception {
 		carona1 = new CaronaDAO();
-		carona2 = new CaronaDAO();
 	}
 
 	@Test
