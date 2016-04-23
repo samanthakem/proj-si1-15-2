@@ -6,6 +6,8 @@ import model.caronaModel.CaronaDAO;
 import org.junit.Before;
 import org.junit.Test;
 
+import exceptions.DAOException;
+
 /**
  * @author Rafaella
  *
@@ -20,15 +22,34 @@ public class TestCaronaDao {
 	}
 
 	@Test
-	public void test() {
-
+	public void testGetCarona() {
+		assertEquals(carona1, carona1.getCarona(""));
+		
+		try {
+			carona1.getCarona(null);
+			fail();
+		} catch (DAOException e) {}		
 	}
 	
-	//testar persistir carona
 	
-	//testar getTotal de caronas (ver onde as caronas estão sendo contadas)
+	@Test
+	public void testPersistirCarona() {
+		
+	}
 	
-	//testar o total de caronas do motorista (List)
+	@Test
+	public void testTotalDeCaronas() {
+		
+	}
 	
-	//testar o total de caronas do passageiro (List)
+	@Test
+	public void testCaronasMotorista() {
+		
+	}
+	
+	@Test
+	public void testCaronasPassageiro() {
+		
+	}
+
 }

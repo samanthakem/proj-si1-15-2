@@ -53,6 +53,7 @@ public class TestPessoaDao {
 		} catch (DAOException e) {}
 	}
 	
+	@Test
 	public void testAtualizarPessoa(){
 		
 	}

@@ -17,7 +17,7 @@ import org.junit.Test;
 public class TestCarona {
 	Carona carona1, carona2;
 	Endereco endereco1, endereco2;
-	Horario horario1, horario2; //horário ainda está vazio
+	Horario horario1, horario2; 
 	//criar e setar ids de carona e motorista
 	
 	@Before
@@ -25,7 +25,7 @@ public class TestCarona {
 		endereco1 = new Endereco("44", "Rua dos Facheiros", "Malvinas");
 		endereco2 = new Endereco("sn", "Avenida Aprígio Veloso", "Bodocongó");
 		carona1 = new Carona();
-		carona2 = new Carona(null, null, endereco1, endereco2, horario1);
+		carona2 = new Carona("1", "1", endereco1, endereco2, horario1);
 		
 	}
 

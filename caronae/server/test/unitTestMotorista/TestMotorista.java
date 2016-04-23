@@ -50,6 +50,7 @@ public class TestMotorista {
 		assertEquals("111222333", motorista1.getMatricula());
 	}
 	
+	@Test
 	public void testPessoa() {
 		assertEquals(endereco1, pessoa1.getEndereco());
 		assertEquals("Mariana", pessoa1.getNome());
