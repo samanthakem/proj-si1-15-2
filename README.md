@@ -8,6 +8,10 @@ Repositório para o projeto da disciplina Sistemas de Informação I do curso de
  - Samantha Monteiro
  - Stênio Araújo
 
+## Decisões de Projeto
+
+As decisões de projeto podem ser encontradas: https://goo.gl/jyjX3h
+
 ## Caronae
 
 Sistema que permite que estudantes da UFCG possam requisitar e oferecer carona para outros estudantes da UFCG.
