@@ -1,6 +1,9 @@
 package model.caronaModel;
 
+import model.motoristaModel.Motorista;
+
 import java.util.List;
+import java.util.Set;
 
 /**
  * Interface responsável pelos serviços de {@Carona}
@@ -24,7 +27,7 @@ public interface CaronaService {
 	 * @param {Object} carona
 	 * 		Carona que sera adicionada no sistema
      */
-	void addCarona(Carona carona);
+	/*void addCarona(Carona carona);*/
 	
 	/**
 	 * Recupera a quantidade total de caronas no sistema.
@@ -34,6 +37,6 @@ public interface CaronaService {
 	
 	List<Carona> getCaronasDePassageiro(String matricula, Integer limite);
 	
-	List<Carona> getCaronasDeMotorista(String matricula, Integer limite);
+	Set<Carona> getCaronasDeMotorista(Motorista motorista);
 	
 }

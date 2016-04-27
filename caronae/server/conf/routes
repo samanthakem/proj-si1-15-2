@@ -13,17 +13,18 @@ GET     /message                    controllers.AsyncController.message
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
 # Routes used for the Passageiro resource
-#GET     /passageiros/:id           controllers.PassageiroController.getPassageiro(id: String)
-#
+#GET     /app/passageiros/:id           controllers.PassageiroController.getPassageiro(id: String)
 #POST     /passageiros              controllers.PassageiroController.addPassageiro()
 
 #Routes used for the Pessoa Resource
-GET     /pessoas/:id                controllers.PessoaController.getPessoa(id: String)
+GET     /app/pessoas/:id                controllers.PessoaController.getPessoa(id: String)
 POST    /app/pessoas                    controllers.PessoaController.addPessoa()
 
 #Routes used for Carona Resource
-GET /caronas/:id                    controllers.CaronaController.getCarona(id: String)
+#GET /caronas/:id                    controllers.CaronaController.getCarona(id: String)
 POST /caronas                       controllers.CaronaController.addCarona()
+
+GET /app/caronas                    controllers.CaronaController.getMinhasCaronas()
 
 #Routes used for Notificacoes
 GET /app/motoristas/:id/notificacoes    controllers.NotificacaoController.getMotoristaNotificacoes(id: String, start: Long ?= 0, end: Long ?= -1, reverse: Boolean ?= true, limite: Integer ?= 10)
@@ -31,5 +32,4 @@ GET /app/motoristas/:id/notificacoes    controllers.NotificacaoController.getMot
 POST    /app/login              controllers.PessoaController.login()
 GET     /app/logged             controllers.PessoaController.getUsuarioLogado()
 GET     /app/logout             controllers.PessoaController.logout()
-
-#POST /app/upload                controllers.PessoaController.upload()
+GET     /app/pessoa/caronas     controllers.PessoaController.getCaronas()

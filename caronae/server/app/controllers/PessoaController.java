@@ -2,18 +2,13 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import exceptions.HttpException;
+import model.Endereco;
 import model.pessoaModel.GerenciadorDePessoas;
 import model.pessoaModel.Pessoa;
-import model.Endereco;
 import model.sessaoModel.SessaoValidador;
 import play.mvc.Controller;
-import play.mvc.Http;
 import play.mvc.Result;
 import util.Utils;
-import play.mvc.Http.Request;
-import java.util.Set;
-import java.util.Map;
-import java.util.Arrays;
 
 /**
  * @author Stenio Elson, Samantha Monteiro
@@ -99,5 +94,11 @@ public class PessoaController extends Controller {
         gerenciadorDePessoas.addPessoa(pessoa);
         sessaoValidador.registraPessoaLogada(pessoa);
         return ok(pessoa.toJson());
+    }
+
+    public Result getCaronas() {
+        //gerenciadorDePessoas.getCaronas();
+
+        return ok();
     }
 }

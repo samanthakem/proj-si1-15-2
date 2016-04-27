@@ -1,12 +1,17 @@
 package model.caronaModel;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+
 import exceptions.HttpException;
+import model.Horario;
+import model.motoristaModel.Motorista;
+import model.Endereco;
+import model.motoristaModel.MotoristaDao;
+import model.passageiroModel.Passageiro;
+import model.pessoaModel.Pessoa;
 
 /**
- * @author Samantha Monteiro
+ * @author Samantha Monteiro, Gustavo Oliveira
  */
 public class CaronaMock {
 	private static CaronaMock mock;
@@ -46,23 +51,28 @@ public class CaronaMock {
     }
 
     private void fillin() {
-        Carona carona = new Carona();
+		System.out.print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Entrou MOCK MOTORISTA\n");
+		Pessoa pessoa =  new Pessoa("Caroneiro Maior Da Silva Santos", new Endereco("92", "Sinha Alves", "Presidente Medici"),
+				"caroneiro.mss@caronae.com.br", "83999996666", "admin1", "111111111");
+		Motorista motorista = new Motorista(pessoa, 4);
+		Endereco destino = new Endereco("0","UFCG","Bodocongo");
+		Horario horario = new Horario(Horario.Dia.SEGUNDA, "7:00");
+		Carona carona = new Carona("100", motorista, motorista.getPessoa().getEndereco(), destino, horario);
         caronas.put(carona.getId(), carona);
     }
 
-	public List<Carona> getCaronasDeMotorista(String matricula, Integer limite) {
-		 List<Carona> caronas = new ArrayList<>();
+	public Set<Carona> getCaronasDeMotorista(Motorista motorista) {
+		 Set<Carona> caronas = new HashSet<Carona>();
 		 Carona caronaTemp;
 		 for (String id : this.caronas.keySet()) {
 			 caronaTemp = this.caronas.get(id);
-			 if (caronaTemp.getIdMotorista().equals(matricula)) {
+			 Motorista motoristaTemp = caronaTemp.getMotorista();
+			 if (motoristaTemp.getMatricula().equals(motorista.getMatricula())) {
 				 caronas.add(caronaTemp);
 			 }
 		 }
-		 if (limite > caronas.size()) {
-			 limite = caronas.size();
-		 }
-		 return caronas.subList(0, limite);
+
+		 return caronas;
 	}
 	
 	public List<Carona> getCaronasDePassageiro(String matricula, Integer limite) {
@@ -70,8 +80,11 @@ public class CaronaMock {
 		 Carona caronaTemp;
 		 for (String id : this.caronas.keySet()) {
 			 caronaTemp = this.caronas.get(id);
-			 if (caronaTemp.getIdsPassageiros().contains(matricula)) {
-				 caronas.add(caronaTemp);
+			 List<Passageiro> passageirosTemp = caronaTemp.getPassageiros();
+			 for(Passageiro passageiro: passageirosTemp){
+				 if (passageiro.getMatricula().contains(matricula)) {
+					 caronas.add(caronaTemp);
+				 }
 			 }
 		 }
 		 if (limite > caronas.size()) {

@@ -1,11 +1,13 @@
 package model.caronaModel;
 
 import java.util.List;
+import java.util.Set;
 
 import exceptions.DAOErroMensagem;
 import exceptions.DAOException;
 import exceptions.DAOParameterErrors;
 import exceptions.HttpException;
+import model.motoristaModel.Motorista;
 
 public class CaronaDAO {
 	
@@ -52,8 +54,9 @@ public class CaronaDAO {
 		return caronaMock.getQuantidadeTotalCaronas();
 	}
 
-	public List<Carona> getCaronasDeMotorista(String matricula, Integer limite) {
-		return caronaMock.getCaronasDeMotorista(matricula, limite);
+	public Set<Carona> getCaronasDeMotorista(Motorista motorista) {
+		System.out.print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Entrou CARONA DAO \n");
+		return caronaMock.getCaronasDeMotorista(motorista);
 	}
 	
 	public List<Carona> getCaronasDePassageiro(String matricula, Integer limite) {

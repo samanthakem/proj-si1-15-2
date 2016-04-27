@@ -24,12 +24,10 @@ public class Horario {
      * Construtor de Objetos do tipo Notificacao
      * @param dia dia ao qual corresponde o Horário
      * @param hora hora a qual corresponde o Horário
-     * @param idHorario o id do Horário
      */
-    public Horario(Dia dia, String hora, String idHorario) {
+    public Horario(Dia dia, String hora) {
         setDia(dia);
         setHora(hora);
-        setIdHorario(idHorario);
     }
 
     public Dia getDia() {
