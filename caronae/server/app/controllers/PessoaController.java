@@ -116,15 +116,19 @@ public class PessoaController extends Controller {
         JsonNode pessoa = sessaoValidador.getPessoaLogada();
         String matricula = pessoa.get("matricula").asText();
 
-        Motorista motorista = gerenciadorDeMotoristas.getMotorista(matricula);
-        Passageiro passageiro = gerenciadorDePassageiros.getPassageiro(matricula);
+        Passageiro passageiro = new Passageiro();
+        Motorista motorista = new Motorista();
 
         Set<Carona> caronas = new HashSet<Carona>();
 
-        caronas.addAll(gerenciadorDeCaronas.getCaronasDeMotorista(motorista));
-        System.out.print(caronas.size());
-        caronas.addAll(gerenciadorDeCaronas.getCaronasDePassageiro(passageiro));
-        System.out.print(caronas.size());
+        if(gerenciadorDeMotoristas.existeMotorista(matricula)){
+            motorista = gerenciadorDeMotoristas.getMotorista(matricula);
+            caronas.addAll(gerenciadorDeCaronas.getCaronasDeMotorista(motorista));
+        }
+        if(gerenciadorDePassageiros.existePassageiro(matricula)) {
+            passageiro = gerenciadorDePassageiros.getPassageiro(matricula);
+            caronas.addAll(gerenciadorDeCaronas.getCaronasDePassageiro(passageiro));
+        }
 
         ObjectMapper mapper = new ObjectMapper(new JsonFactory());
 
