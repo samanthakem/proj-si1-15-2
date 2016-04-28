@@ -1,8 +1,17 @@
 package controllers;
 
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import exceptions.HttpException;
 import model.Endereco;
+import model.caronaModel.Carona;
+import model.caronaModel.GerenciadorDeCaronas;
+import model.motoristaModel.GerenciadorDeMotoristas;
+import model.motoristaModel.Motorista;
+import model.passageiroModel.GerenciadorDePassageiros;
+import model.passageiroModel.Passageiro;
 import model.pessoaModel.GerenciadorDePessoas;
 import model.pessoaModel.Pessoa;
 import model.sessaoModel.SessaoValidador;
@@ -10,11 +19,18 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import util.Utils;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * @author Stenio Elson, Samantha Monteiro
  */
 public class PessoaController extends Controller {
     private GerenciadorDePessoas gerenciadorDePessoas = GerenciadorDePessoas.getGerenciador();
+    private GerenciadorDeCaronas gerenciadorDeCaronas = GerenciadorDeCaronas.getGerenciador();
+    private GerenciadorDeMotoristas gerenciadorDeMotoristas = GerenciadorDeMotoristas.getGerenciador();
+    private GerenciadorDePassageiros gerenciadorDePassageiros = GerenciadorDePassageiros.getGerenciador();
+
     private SessaoValidador sessaoValidador = new SessaoValidador();
 
     /**
@@ -97,8 +113,28 @@ public class PessoaController extends Controller {
     }
 
     public Result getCaronas() {
-        //gerenciadorDePessoas.getCaronas();
+        JsonNode pessoa = sessaoValidador.getPessoaLogada();
+        String matricula = pessoa.get("matricula").asText();
 
-        return ok();
+        Motorista motorista = gerenciadorDeMotoristas.getMotorista(matricula);
+        Passageiro passageiro = gerenciadorDePassageiros.getPassageiro(matricula);
+
+        Set<Carona> caronas = new HashSet<Carona>();
+
+        caronas.addAll(gerenciadorDeCaronas.getCaronasDeMotorista(motorista));
+        System.out.print(caronas.size());
+        caronas.addAll(gerenciadorDeCaronas.getCaronasDePassageiro(passageiro));
+        System.out.print(caronas.size());
+
+        ObjectMapper mapper = new ObjectMapper(new JsonFactory());
+
+        String jsonString;
+
+        try {
+            jsonString = mapper.writeValueAsString(caronas);
+        } catch (JsonProcessingException e) {
+            return badRequest(e.getMessage());
+        }
+        return ok(jsonString);
     }
 }

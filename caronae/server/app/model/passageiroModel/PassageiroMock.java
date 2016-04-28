@@ -45,9 +45,9 @@ public class PassageiroMock {
     }
 
     private void fillin() {
-        Endereco meuEndereco = new Endereco("00", "Rua dos bobos", "Centro");
-        Pessoa pessoa = new Pessoa("Passageiro Maior Da Silva Sauro", meuEndereco,
-                "passageiro.meupassageiro@caronae.com.br", "83999996666", "admin3", "333333333");
+        Endereco endereco = new Endereco("92", "Sinha Alves", "Presidente Medici");
+        Pessoa pessoa = new Pessoa("Caroneiro Maior Da Silva Santos", endereco,
+                "caroneiro.mss@caronae.com.br", "83999996666", "admin1", "111111111");
 
         Passageiro passageiro = new Passageiro(pessoa);
         passageiros.put(pessoa.getMatricula(), passageiro);

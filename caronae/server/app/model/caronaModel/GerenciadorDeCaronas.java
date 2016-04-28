@@ -92,8 +92,8 @@ public class GerenciadorDeCaronas implements CaronaService {
 	}
 	
 	@Override
-	public List<Carona> getCaronasDePassageiro(String matricula, Integer limite) {
-		return dao.getCaronasDePassageiro(matricula, limite);
+	public Set<Carona> getCaronasDePassageiro(Passageiro passageiro) {
+		return dao.getCaronasDePassageiro(passageiro);
 	}
 	
 	public static void setGerenciador(GerenciadorDeCaronas gerenciador) {

@@ -8,6 +8,7 @@ import exceptions.DAOException;
 import exceptions.DAOParameterErrors;
 import exceptions.HttpException;
 import model.motoristaModel.Motorista;
+import model.passageiroModel.Passageiro;
 
 public class CaronaDAO {
 	
@@ -59,8 +60,8 @@ public class CaronaDAO {
 		return caronaMock.getCaronasDeMotorista(motorista);
 	}
 	
-	public List<Carona> getCaronasDePassageiro(String matricula, Integer limite) {
-		return caronaMock.getCaronasDePassageiro(matricula, limite);
+	public Set<Carona> getCaronasDePassageiro(Passageiro passageiro) {
+		return caronaMock.getCaronasDePassageiro(passageiro);
 	}
 
 }

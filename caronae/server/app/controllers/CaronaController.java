@@ -50,29 +50,6 @@ public class CaronaController extends Controller {
         return ok(carona.toJson());
     }
 
-    public Result getMinhasCaronas(){
-        JsonNode pessoa = sessaoValidador.getPessoaLogada();
-
-        String matricula = pessoa.get("matricula").asText();
-
-        Motorista motorista = gerenciadorDeMotoristas.getMotorista(matricula);
-
-        Set<Carona> caronas = gerenciadorDeCaronas.getCaronasDeMotorista(motorista);
-
-        //TODO O set de caronas que retorna deve ser caronas onde o usuario é motorista e onde ele é passageiro
-
-        ObjectMapper mapper = new ObjectMapper(new JsonFactory());
-
-        String jsonString;
-
-        try {
-            jsonString = mapper.writeValueAsString(caronas);
-        } catch (JsonProcessingException e) {
-            return badRequest(e.getMessage());
-        }
-        return ok(jsonString);
-    }
-    
     /**
      * Adiciona uma carona a coleção de caronas
      * @return Um JSON com as informações da pessoa se foi possível adicionar, caso contrário a explicação em formato JSON.

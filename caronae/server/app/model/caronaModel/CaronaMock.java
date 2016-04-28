@@ -51,7 +51,6 @@ public class CaronaMock {
     }
 
     private void fillin() {
-		System.out.print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Entrou MOCK MOTORISTA\n");
 		Pessoa pessoa =  new Pessoa("Caroneiro Maior Da Silva Santos", new Endereco("92", "Sinha Alves", "Presidente Medici"),
 				"caroneiro.mss@caronae.com.br", "83999996666", "admin1", "111111111");
 		Motorista motorista = new Motorista(pessoa, 4);
@@ -75,22 +74,20 @@ public class CaronaMock {
 		 return caronas;
 	}
 	
-	public List<Carona> getCaronasDePassageiro(String matricula, Integer limite) {
-		List<Carona> caronas = new ArrayList<>();
+	public Set<Carona> getCaronasDePassageiro(Passageiro passageiro) {
+		 Set<Carona> caronas = new HashSet<>();
 		 Carona caronaTemp;
 		 for (String id : this.caronas.keySet()) {
 			 caronaTemp = this.caronas.get(id);
 			 List<Passageiro> passageirosTemp = caronaTemp.getPassageiros();
-			 for(Passageiro passageiro: passageirosTemp){
-				 if (passageiro.getMatricula().contains(matricula)) {
+			 for(Passageiro passAux: passageirosTemp){
+				 if (passAux.getMatricula().contains(passageiro.getMatricula())) {
 					 caronas.add(caronaTemp);
 				 }
 			 }
 		 }
-		 if (limite > caronas.size()) {
-			 limite = caronas.size();
-		 }
-		 return caronas.subList(0, limite);
+
+		 return caronas;
 	}
 
 }

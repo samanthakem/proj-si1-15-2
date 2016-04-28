@@ -1,6 +1,7 @@
 package model.caronaModel;
 
 import model.motoristaModel.Motorista;
+import model.passageiroModel.Passageiro;
 
 import java.util.List;
 import java.util.Set;
@@ -35,7 +36,7 @@ public interface CaronaService {
 	 */
 	int getQuantidadeTotalCaronas();
 	
-	List<Carona> getCaronasDePassageiro(String matricula, Integer limite);
+	Set<Carona> getCaronasDePassageiro(Passageiro passageiro);
 	
 	Set<Carona> getCaronasDeMotorista(Motorista motorista);
 	

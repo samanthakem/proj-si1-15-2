@@ -24,8 +24,6 @@ POST    /app/pessoas                    controllers.PessoaController.addPessoa()
 #GET /caronas/:id                    controllers.CaronaController.getCarona(id: String)
 POST /caronas                       controllers.CaronaController.addCarona()
 
-GET /app/caronas                    controllers.CaronaController.getMinhasCaronas()
-
 #Routes used for Notificacoes
 GET /app/motoristas/:id/notificacoes    controllers.NotificacaoController.getMotoristaNotificacoes(id: String, start: Long ?= 0, end: Long ?= -1, reverse: Boolean ?= true, limite: Integer ?= 10)
 
