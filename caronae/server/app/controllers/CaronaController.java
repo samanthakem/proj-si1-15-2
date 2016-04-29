@@ -1,25 +1,11 @@
 package controllers;
 
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import model.Endereco;
-import model.Horario;
 import model.caronaModel.Carona;
 import model.caronaModel.GerenciadorDeCaronas;
 import model.motoristaModel.GerenciadorDeMotoristas;
-import model.motoristaModel.Motorista;
-import model.pessoaModel.Pessoa;
 import model.sessaoModel.SessaoValidador;
 import play.mvc.Controller;
 import play.mvc.Result;
-import util.Utils;
-
-import java.io.File;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Classe referente ao controller de Carona

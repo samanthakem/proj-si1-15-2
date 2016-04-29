@@ -13,8 +13,10 @@ GET     /message                    controllers.AsyncController.message
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
 # Routes used for the Passageiro resource
-#GET     /app/passageiros/:id           controllers.PassageiroController.getPassageiro(id: String)
-#POST     /passageiros              controllers.PassageiroController.addPassageiro()
+GET     /app/passageiros/:id                       controllers.PassageiroController.getPassageiro(id: String)
+GET     /app/passageiros/:id/horarios              controllers.PassageiroController.getHorarios(id: String, tipo: String)
+POST    /app/passageiros/:id/horarios              controllers.PassageiroController.addHorario(id: String)
+DELETE  /app/passageiros/:id/horarios/:idHorario   controllers.PassageiroController.removeHorario(id: String, idHorario: String)
 
 #Routes used for the Pessoa Resource
 GET     /app/pessoas/:id                controllers.PessoaController.getPessoa(id: String)

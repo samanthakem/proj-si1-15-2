@@ -6,14 +6,27 @@ package model;
 public class Horario {
 
     public enum Dia {
-        SEGUNDA, TERÇA, QUARTA, QUINTA, SEXTA;
+        SEG("Segunda"), TER("Terça"), QUA("Quarta"), QUI("Quinta"), SEX("Sexta"), SAB("Sabado"), DOM("Domingo");
+
+        private String dia;
+        Dia(String dia) {
+            this.dia = dia;
+        }
     }
 
-    private String idHorario;
+    public enum Tipo {
+        IDA("Ida"), VOLTA("Volta");
 
+        private String tipo;
+        Tipo(String tipo) {
+            this.tipo = tipo;
+        }
+    }
     private String hora;
 
     private Dia diaDaSemana;
+
+    private Tipo tipo;
 
     /**
      * Construtor padrão
@@ -38,9 +51,7 @@ public class Horario {
         return hora;
     }
 
-    public String getIdHorario() {
-        return idHorario;
-    }
+    public Tipo getTipo() { return tipo; }
 
     public void setDia(Dia dia) {
         this.diaDaSemana = dia;
@@ -50,10 +61,9 @@ public class Horario {
         this.hora = hora;
     }
 
-    public void setIdHorario(String idHorario) {
-        this.idHorario = idHorario;
-    }
-
+    @Override
+    public int hashCode() {
+        return getIdHorario().hashCode();
     @Override
     public boolean equals(Object objeto) {
         if (!(objeto instanceof Horario)) {
@@ -61,7 +71,9 @@ public class Horario {
         }
 
         Horario segundoHorario = (Horario) objeto;
-        return this.getDia().equals(segundoHorario.getDia()) && this.getHora().equals(segundoHorario.getHora());
+        return this.getDia().equals(segundoHorario.getDia())
+                && this.getHora().equals(segundoHorario.getHora())
+                && this.getTipo().equals(segundoHorario.getTipo());
     }
 
 }

@@ -6,7 +6,8 @@ import exceptions.HttpException;
 import model.Endereco;
 
 /**
- * Created by gustavooliveira on 4/7/16.
+ * Created by gustavooliveira on 4/7/16
+ * Modified by Rafaella
  */
 public class PessoaMock {
     private static PessoaMock mock;
@@ -15,6 +16,10 @@ public class PessoaMock {
 
     public PessoaMock() {
         fillin();
+    }
+    
+    public PessoaMock(String matricula) {
+    	fillin(matricula);
     }
 
     public static PessoaMock getPessoaMock() {
@@ -42,10 +47,14 @@ public class PessoaMock {
     }
 
     private void fillin() {
+    	fillin("111111111");
+    }
+    
+    public void fillin(String matricula) {
     	Endereco endereco = new Endereco("92", "Sinha Alves", "Presidente Medici");
         Pessoa pessoa = new Pessoa("Caroneiro Maior Da Silva Santos", endereco,
-                "caroneiro.mss@caronae.com.br", "83999996666", "admin1", "111111111");
-
+                "caroneiro.mss@caronae.com.br", "83999996666", "admin1", matricula);
+        
         pessoas.put(pessoa.getMatricula(), pessoa);
     }
 

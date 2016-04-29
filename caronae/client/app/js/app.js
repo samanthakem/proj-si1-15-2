@@ -20,10 +20,14 @@ caronaeApp.config(function ($routeProvider) {
       templateUrl: 'views/main.html',
       controller: 'MainCtrl'
 	})
-	.when("/horarios", {
-	  templateUrl: 'views/horarios.html',
-	  controller: 'HorariosCtrl'
+	.when("/motorista/horarios", {
+	  templateUrl: 'views/cadastroCarona.html',
+	  controller: 'CadastroCaronasCtrl'
 	})
+  .when("/passageiro/horarios", {
+    templateUrl: 'views/cadastroHorarios.html',
+    controller: 'HorariosCtrl'
+  })
 	.when("/notificacoes", {
 	  templateUrl: 'views/notificacoes.html',
 	  controller: 'NotificacoesCtrl'

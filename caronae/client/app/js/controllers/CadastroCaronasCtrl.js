@@ -2,12 +2,27 @@
 
 var caronaeAppHorarios = angular.module('caronaeApp');
 
-caronaeAppHorarios.controller('HorariosCtrl', ["$scope", "$rootScope", "$http", "$location", function ($scope, $rootScope, $http, $location) {
+caronaeAppHorarios.controller('CadastroCaronasCtrl', ["$scope", "$rootScope", "$http", "$location", function ($scope, $rootScope, $http, $location) {
   $http.get("/app/logged").success(function (data) {
     $rootScope.logged = true;
   }).error(function (data, status) {
     console.log(data, status);
     $scope.go("/");
+  });
+
+  var contexto = "/app/motorista/" + $rootScope.user.matricula + "/caronas";
+
+  $scope.notAdriver = true;
+  $scope.errorFlag = false;
+  $scope.errorMsg = "";
+
+  var url = "app/motorista/" + $rootScope.user.matricula;
+  $http.get(url).success(function(data){
+    $scope.notAdriver = false;
+  }).error(function(){
+    $scope.notAdriver = true;
+    $scope.errorFlag = true;
+    $scope.errorMsg ="Você ainda nao é cadastrado como Motorista";
   });
 
   var recuperarHorarios = function () {
@@ -31,15 +46,15 @@ caronaeAppHorarios.controller('HorariosCtrl', ["$scope", "$rootScope", "$http", 
   $scope.hora = "";
   $scope.dia = "";
 
+  $scope.motorista = {};
+  $scope.motorista.vagas = 0;
+
   for (var i = 6; i <= 22; i++) {
     $scope.horas.push("" + i)
   }
 
   $scope.minutos = ["00", "15", "30", "45"];
   $scope.horario = {};
-
-
-  var contexto = "/app/passageiros/" + $rootScope.user.matricula + "/horarios";
 
   $scope.tab = {};
   $scope.tab["IDA"] = {
@@ -66,8 +81,6 @@ caronaeAppHorarios.controller('HorariosCtrl', ["$scope", "$rootScope", "$http", 
   $scope.tabOpen = "IDA";
 
   $scope.tabBeingEdited = $scope.tab["IDA"];
-
-  recuperarHorarios();
 
   $scope.add = function () {
     var req = gerarReq();
@@ -107,23 +120,37 @@ caronaeAppHorarios.controller('HorariosCtrl', ["$scope", "$rootScope", "$http", 
     }).error(function (data) {
       alert(data.error);
     });
-  }
+  };
 
   $scope.go = function (path) {
     $location.path(path);
+  };
+
+  $scope.addMotorista = function(){
+    $scope.motorista.matricula = $rootScope.user.matricula;
+    console.log($scope.motorista);
+
+    $http.post("app/motorista",$scope.motorista).success(function(data){
+      $scope.notAdriver = false;
+      $scope.errorFlag = false;
+      console.log(data);
+      recuperarHorarios();
+    }).error(function(data){
+      $scope.errorMsg = data.error;
+    });
   };
 
   var gerarReq = function () {
     var req = {
       "dia": $scope.dia.toUpperCase(),
       "hora": $scope.hora + ":" + $scope.minuto,
-    }
+    };
 
     return req;
-  }
+  };
 
   var compZero = function (number, digits) {
     return Array(Math.max(digits - String(number).length + 1, 0)).join(0) + number;
-  }
+  };
 }
 ]);
