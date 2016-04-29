@@ -52,7 +52,7 @@ public class PassageiroController extends Controller {
         horarioValidador.validarHora(hora);
         horarioValidador.validarTipo(tipo);
 
-        Horario horario = new Horario(Horario.Dia.valueOf(dia), hora, Horario.Tipo.valueOf(tipo));
+        Horario horario = new Horario(Horario.Dia.valueOf(dia), hora);
 
         Passageiro passageiro = gerenciadorDePassageiros.getPassageiro(idPassageiro);
 

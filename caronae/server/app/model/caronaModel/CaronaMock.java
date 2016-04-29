@@ -2,6 +2,7 @@ package model.caronaModel;
 
 import java.util.*;
 
+import exceptions.HttpException;
 import model.Horario;
 
 import model.Horario;
@@ -56,7 +57,7 @@ public class CaronaMock {
 				"caroneiro.mss@caronae.com.br", "83999996666", "admin1", "111111111");
 		Motorista motorista = new Motorista(pessoa, 4);
 		Endereco destino = new Endereco("0","UFCG","Bodocongo");
-		Horario horario = new Horario(Horario.Dia.SEGUNDA, "7:00");
+		Horario horario = new Horario(Horario.Dia.SEG, "7:00");
 		Carona carona = new Carona("100", motorista, motorista.getPessoa().getEndereco(), destino, horario);
 		caronas.put(carona.getId(), carona);
 	}
@@ -91,4 +92,8 @@ public class CaronaMock {
 		 return caronas;
 	}
 
+    public List<Carona> getCaronas(Endereco origem, Endereco destino, Horario horario, Integer limite) {
+        //TODO implements
+        return null;
+    }
 }

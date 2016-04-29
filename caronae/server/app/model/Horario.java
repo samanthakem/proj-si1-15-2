@@ -62,13 +62,11 @@ public class Horario {
     }
 
     @Override
-    public int hashCode() {
-        return getIdHorario().hashCode();
-    @Override
-    public boolean equals(Object objeto) {
+    public boolean equals(Object objeto){
         if (!(objeto instanceof Horario)) {
             return false;
         }
+
 
         Horario segundoHorario = (Horario) objeto;
         return this.getDia().equals(segundoHorario.getDia())

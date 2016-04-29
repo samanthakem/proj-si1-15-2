@@ -97,12 +97,12 @@ public class GerenciadorDeCaronas implements CaronaService {
 	public Set<Carona> getCaronasDePassageiro(Passageiro passageiro) {
 		return dao.getCaronasDePassageiro(passageiro);
 	}
-	
-	}
 
 	@Override
 	public List<Carona> getCaronas(Endereco origem, Endereco destino, Horario horario, Integer limite) {
 		return dao.getCaronas(origem, destino, horario, limite);
+	}
+
 	public static void setGerenciador(GerenciadorDeCaronas gerenciador) {
         GerenciadorDeCaronas.gerenciador = gerenciador;
     }

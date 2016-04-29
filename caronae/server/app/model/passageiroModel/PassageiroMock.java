@@ -50,12 +50,8 @@ public class PassageiroMock {
         Pessoa pessoa = new Pessoa("Caroneiro Maior Da Silva Santos", endereco,
                 "caroneiro.mss@caronae.com.br", "83999996666", "admin1", "111111111");
 
-        ger.addPessoa(pessoa);
-
         Passageiro passageiro = new Passageiro(pessoa);
         passageiros.put(pessoa.getMatricula(), passageiro);
-
-        pessoa = ger.getPessoa("111111111");
 
         passageiro = new Passageiro(pessoa);
         passageiros.put(pessoa.getMatricula(), passageiro);
