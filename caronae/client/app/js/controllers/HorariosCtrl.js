@@ -10,102 +10,78 @@ caronaeAppHorarios.controller('HorariosCtrl', ["$scope", "$rootScope", "$http", 
     $scope.go("/");
   });
 
-  var recuperarHorarios = function () {
-    $http.get(contexto + "?tipo=" + $scope.tabOpen.toUpperCase())
-      .success(function (data) {
-        $scope.qntTimes[$scope.tabOpen] = data.length;
-        for (var i = 0; i < data.length; i++) {
-          var dia = $scope.tabBeingEdited[data[i].dia];
-          if (dia && dia.indexOf(data[i].hora) == -1)
-            $scope.tabBeingEdited[data[i].dia].push(data[i].hora);
-        }
-      }).error(function (data, status) {
-      //alert(data.error);
-    });
-  };
+  if (!$rootScope.user) $scope.go("/main");
 
-  $scope.horas = [];
-  $scope.returnAddressDifferent = false;
-  $scope.returnAddress = "";
   $scope.minuto = "";
   $scope.hora = "";
   $scope.dia = "";
+  $scope.error = "";
+  $scope.minutos = ["00", "15", "30", "45"];
+  $scope.qntTimes = 0;
+  $scope.horarios = {
+    "SEG": [],
+    "TER": [],
+    "QUA": [],
+    "QUI": [],
+    "SEX": [],
+    "SAB": [],
+    "DOM": []
+  };
+  $scope.horas = [];
 
   for (var i = 6; i <= 22; i++) {
     $scope.horas.push("" + i)
   }
 
-  $scope.minutos = ["00", "15", "30", "45"];
-  $scope.horario = {};
 
+  var contexto = "/app/passageiros/"
+                + $rootScope.user.matricula + "/horarios";
 
-  var contexto = "/app/passageiros/" + $rootScope.user.matricula + "/horarios";
+  var recuperarHorarios = function () {
+    $http.get(contexto).success(function (data) {
+      $scope.qntTimes = data.length;
 
-  $scope.tab = {};
-  $scope.tab["IDA"] = {
-    "SEG": [],
-    "TER": [],
-    "QUA": [],
-    "QUI": [],
-    "SEX": [],
-    "SAB": [],
-    "DOM": []
+      for (var i = 0; i < data.length; i++) {
+        var dia = $scope.horarios[data[i].dia];
+        if (dia && dia.indexOf(data[i].hora) == -1) {
+          $scope.horarios[data[i].dia].push(data[i].hora);
+        }
+      }
+
+    }).error(function (data, status) {
+      $scope.error = data.error;
+    });
   };
-  $scope.tab["VOLTA"] = {
-    "SEG": [],
-    "TER": [],
-    "QUA": [],
-    "QUI": [],
-    "SEX": [],
-    "SAB": [],
-    "DOM": []
-  };
-  $scope.qntTimes = {"IDA": 0, "VOLTA": 0};
-  $scope.editingIda = true;
-  $scope.editingVolta = false;
-  $scope.tabOpen = "IDA";
 
-  $scope.tabBeingEdited = $scope.tab["IDA"];
+  $scope.closeError = function() {
+    $scope.error = "";
+  }
 
   recuperarHorarios();
+  $scope.closeError();
 
   $scope.add = function () {
     var req = gerarReq();
-    console.log("Entrou");
     $http.post(contexto, req).success(function (data) {
-      $scope.tabBeingEdited[data.dia].push(data.hora);
-      console.log(data);
-      console.log(tabBeingEdited);
-      $scope.qntTimes[$scope.tabOpen] += 1;
-      console.log(qntTimes);
+      $scope.horarios[data.dia].push(data.hora);
+      $scope.qntTimes += 1;
+      console.log($scope.qntTimes);
     }).error(function (data) {
-      //alert(data.error);
+      $scope.error = data.error;
     });
 
   };
 
-  $scope.edit = function (tab) {
-    if ($scope.tab[tab] != undefined) {
-      $scope.tabBeingEdited = $scope.tab[tab];
-
-      $scope.editingIda = tab == "IDA";
-      $scope.editingVolta = tab == "VOLTA";
-      $scope.tabOpen = tab;
-
-      recuperarHorarios();
-    }
-  }
-
   $scope.remove = function (day, time) {
-    var idHorario = time + day.toUpperCase() + $scope.tabOpen.toUpperCase();
+    var idHorario = time + day.toUpperCase();
     $http.delete(contexto + "/" + idHorario).success(function (data) {
-      var index = $scope.tabBeingEdited[day].indexOf(time);
+      var index = $scope.horarios[day].indexOf(time);
       if (index > -1) {
-        $scope.tabBeingEdited[day].splice(index, 1);
-        $scope.qntTimes[$scope.tabOpen] -= 1;
+        $scope.horarios[day].splice(index, 1);
+        $scope.qntTimes -= 1;
       }
     }).error(function (data) {
-      alert(data.error);
+      $scope.error = data.error;
     });
   }
 
@@ -116,7 +92,7 @@ caronaeAppHorarios.controller('HorariosCtrl', ["$scope", "$rootScope", "$http", 
   var gerarReq = function () {
     var req = {
       "dia": $scope.dia.toUpperCase(),
-      "hora": $scope.hora + ":" + $scope.minuto,
+      "hora": compZero($scope.hora, 2) + ":" + compZero($scope.minuto, 2)
     }
 
     return req;
