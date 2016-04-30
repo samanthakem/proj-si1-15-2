@@ -1,22 +1,6 @@
 <div class="section">
-  <!--NAV BAR-->
-  <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-12">
-      <ul class="nav nav-tabs">
-        <li class="col-xs-6 text-center" ng-class="{active: editingIda}">
-          <a role="button" ng-click="edit('Ida')">Ida para a UFCG</a>
-        </li>
-        <li class="col-xs-6 text-center" ng-class="{active: editingVolta}">
-          <a role="button" ng-click="edit('Volta')">Volta da UFCG</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-  <!-- USER WELCOME-->
   <div id="main">
+    <!-- USER WELCOME-->
     <section class="row">
       <div class="col-md-3">
         <img src="{{user.imageURL}}" class="img-responsive">
@@ -28,7 +12,7 @@
         <h2>{{user.nome}}</h2>
       </div>
     </section>
-
+    <!-- USER RIDES-->
     <section class="row">
       <div class="bs col-md-9">
         <h2>Suas Caronas</h2>
@@ -38,18 +22,18 @@
           </div>
           <div class="list-group" ng-repeat="carona in caronas">
             <a href="" class="list-group-item" ng-click="detalhes(carona)">
-              <div class="col-md-7">Destino: {{carona.destino}}</div>
-              <div class="text-right">Data: {{carona.data}}</div>
+              <div class="col-md-7">Destino: {{carona.destino.rua}} - {{ carona.destino.num}}, {{ carona.destino.bairro}}</div>
+              <div class="text-right">Data: {{carona.horario.dia}} - {{carona.horario.hora}}</div>
             </a>
           </div>
         </div>
         <div class="col-md-5 panel panel-default" ng-if="caronas.length != 0">
           <div class="panel-heading">Detalhes</div>
           <div class="panel-body">
-            <div class="col-md-8"><p>Motorista: {{caronaAtiva.motorista}}</p></div>
-            <div class="col-md-4"><p>Data: {{caronaAtiva.data}}</p></div>
-            <div class="col-md-12"><p>Origem: {{caronaAtiva.origem}}</p></div>
-            <div class="col-md-12"><p>Destino: {{caronaAtiva.destino}}</p></div>
+            <div class="col-md-8"><p>Motorista: {{caronaAtiva.motorista.pessoa.nome}}</p></div>
+            <div class="col-md-4"><p>Data: {{caronaAtiva.horario.dia}}</p></div>
+            <div class="col-md-12"><p>Origem: {{caronaAtiva.pontoInicial.rua}} - {{caronaAtiva.pontoInicial.num}}, {{caronaAtiva.pontoInicial.bairro}}</p></div>
+            <div class="col-md-12"><p>Destino: {{caronaAtiva.destino.rua}} - {{caronaAtiva.destino.num}}, {{caronaAtiva.destino.bairro}}</p></div>
 
             <p class="col-md-12" >Passageiros: </p>
             <div class="col-md-12" ng-repeat="passageiro in caronaAtiva.passageiros"><p>{{passageiro}}</p></div>

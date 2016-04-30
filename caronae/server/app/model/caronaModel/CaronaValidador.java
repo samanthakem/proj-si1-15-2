@@ -54,7 +54,7 @@ public class CaronaValidador {
 	 * 		Carona cujos campos serao validados
 	 */
 	public void validarCamposCarona(Carona carona) {
-		validarIdMotorista(carona.getIdMotorista());
+		validarIdMotorista(carona.getMotorista().getMatricula());
 		validarQntVagasDisponiveis(carona.getQntVagasDisponiveis());
 		validarPontoInicial(carona.getPontoInicial());
 		validarDestino(carona.getDestino());

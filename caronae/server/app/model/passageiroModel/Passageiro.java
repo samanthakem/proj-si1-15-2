@@ -130,14 +130,14 @@ public class Passageiro {
     public Horario getHorario(String idHorario) {
         Horario horario = null;
 
-        for (Horario h: horarios) {
-            if (h.getIdHorario().equals(idHorario)) {
-                horario = h;
-                break;
-            }
-        }
-
-        if (horario == null) throw new HttpException(404, "Nao existe horario com esta ID");
+//        for (Horario h: horarios) {
+//            if (h.getIdHorario().equals(idHorario)) {
+//                horario = h;
+//                break;
+//            }
+//        }
+//
+//        if (horario == null) throw new HttpException(404, "Nao existe horario com esta ID");
 
         return horario;
     }

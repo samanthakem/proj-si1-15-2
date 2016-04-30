@@ -13,21 +13,21 @@ caronaeAppMain.controller('MainCtrl', function ($rootScope,$scope,$http,$locatio
     $rootScope.user.imageURL = "http://www.clker.com/cliparts/5/7/4/8/13099629981030824019profile.svg.med.png";
   }).error(function(data, status) {
 	console.log(data);
-    console.log(data, status);
+    //console.log(data, status);
     $scope.go("/");
+  });
+  $scope.caronas = [];
+  $scope.caronaAtiva = {};
+  $http.get("/app/pessoa/caronas").success(function(data){
+    console.log(data[0]);
+    $scope.caronas = data;
+    $scope.caronaAtiva = $scope.caronas[0];
+  }).error(function(data, status){
+    console.log(status);
+    console.log(data.error);
   });
 
 
-  $scope.caronas = [
-    {"motorista": "Caroneiro",
-      "origem": "CASA",
-      "destino": "UFCG",
-      "data":"SEG - 7:30",
-      "passageiros": ["Aline", "Stenio", "Samantha"]},
-    {"motorista": "Cobrador", "destino": "CASA", "data":"SEG - 18:30", "passageiros": ["Gustavo", "Rafa", "Massoni"]}
-  ];
-
-  $scope.caronaAtiva = $scope.caronas[0];
 
   $scope.detalhes = function(carona){
     $scope.caronaAtiva = carona;

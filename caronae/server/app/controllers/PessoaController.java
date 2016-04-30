@@ -1,25 +1,36 @@
 package controllers;
 
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import exceptions.HttpException;
+import model.Endereco;
+import model.caronaModel.Carona;
+import model.caronaModel.GerenciadorDeCaronas;
+import model.motoristaModel.GerenciadorDeMotoristas;
+import model.motoristaModel.Motorista;
+import model.passageiroModel.GerenciadorDePassageiros;
+import model.passageiroModel.Passageiro;
 import model.pessoaModel.GerenciadorDePessoas;
 import model.pessoaModel.Pessoa;
-import model.Endereco;
 import model.sessaoModel.SessaoValidador;
 import play.mvc.Controller;
-import play.mvc.Http;
 import play.mvc.Result;
 import util.Utils;
-import play.mvc.Http.Request;
+
+import java.util.HashSet;
 import java.util.Set;
-import java.util.Map;
-import java.util.Arrays;
 
 /**
  * @author Stenio Elson, Samantha Monteiro
  */
 public class PessoaController extends Controller {
     private GerenciadorDePessoas gerenciadorDePessoas = GerenciadorDePessoas.getGerenciador();
+    private GerenciadorDeCaronas gerenciadorDeCaronas = GerenciadorDeCaronas.getGerenciador();
+    private GerenciadorDeMotoristas gerenciadorDeMotoristas = GerenciadorDeMotoristas.getGerenciador();
+    private GerenciadorDePassageiros gerenciadorDePassageiros = GerenciadorDePassageiros.getGerenciador();
+
     private SessaoValidador sessaoValidador = new SessaoValidador();
 
     /**
@@ -99,5 +110,35 @@ public class PessoaController extends Controller {
         gerenciadorDePessoas.addPessoa(pessoa);
         sessaoValidador.registraPessoaLogada(pessoa);
         return ok(pessoa.toJson());
+    }
+
+    public Result getCaronas() {
+        JsonNode pessoa = sessaoValidador.getPessoaLogada();
+        String matricula = pessoa.get("matricula").asText();
+
+        Passageiro passageiro = new Passageiro();
+        Motorista motorista = new Motorista();
+
+        Set<Carona> caronas = new HashSet<Carona>();
+
+        if(gerenciadorDeMotoristas.existeMotorista(matricula)){
+            motorista = gerenciadorDeMotoristas.getMotorista(matricula);
+            caronas.addAll(gerenciadorDeCaronas.getCaronasDeMotorista(motorista));
+        }
+        if(gerenciadorDePassageiros.existePassageiro(matricula)) {
+            passageiro = gerenciadorDePassageiros.getPassageiro(matricula);
+            caronas.addAll(gerenciadorDeCaronas.getCaronasDePassageiro(passageiro));
+        }
+
+        ObjectMapper mapper = new ObjectMapper(new JsonFactory());
+
+        String jsonString;
+
+        try {
+            jsonString = mapper.writeValueAsString(caronas);
+        } catch (JsonProcessingException e) {
+            return badRequest(e.getMessage());
+        }
+        return ok(jsonString);
     }
 }

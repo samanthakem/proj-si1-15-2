@@ -1,22 +1,25 @@
 package model.caronaModel;
 
-import java.util.ArrayList;
-import java.util.List;
 import com.fasterxml.jackson.databind.JsonNode;
 import model.Endereco;
 import model.Horario;
+import model.motoristaModel.Motorista;
+import model.passageiroModel.Passageiro;
 import play.libs.Json;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * @author Samantha Monteiro
+ * @author Samantha Monteiro, Gustavo Oliveira
  */
 public class Carona {
 
 	private String id;
 
-	private List<String> idsPassageiros;
+	private List<Passageiro> passageiros;
 
-	private String idMotorista;
+	private Motorista motorista;
 
 	private int qntVagasDisponiveis = 4;
 
@@ -26,9 +29,7 @@ public class Carona {
 
 	private Horario horario;
 
-	public Carona() {
-		this.idsPassageiros = new ArrayList<String>();
-	}
+	private Carona() {}
 
 	/**
 	 * Construtor da entidade {@Carona}
@@ -39,11 +40,10 @@ public class Carona {
 	 * @param {Object} destino destino da carona
 	 * @param {Object} horario horario da carona
 	 */
-	public Carona(String id, String idMotorista, Endereco pontoInicial,
-			Endereco destino, Horario horario) {
-		this();
+	public Carona(String id, Motorista motorista, Endereco pontoInicial, Endereco destino, Horario horario) {
+		this.passageiros = new ArrayList<Passageiro>();
 		setId(id);
-		setIdMotorista(idMotorista);
+		setIdMotorista(motorista);
 		setPontoInicial(pontoInicial);
 		setDestino(destino);
 		setHorario(horario);
@@ -57,12 +57,12 @@ public class Carona {
 		return horario;
 	}
 
-	public List<String> getIdsPassageiros() {
-		return idsPassageiros;
+	public List<Passageiro> getPassageiros() {
+		return passageiros;
 	}
 
-	public void setIdsPassageiros(List<String> idsPassageiros) {
-		this.idsPassageiros = idsPassageiros;
+	public void setPassageiros(List<Passageiro> pssageiros) {
+		this.passageiros = passageiros;
 	}
 
 	public void setDestino(Endereco destino) {
@@ -85,12 +85,12 @@ public class Carona {
 		return qntVagasDisponiveis;
 	}
 
-	public void setIdMotorista(String idMotorista) {
-		this.idMotorista = idMotorista;
+	public void setIdMotorista(Motorista motorista) {
+		this.motorista = motorista;
 	}
 
-	public String getIdMotorista() {
-		return idMotorista;
+	public Motorista getMotorista() {
+		return motorista;
 	}
 
 	public void setId(String id) {

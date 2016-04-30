@@ -10,11 +10,11 @@
 			<a href=""><h1 class="glyphicon glyphicon-bullhorn"></h1></a>
 		  </li>
 		  <li class="side-btns" ng-class="{'active-btn': perspective.driver, 'nonactive-btn': perspective.rider}"
-          ng-click="changePerspective('motorista'); go('/horarios')">
+          ng-click="changePerspective('motorista'); go('motorista/horarios')">
 			<a href=""><p>MOTORISTA</p></a>
 		  </li>
 		  <li class="side-btns" ng-class="{'active-btn': perspective.rider, 'nonactive-btn': perspective.driver}"
-          ng-click="changePerspective('passageiro'); go('/horarios')">
+          ng-click="changePerspective('passageiro'); go('passageiro/horarios')">
 			<a href=""><p>PASSAGEIRO</p></a>
 			<a href="#/pedir" ng-if="perspective.rider"><p>PEDIR CARONA</p></a>
 		  </li>

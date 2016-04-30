@@ -1,7 +1,9 @@
 package model.caronaModel;
 
+import java.util.HashSet;
 import model.Endereco;
 import model.Horario;
+import java.util.Set;
 import model.motoristaModel.Motorista;
 import model.motoristaModel.MotoristaService;
 import model.passageiroModel.Passageiro;
@@ -50,20 +52,27 @@ public class GerenciadorDeCaronas implements CaronaService {
 		Carona carona = dao.getCarona(id);
         return carona;
 	}
-	
+
+	@Override
+	public Set<Carona> getCaronasDeMotorista(Motorista motorista) {
+		Set<Carona> colecaoCaronas = new HashSet<Carona>();
+		System.out.print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Entrou GERENCIADOR MOTORISTA \n");
+		colecaoCaronas = dao.getCaronasDeMotorista(motorista);
+
+		return colecaoCaronas;
+	}
+
 	/**
      * Adiciona uma carona a coleção de caronas
 	 * @param {Object} carona
 	 * 		Carona que sera adicionada no sistema
-     */
 	@Override
 	public void addCarona(Carona carona) {
         caronaValidador.validarCadastro(carona);
         dao.persistirCarona(carona);
         
-        if (carona.getIdMotorista() != null) {
-        	String idMotorista = carona.getIdMotorista();
-        	Motorista motorista = motoristaService.getMotorista(idMotorista);
+        if (carona.getMotorista() != null) {
+        	Motorista motorista = carona.getMotorista();
         	motoristaService.addMotoristaNaCarona(motorista, carona);
         }
         
@@ -73,7 +82,7 @@ public class GerenciadorDeCaronas implements CaronaService {
         		passageiroService.addPassageiroNaCarona(passageiro, carona);
 			}
         }
-    }
+    }*/
 	
 	/**
 	 * Recupera a quantidade total de caronas no sistema.
@@ -85,20 +94,15 @@ public class GerenciadorDeCaronas implements CaronaService {
 	}
 	
 	@Override
-	public List<Carona> getCaronasDePassageiro(String matricula, Integer limite) {
-		return dao.getCaronasDePassageiro(matricula, limite);
-	}
-	
-	@Override
-	public List<Carona> getCaronasDeMotorista(String matricula, Integer limite) {
-		return dao.getCaronasDeMotorista(matricula, limite);
+	public Set<Carona> getCaronasDePassageiro(Passageiro passageiro) {
+		return dao.getCaronasDePassageiro(passageiro);
 	}
 
 	@Override
 	public List<Carona> getCaronas(Endereco origem, Endereco destino, Horario horario, Integer limite) {
 		return dao.getCaronas(origem, destino, horario, limite);
 	}
-	
+
 	public static void setGerenciador(GerenciadorDeCaronas gerenciador) {
         GerenciadorDeCaronas.gerenciador = gerenciador;
     }

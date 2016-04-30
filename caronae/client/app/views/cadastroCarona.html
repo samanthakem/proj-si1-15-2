@@ -1,0 +1,106 @@
+<div id="main" class="container-fluid">
+  <div class="center">
+    <h1>Cadastro de Caronas</h1>
+  </div>
+  <div class="alert alert-danger center col-lg-6 col-lg-offset-3" ng-if="errorFlag">
+    {{errorMsg}}
+  </div>
+  <div class="center col-lg-6 col-lg-offset-3" ng-if="notAdriver">
+    <div class="bs col-sm-12">
+      <p>Você nao é cadastrado como Motorista</p>
+      <p class="col-sm-12"><b>Deseja se tornar um Motorista?</b></p>
+      <div class="input form-group col-sm-12" >
+        <label class="col-sm-12">Número de vagas para passageiros no meu carro</label>
+        <input type="number" ng-model="motorista.vagas" value="motorista.vagas"/>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-danger btn-md" ng-click="go('/main')">Não</button>
+        <button class="btn btn-success btn-md" ng-click="addMotorista()">Sim</button>
+      </div>
+    </div>
+  </div>
+  <section ng-if="!notAdriver">
+    <div class="section principal">
+      <div class="col-md-12">
+        <ul class="nav nav-tabs">
+          <li class="col-xs-6 text-center" ng-class="{active: editingIda}">
+            <a role="button" ng-click="edit('IDA')">Ida para a UFCG</a>
+          </li>
+          <li class="col-xs-6 text-center" ng-class="{active: editingVolta}">
+            <a role="button" ng-click="edit('VOLTA')">Volta da UFCG</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <ul class="list-group my_times">
+        <li class="list-group-item" ng-repeat="(day, times) in tabBeingEdited" ng-if="times.length != 0">
+          <div class="day_times">
+            <spam class="pull-left day">{{day}}:</spam>
+            <button type="button" class="btn btn-success btn-xs" ng-click="remove(day, time)"
+                    ng-repeat="time in times | orderBy">{{time}}
+            </button>
+          </div>
+          <div class="clearfix"></div>
+        </li>
+        <div class="alert alert-warning" ng-if="qntTimes[tabOpen] == 0">
+          Você ainda não adicionou nenhum horário de {{tabOpen}}.
+        </div>
+      </ul>
+      <div class="navbar navbar-default navbar-fixed-bottom col-xs-12">
+        <div class="row">
+          <div class="col-xs-6">
+            <div class="form-group pull-right"> Dia <br/>
+              <select ng-model="dia" placeholder="Dia da Semana" class="form-control input-lg">
+                <option>Seg</option>
+                <option>Ter</option>
+                <option>Qua</option>
+                <option>Qui</option>
+                <option>Sex</option>
+                <option>Sab</option>
+                <option>Dom</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-xs-1">
+            <div class="form-group pull-right"> Hora <br/>
+              <select ng-model="hora" placeholder="--" class="form-control input-lg">
+                <option value="">--</option>
+                <option ng-repeat="hr in horas">{{hr}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-xs-4">
+            <div class="form-group pull-left"> Minuto <br/>
+              <select ng-model="minuto" placeholder="--" class="form-control input-lg">
+                <option value="">--</option>
+                <option ng-repeat="min in minutos">{{min}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row" ng-if="tabOpen == 'Volta'">
+          <div class="col-md-6 col-xs-6 col-xs-offset-3 col-md-offset-0">
+            <div class="form-group pull-right">
+              <label class="checkbox-inline">
+                <input ng-model="returnAddressDifferent" type="checkbox">Neste horário, meu endereço de retorno é
+                diferente
+              </label>
+            </div>
+          </div>
+          <div class="col-md-6 col-xs-6 col-xs-offset-3 col-md-offset-0">
+            <div class="form-group">
+              <input class="form-control input-lg" placeholder="Endereço" type="text" ng-if="returnAddressDifferent"
+                     ng-model="returnAddress">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <a class="btn btn-block btn-lg btn-success" ng-click="add()">Adicionar Horário</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

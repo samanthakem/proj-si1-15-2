@@ -1,5 +1,11 @@
 package model.pessoaModel;
 
+import model.caronaModel.Carona;
+import model.caronaModel.GerenciadorDeCaronas;
+
+import java.util.List;
+import java.util.Set;
+
 /**
  * Classe responsavel por implementar os servicos da entidade {@Pessoa}
  * @author Stenio Elson, Samantha Monteiro
@@ -11,8 +17,13 @@ public class GerenciadorDePessoas implements PessoaService {
     private PessoaDao dao = new PessoaDao();
     
     private PessoaValidador pessoaValidador = new PessoaValidador();
-    
-    private GerenciadorDePessoas() {}
+
+    private GerenciadorDeCaronas gerenciadorCaronas;
+
+
+    private GerenciadorDePessoas() {
+        gerenciadorCaronas = GerenciadorDeCaronas.getGerenciador();
+    }
 
     /**
      * @return A instancia de GerenciadorDePessoas

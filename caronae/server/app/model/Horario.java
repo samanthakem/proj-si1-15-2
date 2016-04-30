@@ -22,7 +22,6 @@ public class Horario {
             this.tipo = tipo;
         }
     }
-
     private String hora;
 
     private Dia diaDaSemana;
@@ -38,12 +37,10 @@ public class Horario {
      * Construtor de Objetos do tipo Notificacao
      * @param dia dia ao qual corresponde o Horário
      * @param hora hora a qual corresponde o Horário
-     * @param tipo se Ida ou Volta
      */
-    public Horario(Dia dia, String hora, Tipo tipo) {
+    public Horario(Dia dia, String hora) {
         setDia(dia);
         setHora(hora);
-        setTipo(tipo);
     }
 
     public Dia getDia() {
@@ -56,10 +53,6 @@ public class Horario {
 
     public Tipo getTipo() { return tipo; }
 
-    public String getIdHorario() {
-        return hora + diaDaSemana + tipo;
-    }
-
     public void setDia(Dia dia) {
         this.diaDaSemana = dia;
     }
@@ -68,18 +61,12 @@ public class Horario {
         this.hora = hora;
     }
 
-    public void setTipo(Tipo tipo) { this.tipo = tipo; }
-
     @Override
-    public int hashCode() {
-        return getIdHorario().hashCode();
-    }
-
-    @Override
-    public boolean equals(Object objeto) {
+    public boolean equals(Object objeto){
         if (!(objeto instanceof Horario)) {
             return false;
         }
+
 
         Horario segundoHorario = (Horario) objeto;
         return this.getDia().equals(segundoHorario.getDia())
