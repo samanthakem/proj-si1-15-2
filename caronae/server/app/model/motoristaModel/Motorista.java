@@ -13,8 +13,6 @@ public class Motorista {
 
     private int quantidadeVagasCarro;
 
-	private String idCarona;
-
     /**
      * Construtor padrão.
      */
@@ -39,30 +37,6 @@ public class Motorista {
     public String getMatricula() {
         return pessoa.getMatricula();
     }
-    
-    /**
-     * Modifica a matrícula da pessoa que é motorista
-     * @param matricula
-     */
-    public void setMatricula(String matricula) {
-    	pessoa.setMatricula(matricula);
-    }
-	
-    /**
-     * Modifica a ID da carona
-     * @param idCarona
-     */
-	public void setIdCarona(String idCarona) {
-		this.idCarona = idCarona;
-	}
-	
-	/**
-	 * Recupera a ID da carona
-	 * @return idCarona
-	 */
-	public String getIdCarona() {
-		return idCarona;
-	}
 
     /**
      * Recupera a Pessoa

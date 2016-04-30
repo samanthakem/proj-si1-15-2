@@ -14,19 +14,9 @@ public class Horario {
         }
     }
 
-    public enum Tipo {
-        IDA("Ida"), VOLTA("Volta");
-
-        private String tipo;
-        Tipo(String tipo) {
-            this.tipo = tipo;
-        }
-    }
     private String hora;
 
     private Dia diaDaSemana;
-
-    private Tipo tipo;
 
     /**
      * Construtor padrão
@@ -51,14 +41,16 @@ public class Horario {
         return hora;
     }
 
-    public Tipo getTipo() { return tipo; }
-
     public void setDia(Dia dia) {
         this.diaDaSemana = dia;
     }
 
     public void setHora(String hora) {
         this.hora = hora;
+    }
+
+    public String getIdHorario() {
+        return getHora() + getDia();
     }
 
     @Override
@@ -70,8 +62,7 @@ public class Horario {
 
         Horario segundoHorario = (Horario) objeto;
         return this.getDia().equals(segundoHorario.getDia())
-                && this.getHora().equals(segundoHorario.getHora())
-                && this.getTipo().equals(segundoHorario.getTipo());
+                && this.getHora().equals(segundoHorario.getHora());
     }
 
 }

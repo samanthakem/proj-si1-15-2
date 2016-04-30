@@ -63,6 +63,7 @@ public class MotoristaValidador {
                     ValidacaoParameterErrors.OBJETO, QTD_VAGAS_CARRO);
         }
     }
+
     /**
      * Verifica se uma pessoa está cadastrada
      * @param pessoa
