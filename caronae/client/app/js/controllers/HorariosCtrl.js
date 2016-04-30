@@ -15,7 +15,7 @@ caronaeAppHorarios.controller('HorariosCtrl', ["$scope", "$rootScope", "$http", 
   $scope.minuto = "";
   $scope.hora = "";
   $scope.dia = "";
-  $scope.error = "";
+  $scope.errorMsg = "";
   $scope.minutos = ["00", "15", "30", "45"];
   $scope.qntTimes = 0;
   $scope.horarios = {
@@ -49,16 +49,16 @@ caronaeAppHorarios.controller('HorariosCtrl', ["$scope", "$rootScope", "$http", 
       }
 
     }).error(function (data, status) {
-      $scope.error = data.error;
+      $scope.errorMsg = data.error;
     });
   };
 
   $scope.closeError = function() {
-    $scope.error = "";
+    $scope.errorMsg = "";
   }
 
-  recuperarHorarios();
   $scope.closeError();
+  recuperarHorarios();
 
   $scope.add = function () {
     var req = gerarReq();
@@ -67,7 +67,7 @@ caronaeAppHorarios.controller('HorariosCtrl', ["$scope", "$rootScope", "$http", 
       $scope.qntTimes += 1;
       console.log($scope.qntTimes);
     }).error(function (data) {
-      $scope.error = data.error;
+      $scope.errorMsg = data.error;
     });
 
   };
@@ -81,7 +81,7 @@ caronaeAppHorarios.controller('HorariosCtrl', ["$scope", "$rootScope", "$http", 
         $scope.qntTimes -= 1;
       }
     }).error(function (data) {
-      $scope.error = data.error;
+      $scope.errorMsg = data.error;
     });
   }
 
