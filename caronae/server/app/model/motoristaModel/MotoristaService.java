@@ -19,14 +19,4 @@ public interface MotoristaService {
 	 * 		Motorista que sera adicionada no sistema
 	 */
 	void addMotorista(Motorista motorista);
-
-	/**
-	 * Adiciona um motorista em uma carona
-	 * @param {Object} motorista
-	 * 		motorista a ser adicionado na carona
-	 * @param {Object} carona
-	 * 		carona a ser adicionada na carona
-	 */
-	void addMotoristaNaCarona(Motorista motorista, Carona carona);
-	
 }

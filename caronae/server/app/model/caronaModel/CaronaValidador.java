@@ -41,6 +41,7 @@ public class CaronaValidador {
 	 */
 	public void validarCadastro(Carona carona) {
 		if (carona == null) {
+			System.out.print(">>>>>>>>>>>>>>>>>>>>>> carona NULL \n");
 			throw new ValidacaoFieldsException().addTemplateComParametro(
 					ValidacaoErroMensagem.VALOR_NULL,
 					ValidacaoParameterErrors.OBJETO, CARONA);
@@ -54,6 +55,7 @@ public class CaronaValidador {
 	 * 		Carona cujos campos serao validados
 	 */
 	public void validarCamposCarona(Carona carona) {
+		System.out.print(">>>>>>>>>>>>>>>>>>>>>> validarCamposCarona \n");
 		validarIdMotorista(carona.getMotorista().getMatricula());
 		validarQntVagasDisponiveis(carona.getQntVagasDisponiveis());
 		validarPontoInicial(carona.getPontoInicial());
@@ -67,6 +69,7 @@ public class CaronaValidador {
 					ValidacaoErroMensagem.VALOR_NULL, 
 					ValidacaoParameterErrors.OBJETO, HORARIO);
 		}
+		System.out.print(">>>>>>>>>>>>>>>>>>>>>> validarHorario \n");
 	}
 
 	public void validarDestino(Endereco destino) {
@@ -75,6 +78,7 @@ public class CaronaValidador {
 					ValidacaoErroMensagem.VALOR_NULL, 
 					ValidacaoParameterErrors.OBJETO, DESTINO);
 		}
+		System.out.print(">>>>>>>>>>>>>>>>>>>>>> validarDestino \n");
 	}
 
 	public void validarPontoInicial(Endereco pontoInicial) {
@@ -83,14 +87,17 @@ public class CaronaValidador {
 					ValidacaoErroMensagem.VALOR_NULL, 
 					ValidacaoParameterErrors.OBJETO, PONTO_INICIAL);
 		}
+		System.out.print(">>>>>>>>>>>>>>>>>>>>>> validarPontoInicial \n");
 	}
 
 	public void validarQntVagasDisponiveis(int qntVagasDisponiveis) {
 		UtilsValidacao.validaCampoNaoPreenchido(Integer.toString(qntVagasDisponiveis), QNT_VAGAS);
+		System.out.print(">>>>>>>>>>>>>>>>>>>>>> validarQntVagasDisponiveis \n");
 	}
 
 	public void validarIdMotorista(String idMotorista) {
-		UtilsValidacao.validaCampoNaoPreenchido(idMotorista, ID_MOTORISTA);	
+		UtilsValidacao.validaCampoNaoPreenchido(idMotorista, ID_MOTORISTA);
+		System.out.print(">>>>>>>>>>>>>>>>>>>>>> validarIdMotorista \n");
 	}
 	
 	
@@ -109,7 +116,7 @@ public class CaronaValidador {
 		if (!entidadeExiste) {
 			throw new DAOException(DAOErroMensagem.CONSULTA_ID_NAO_ENCONTRADO).setCodigoErro(Status.NOT_FOUND)
 				.addParametroParaMensagem(DAOParameterErrors.NOME_ARRAY, "Lista de Caronas")
-				.addParametroParaMensagem(DAOParameterErrors.ID_DA_ENTIDADE, id);
+				.addParametroParaMensagem(DAOParameterErrors.ID_DA_ENTIDADE, id.toString());
 		}
 	}
 }

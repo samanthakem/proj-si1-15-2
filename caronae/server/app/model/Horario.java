@@ -41,6 +41,14 @@ public class Horario {
         return hora;
     }
 
+    @Override
+    public String toString() {
+        return "Horario{" +
+                "hora='" + hora + '\'' +
+                ", diaDaSemana=" + diaDaSemana +
+                '}';
+    }
+
     public void setDia(Dia dia) {
         this.diaDaSemana = dia;
     }

@@ -96,4 +96,5 @@ public class Motorista {
 		Motorista outroMotorista = (Motorista) objeto;
 		return this.getPessoa().equals(outroMotorista.getPessoa());
 	}
+
 }

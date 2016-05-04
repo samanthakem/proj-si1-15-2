@@ -19,7 +19,7 @@ caronaeAppMain.controller('MainCtrl', function ($rootScope,$scope,$http,$locatio
   $scope.caronas = [];
   $scope.caronaAtiva = {};
   $http.get("/app/pessoa/caronas").success(function(data){
-    console.log(data[0]);
+    //console.log(data);
     $scope.caronas = data;
     $scope.caronaAtiva = $scope.caronas[0];
   }).error(function(data, status){
