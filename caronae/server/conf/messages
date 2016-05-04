@@ -1,0 +1,39 @@
+NOME=Name
+PRIMEIRO.NOME=First Name
+
+#DAOErroMensagem
+LOGGED.OUT=Logged out Successfully
+ERRO.CONSULTA=Error when retrieving
+ID.NUL=with ID NULL
+COM.ID=with ID
+ERRO.PERSISTENCIA.ID=Error when storing entity with ID
+ID.JA.EXISTE=entity already exists
+
+#ErrorHandler
+ERRO=Error
+
+#ValidacaoErroMensagem
+NAO.PODE.VAZIO=can't be empty
+FORMATO.INVALIDO=has invalid format
+VALOR.INVALIDO=has invalid value
+
+#Carona
+LISTA.CARONAS=List of Rides
+CARONA.EXISTE=Ride already exists
+CARONA.NAO.EXISTE=Ride does not exists
+CARONA=Ride
+ID.MOTORISTA=Driver's ID
+QNT.VAGAS=Quantity of unoccupied spots
+PONTO.INICIAL=Initial Point
+DESTINO=Destination
+HORARIO=Horário
+
+#Motorista
+LISTA.MOTORISTAS=List of Drivers
+MOTORISTA.NAO.EXISTE=Driver does not exist
+MOTORISTA=Driver
+PESSOA=Person
+MATRICULA=Student ID
+ID.CARONA=Ride's ID
+QNT.VAGAS.CARRO=Total Car's Spots
+LISTA.PESSOAS=List of People
