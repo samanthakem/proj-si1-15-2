@@ -3,8 +3,6 @@ package controllers;
 import com.fasterxml.jackson.databind.JsonNode;
 import model.motoristaModel.GerenciadorDeMotoristas;
 import model.motoristaModel.Motorista;
-import model.motoristaModel.MotoristaValidador;
-import model.passageiroModel.GerenciadorDePassageiros;
 import model.pessoaModel.GerenciadorDePessoas;
 import model.pessoaModel.Pessoa;
 import play.libs.Json;
@@ -36,11 +34,12 @@ public class MotoristaController extends Controller {
 
         String matricula = Utils.getAtributo("matricula", request);
         String vagas = Utils.getAtributo("vagas", request);
-        Pessoa pessoa = gerenciadorDePessoas.getPessoa(matricula);
-        Motorista motorista = new Motorista(pessoa, Integer.valueOf(vagas));
-        gerenciadorDeMotoristas.addMotorista(motorista);
 
-        System.out.print(">>>>>>>>> Pessoa: " + matricula + "; vagas: " + vagas);
+        Pessoa pessoa = gerenciadorDePessoas.getPessoa(matricula);
+
+        Motorista motorista = new Motorista(pessoa, Integer.valueOf(vagas));
+
+        gerenciadorDeMotoristas.addMotorista(motorista);
 
         return ok(Json.toJson(motorista));
     }

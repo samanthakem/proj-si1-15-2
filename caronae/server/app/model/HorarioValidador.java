@@ -10,7 +10,6 @@ import exceptions.ValidacaoParameterErrors;
 public class HorarioValidador {
     private static final String DIA = "Dia";
     private static final String HORA = "Hora";
-    private static final String TIPO = "Tipo";
     private static final String HORARIO = "Horário";
 
     public HorarioValidador() {}
@@ -37,16 +36,6 @@ public class HorarioValidador {
             throw new ValidacaoFieldsException().addTemplateComParametro(
                     ValidacaoErroMensagem.FORMATO_INVALIDO,
                     ValidacaoParameterErrors.OBJETO, HORA);
-        }
-    }
-
-    public void validarTipo(String tipo) {
-        try {
-            Horario.Tipo.valueOf(tipo);
-        } catch (Exception e) {
-            throw new ValidacaoFieldsException().addTemplateComParametro(
-                    ValidacaoErroMensagem.FORMATO_INVALIDO,
-                    ValidacaoParameterErrors.OBJETO, TIPO);
         }
     }
 }

@@ -100,28 +100,6 @@ public class Passageiro {
     }
 
     /**
-     * Recupera os horários de ida do Passageiro
-     * @return os horários do Passageiro
-     */
-    public List<Horario> getHorariosIda() { return getHorarios(Horario.Tipo.IDA); }
-
-    /**
-     * Recupera os horários de volta do Passageiro
-     * @return os horários do Passageiro
-     */
-    public List<Horario> getHorariosVolta() { return getHorarios(Horario.Tipo.VOLTA); }
-
-    public List<Horario> getHorarios(Horario.Tipo tipo) {
-        List<Horario> horariosIda = new ArrayList<>();
-
-        for (Horario horario : horarios)
-            if (horario.getTipo().equals(tipo))
-                horariosIda.add(horario);
-
-        return horariosIda;
-    }
-
-    /**
      * Recupera os horários do Passageiro
      * @return os horários do Passageiro
      */
@@ -130,14 +108,14 @@ public class Passageiro {
     public Horario getHorario(String idHorario) {
         Horario horario = null;
 
-//        for (Horario h: horarios) {
-//            if (h.getIdHorario().equals(idHorario)) {
-//                horario = h;
-//                break;
-//            }
-//        }
-//
-//        if (horario == null) throw new HttpException(404, "Nao existe horario com esta ID");
+        for (Horario h: horarios) {
+            if (h.getIdHorario().equals(idHorario)) {
+                horario = h;
+                break;
+            }
+        }
+
+        if (horario == null) throw new HttpException(404, "Nao existe horario com esta ID");
 
         return horario;
     }

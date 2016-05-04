@@ -1,7 +1,6 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import exceptions.HttpException;
 import model.Horario;
 import model.HorarioValidador;
 import model.passageiroModel.GerenciadorDePassageiros;
@@ -28,17 +27,9 @@ public class PassageiroController extends Controller {
      * @return Um JSON com as informações do passageiro se foi possível recuperar, caso contrário a explicação em formato JSON.
      */
     public Result getPassageiro(String id) {
-        Result result;
-        JsonNode resultJson;
+        Passageiro passageiro = gerenciadorDePassageiros.getPassageiro(id);
 
-        try {
-            Passageiro passageiro = gerenciadorDePassageiros.getPassageiro(id);
-            result = ok(passageiro.toJson());
-        } catch (HttpException e) {
-            result = status(e.getStatus(), e.getJSONMessage());
-        }
-
-        return result;
+        return ok(Json.toJson(passageiro));
     }
 
     public Result addHorario(String idPassageiro) {
@@ -46,11 +37,9 @@ public class PassageiroController extends Controller {
 
         String dia = Utils.getAtributo("dia", request);
         String hora = Utils.getAtributo("hora", request);
-        String tipo = Utils.getAtributo("tipo", request);
 
         horarioValidador.validarDia(dia);
         horarioValidador.validarHora(hora);
-        horarioValidador.validarTipo(tipo);
 
         Horario horario = new Horario(Horario.Dia.valueOf(dia), hora);
 
@@ -71,12 +60,10 @@ public class PassageiroController extends Controller {
         return ok(Json.toJson(horario));
     }
 
-    public Result getHorarios(String idPassageiro, String tipo) {
+    public Result getHorarios(String idPassageiro) {
         Passageiro passageiro = gerenciadorDePassageiros.getPassageiro(idPassageiro);
 
-        horarioValidador.validarTipo(tipo);
-
-        List<Horario> horarios = passageiro.getHorarios(Horario.Tipo.valueOf(tipo));
+        List<Horario> horarios = passageiro.getHorarios();
 
         return ok(Json.toJson(horarios));
     }

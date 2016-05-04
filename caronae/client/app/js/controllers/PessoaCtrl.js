@@ -21,8 +21,9 @@ caronaeAppPessoa.controller('PessoaCtrl', ["$scope", "$location", "$http", funct
         rua: this.pessoa.rua,
         bairro: this.pessoa.bairro,
         num: this.pessoa.num,
-        passageiro: this.pessoa.driver,
-        motorista: this.pessoa.passenger
+        passageiro: this.pessoa.passenger,
+        motorista: this.pessoa.driver,
+        vagas: this.pessoa.numberAvailable
       };
       $http.post("app/pessoas", dataInput).success(function (data, status) {
           $scope.go('/main');

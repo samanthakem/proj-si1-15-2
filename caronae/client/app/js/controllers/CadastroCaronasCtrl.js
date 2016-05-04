@@ -10,7 +10,7 @@ caronaeAppHorarios.controller('CadastroCaronasCtrl', ["$scope", "$rootScope", "$
     $scope.go("/");
   });
 
-  var contexto = "/app/motorista/" + $rootScope.user.matricula + "/caronas";
+  var contexto = "/app/motoristas/" + $rootScope.user.matricula + "/caronas";
 
   $scope.notAdriver = true;
   $scope.errorFlag = false;
@@ -128,12 +128,10 @@ caronaeAppHorarios.controller('CadastroCaronasCtrl', ["$scope", "$rootScope", "$
 
   $scope.addMotorista = function(){
     $scope.motorista.matricula = $rootScope.user.matricula;
-    console.log($scope.motorista);
 
-    $http.post("app/motorista",$scope.motorista).success(function(data){
+    $http.post("app/motoristas", $scope.motorista).success(function(data){
       $scope.notAdriver = false;
       $scope.errorFlag = false;
-      console.log(data);
       recuperarHorarios();
     }).error(function(data){
       $scope.errorMsg = data.error;

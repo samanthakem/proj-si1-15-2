@@ -97,6 +97,9 @@ public class PessoaController extends Controller {
 	    String bairro = Utils.getAtributo("bairro", request);
 	    String rua = Utils.getAtributo("rua", request);
 	    String num = Utils.getAtributo("num", request);
+        String passageiro = Utils.getAtributo("passageiro", request);
+        String motorista = Utils.getAtributo("motorista", request);
+        String vagas = Utils.getAtributo("vagas", request);
 	    
 	    Endereco endereco = new Endereco(num, rua, bairro);
 	    
@@ -108,6 +111,17 @@ public class PessoaController extends Controller {
 	    		senha,
 	    		matricula);
         gerenciadorDePessoas.addPessoa(pessoa);
+
+        if(Boolean.parseBoolean(passageiro)) {
+            Passageiro p = new Passageiro(pessoa);
+            gerenciadorDePassageiros.addPassageiro(p);
+        }
+
+        if (Boolean.parseBoolean(motorista)) {
+            Motorista m = new Motorista(pessoa, Integer.parseInt(vagas));
+            gerenciadorDeMotoristas.addMotorista(m);
+        }
+
         sessaoValidador.registraPessoaLogada(pessoa);
         return ok(pessoa.toJson());
     }

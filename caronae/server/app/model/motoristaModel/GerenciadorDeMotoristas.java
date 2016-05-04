@@ -69,7 +69,8 @@ public class GerenciadorDeMotoristas implements MotoristaService {
      */
 	@Override
 	public void addMotoristaNaCarona(Motorista motorista, Carona carona) {
-		motorista.setIdCarona(carona.getId());
+        //TODO Não foi feita ainda a lsita de caronas no motorista
+		//motorista.setIdCarona(carona.getId());
         motoristaDao.atualizarMotorista(motorista);
 	}
 	
