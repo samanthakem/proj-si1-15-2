@@ -6,17 +6,17 @@ caronaeAppHorarios.controller('CadastroCaronasCtrl', ["$scope", "$rootScope", "$
   $http.get("/app/logged").success(function (data) {
     $rootScope.logged = true;
   }).error(function (data, status) {
-    console.log(data, status);
+    //console.log(data, status);
     $scope.go("/");
   });
 
-  var contexto = "/app/motoristas/" + $rootScope.user.matricula + "/caronas";
+  var contexto = "/app/carona/" + $rootScope.user.matricula;
 
   $scope.notAdriver = true;
   $scope.errorFlag = false;
   $scope.errorMsg = "";
 
-  var url = "app/motorista/" + $rootScope.user.matricula;
+  var url = "app/motoristas/" + $rootScope.user.matricula;
   $http.get(url).success(function(data){
     $scope.notAdriver = false;
   }).error(function(){
@@ -25,17 +25,30 @@ caronaeAppHorarios.controller('CadastroCaronasCtrl', ["$scope", "$rootScope", "$
     $scope.errorMsg ="Você ainda nao é cadastrado como Motorista";
   });
 
+  function extracted(data, tab, i){
+    var dia = data[i].horario.dia;
+    $scope.qntTimes[tab] = $scope.qntTimes[tab] + 1;
+    $scope.tab[tab][dia].push(data[i].horario.hora);
+    return dia;
+  }
+
   var recuperarHorarios = function () {
-    $http.get(contexto + "?tipo=" + $scope.tabOpen.toUpperCase())
-      .success(function (data) {
-        $scope.qntTimes[$scope.tabOpen] = data.length;
+    var url = "app/motorista/" + $rootScope.user.matricula + "/caronas";
+    $http.get(url).success(function (data) {
+        console.log(data);
+        //$scope.qntTimes[$scope.tabOpen] = data.length;
         for (var i = 0; i < data.length; i++) {
-          var dia = $scope.tabBeingEdited[data[i].dia];
-          if (dia && dia.indexOf(data[i].hora) == -1)
-            $scope.tabBeingEdited[data[i].dia].push(data[i].hora);
+          var rua = data[i].destino.rua;
+          if(rua == "UFCG"){
+            extracted(data, "IDA", i)
+            console.log($scope.qntTimes["IDA"]);
+          } else {
+            extracted(data, "VOLTA", i)
+          }
         }
+      ///console.log($scope.tab);
       }).error(function (data, status) {
-      //alert(data.error);
+        console.log(data);
     });
   };
 
@@ -82,16 +95,27 @@ caronaeAppHorarios.controller('CadastroCaronasCtrl', ["$scope", "$rootScope", "$
 
   $scope.tabBeingEdited = $scope.tab["IDA"];
 
-  $scope.add = function () {
-    var req = gerarReq();
-    console.log("Entrou");
+  recuperarHorarios();
+
+  $scope.add = function (dia, minuto, hora) {
+    var req = {}
+    var ufcg = {rua: "UFCG", bairro: "Bodocongo", num: "0"}
+    if($scope.tabOpen == "IDA"){
+      req = gerarReq(dia, minuto, hora,$rootScope.user.endereco ,ufcg);
+    }else {
+      req = gerarReq(dia, minuto, hora, ufcg, $rootScope.user.endereco);
+    }
+
+    //console.log("Entrou");
+    //console.log($scope.tabOpen);
+    //console.log(req);
     $http.post(contexto, req).success(function (data) {
+      //console.log(data);
       $scope.tabBeingEdited[data.dia].push(data.hora);
-      console.log(data);
-      console.log(tabBeingEdited);
+      //console.log(data);
       $scope.qntTimes[$scope.tabOpen] += 1;
-      console.log(qntTimes);
-    }).error(function (data) {
+    }).error(function (data,status,msg) {
+      //console.log(status);
       //alert(data.error);
     });
 
@@ -104,8 +128,6 @@ caronaeAppHorarios.controller('CadastroCaronasCtrl', ["$scope", "$rootScope", "$
       $scope.editingIda = tab == "IDA";
       $scope.editingVolta = tab == "VOLTA";
       $scope.tabOpen = tab;
-
-      recuperarHorarios();
     }
   }
 
@@ -138,13 +160,30 @@ caronaeAppHorarios.controller('CadastroCaronasCtrl', ["$scope", "$rootScope", "$
     });
   };
 
-  var gerarReq = function () {
-    var req = {
-      "dia": $scope.dia.toUpperCase(),
-      "hora": $scope.hora + ":" + $scope.minuto,
+  var gerarReq = function (dia, minuto, hora, partida, destino) {
+    var horario = {
+      "dia": dia.toUpperCase(),
+      "hora": hora + ":" + minuto,
     };
 
-    return req;
+    var pessoa = {
+      nome: $rootScope.user.nome,
+      email: $rootScope.user.email,
+      telefone: $rootScope.user.telefone,
+      senha: $rootScope.user.senha,
+      matricula: $rootScope.user.matricula,
+      endereco: $rootScope.user.endereco
+    }
+
+    var carona = {
+      pessoa : pessoa,
+      pontoInicial: partida,
+      destino: destino,
+      horario : horario
+
+    };
+    //console.log(carona);
+    return carona;
   };
 
   var compZero = function (number, digits) {

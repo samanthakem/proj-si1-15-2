@@ -67,22 +67,11 @@ public class GerenciadorDeCaronas implements CaronaService {
 	 * @param {Object} carona
 	 * 		Carona que sera adicionada no sistema
 	@Override
+	*/
 	public void addCarona(Carona carona) {
         caronaValidador.validarCadastro(carona);
         dao.persistirCarona(carona);
-        
-        if (carona.getMotorista() != null) {
-        	Motorista motorista = carona.getMotorista();
-        	motoristaService.addMotoristaNaCarona(motorista, carona);
-        }
-        
-        if (!carona.getIdsPassageiros().isEmpty()) {
-        	for (String idPassageiro : carona.getIdsPassageiros()) {
-				Passageiro passageiro = passageiroService.getPassageiro(idPassageiro);
-        		passageiroService.addPassageiroNaCarona(passageiro, carona);
-			}
-        }
-    }*/
+	}
 	
 	/**
 	 * Recupera a quantidade total de caronas no sistema.

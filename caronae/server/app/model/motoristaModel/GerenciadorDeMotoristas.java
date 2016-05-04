@@ -62,18 +62,7 @@ public class GerenciadorDeMotoristas implements MotoristaService {
         return motoristaDao.existeMotorista(matricula);
     }
     
-    /**
-     * Modifica qual carona o motorista faz parte
-     * @param motorista o motorista
-     * @param carona a carona do motorista
-     */
-	@Override
-	public void addMotoristaNaCarona(Motorista motorista, Carona carona) {
-        //TODO Não foi feita ainda a lsita de caronas no motorista
-		//motorista.setIdCarona(carona.getId());
-        motoristaDao.atualizarMotorista(motorista);
-	}
-	
+
 	/**
 	 * Modifica o gerenciador de motoristas
 	 * @param gerenciador

@@ -1,11 +1,24 @@
 package controllers;
 
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.zaxxer.hikari.util.ClockSource;
+import model.Endereco;
+import model.Horario;
 import model.caronaModel.Carona;
 import model.caronaModel.GerenciadorDeCaronas;
 import model.motoristaModel.GerenciadorDeMotoristas;
+import model.motoristaModel.Motorista;
+import model.pessoaModel.Pessoa;
 import model.sessaoModel.SessaoValidador;
+import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
+import util.Utils;
+
+import java.io.IOException;
+import java.util.Set;
 
 /**
  * Classe referente ao controller de Carona
@@ -33,36 +46,56 @@ public class CaronaController extends Controller {
      */
     public Result getCarona(String id) {
         Carona carona = gerenciadorDeCaronas.getCarona(id);
-        return ok(carona.toJson());
+        return ok(Json.toJson(carona));
+    }
+
+    /**
+     * S
+     * @param id
+     * @return
+     */
+    public Result getCaronasMotorista(String id) {
+        System.out.print(">>>>>>>>>>>>>>>>>>>>>> motorista: " +id +"\n");
+        Motorista motorista = gerenciadorDeMotoristas.getMotorista(id);
+        System.out.print(">>>>>>>>>>>>>>>>>>>>>> motorista: " +motorista.getMatricula() +"\n");
+        Set<Carona> caronas = gerenciadorDeCaronas.getCaronasDeMotorista(motorista);
+
+        return ok(Json.toJson(caronas));
     }
 
     /**
      * Adiciona uma carona a coleção de caronas
      * @return Um JSON com as informações da pessoa se foi possível adicionar, caso contrário a explicação em formato JSON.
      */
-    public Result addCarona() {
+    public Result addCarona(String matricula) {
     	
-    	/*JsonNode request = request().body().asJson();
+    	JsonNode request = request().body().asJson();
 
-    	String id = Utils.getAtributo("id", request);
-    	String idMotorista = Utils.getAtributo("idMotorista", request);
+        String pessoaString  = request.get("pessoa").toString();
+        String enderecoPartida = request.get("pontoInicial").toString();
+        String enderecoDestino = request.get("destino").toString();
+        String horarioString = request.get("horario").toString();
 
-    	String ruaInicial = Utils.getAtributo("ruaInicial", request);
-    	String bairroInicial = Utils.getAtributo("bairroInicial", request);
-    	String numInicial = Utils.getAtributo("numInicial", request);
-    	Endereco enderecoInicial = new Endereco(numInicial, ruaInicial, bairroInicial);
-
-    	String ruaFinal = Utils.getAtributo("ruaInicial", request);
-    	String bairroFinal = Utils.getAtributo("bairroInicial", request);
-    	String numFinal = Utils.getAtributo("numInicial", request);
-    	Endereco enderecoFinal = new Endereco(numFinal, ruaFinal, bairroFinal);
-
-    	Horario horario = new Horario();
-
-    	Carona carona = new Carona(id, idMotorista, enderecoInicial, enderecoFinal, horario);
+        ObjectMapper jsonObjectMapper = new ObjectMapper();
+        JsonFactory factory = jsonObjectMapper.getFactory();
+        Horario horario = new Horario();
+        Pessoa pessoa = new Pessoa();
+        Endereco partida = new Endereco();
+        Endereco destino = new Endereco();
+        try {
+            pessoa = jsonObjectMapper.readValue(factory.createParser(pessoaString), Pessoa.class);
+            horario = jsonObjectMapper.readValue(factory.createParser(horarioString), Horario.class);
+            partida = jsonObjectMapper.readValue(factory.createParser(enderecoPartida), Endereco.class);
+            destino = jsonObjectMapper.readValue(factory.createParser(enderecoDestino), Endereco.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Motorista motorista = gerenciadorDeMotoristas.getMotorista(pessoa.getMatricula());
+    	Carona carona = new Carona(motorista, partida, destino, horario, motorista.getQuantidadeVagasCarro());
         gerenciadorDeCaronas.addCarona(carona);
-        return ok(carona.toJson());*/
-		return ok();
+        System.out.print(">>>>>>>>>>>>>>>>>>>>>> CaronaHash: " +Integer.toString(carona.hashCode()) +"\n");
+//        return ok(carona.toJson());
+		return ok(Json.toJson(horario));
     }
 
 }

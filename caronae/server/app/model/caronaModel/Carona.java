@@ -5,19 +5,22 @@ import model.Endereco;
 import model.Horario;
 import model.motoristaModel.Motorista;
 import model.passageiroModel.Passageiro;
+import play.data.validation.Constraints;
 import play.libs.Json;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Samantha Monteiro, Gustavo Oliveira
  */
 public class Carona {
 
-	private String id;
+	private String idCarona;
 
-	private List<Passageiro> passageiros;
+	private Set<Passageiro> passageiros;
 
 	private Motorista motorista;
 
@@ -40,13 +43,14 @@ public class Carona {
 	 * @param {Object} destino destino da carona
 	 * @param {Object} horario horario da carona
 	 */
-	public Carona(String id, Motorista motorista, Endereco pontoInicial, Endereco destino, Horario horario) {
-		this.passageiros = new ArrayList<Passageiro>();
-		setId(id);
+	public Carona(Motorista motorista, Endereco pontoInicial, Endereco destino, Horario horario,int vagas) {
+		this.passageiros = new HashSet<Passageiro>();
 		setIdMotorista(motorista);
 		setPontoInicial(pontoInicial);
 		setDestino(destino);
 		setHorario(horario);
+		setQntVagasDisponiveis(vagas);
+		setIdCarona(motorista.getMatricula() + horario.toString());
 	}
 
 	public void setHorario(Horario horario) {
@@ -57,11 +61,11 @@ public class Carona {
 		return horario;
 	}
 
-	public List<Passageiro> getPassageiros() {
+	public Set<Passageiro> getPassageiros() {
 		return passageiros;
 	}
 
-	public void setPassageiros(List<Passageiro> pssageiros) {
+	public void setPassageiros(Set<Passageiro> pssageiros) {
 		this.passageiros = passageiros;
 	}
 
@@ -85,6 +89,10 @@ public class Carona {
 		return qntVagasDisponiveis;
 	}
 
+	public void setQntVagasDisponiveis(int qntVagasDisponiveis) {
+		this.qntVagasDisponiveis = qntVagasDisponiveis;
+	}
+
 	public void setIdMotorista(Motorista motorista) {
 		this.motorista = motorista;
 	}
@@ -93,16 +101,28 @@ public class Carona {
 		return motorista;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+
+	public String getIdCarona() {
+		return idCarona;
 	}
 
-	public String getId() {
-		return this.id;
+	public void setIdCarona(String idCarona) {
+		this.idCarona = idCarona;
 	}
 
-	public JsonNode toJson() {
-		return Json.toJson(this);
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Carona carona = (Carona) o;
+
+		return idCarona.equals(carona.idCarona);
+
 	}
 
+	@Override
+	public int hashCode() {
+		return idCarona.hashCode();
+	}
 }

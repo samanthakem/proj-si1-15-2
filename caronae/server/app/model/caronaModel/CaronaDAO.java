@@ -34,7 +34,7 @@ public class CaronaDAO {
 		} catch (HttpException ex) {
 			throw new DAOException(DAOErroMensagem.CONSULTA_ID_NAO_ENCONTRADO, ex)
 					.addParametroParaMensagem(DAOParameterErrors.NOME_ARRAY, "Lista de Caronas")
-					.addParametroParaMensagem(DAOParameterErrors.ID_DA_ENTIDADE, id);
+					.addParametroParaMensagem(DAOParameterErrors.ID_DA_ENTIDADE, id.toString());
 		}
         return carona;
 	}
@@ -48,8 +48,9 @@ public class CaronaDAO {
 		try {
     		caronaMock.add(carona);
     	} catch (HttpException ex) {
+			Integer hash = carona.hashCode();
     		throw new DAOException(DAOErroMensagem.SALVAR_ENTIDADE_JA_EXISTENTE, ex)
-				.addParametroParaMensagem(DAOParameterErrors.ID_DA_ENTIDADE, carona.getId());
+				.addParametroParaMensagem(DAOParameterErrors.ID_DA_ENTIDADE, hash.toString());
     	}
 	}
 
