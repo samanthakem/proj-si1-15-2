@@ -24,12 +24,12 @@ GET     /app/pessoas/:id                controllers.PessoaController.getPessoa(i
 POST    /app/pessoas                    controllers.PessoaController.addPessoa()
 
 #Routes used for Motorista Resource
-GET     /app/motoristas/:id              controllers.MotoristaController.getMotorista(id: String)
-POST    /app/motoristas               controllers.MotoristaController.addMotorista()
+GET     /app/motoristas/:id                  controllers.MotoristaController.getMotorista(id: String)
+POST    /app/motoristas                      controllers.MotoristaController.addMotorista()
 
 #Routes used for Carona Resource
-#GET /caronas/:id                    controllers.CaronaController.getCarona(id: String)
-POST /caronas                        controllers.CaronaController.addCarona()
+GET     /app/motorista/:id/caronas          controllers.CaronaController.getCaronasMotorista(id: String)
+POST    /app/carona/:id                     controllers.CaronaController.addCarona(id: String)
 
 #Routes used for Notificacoes
 GET /app/motoristas/:id/notificacoes    controllers.NotificacaoController.getMotoristaNotificacoes(id: String, start: Long ?= 0, end: Long ?= -1, reverse: Boolean ?= true, limite: Integer ?= 10)

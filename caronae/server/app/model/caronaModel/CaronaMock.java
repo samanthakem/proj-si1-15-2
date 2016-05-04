@@ -37,15 +37,15 @@ public class CaronaMock {
 		return caronas.get(id);
 	}
 
-	public boolean contemCarona(String id) {
-		return caronas.containsKey(id);
+	public boolean contemCarona(String hash) {
+		return caronas.containsKey(hash);
 	}
 
 	public void add(Carona carona) throws HttpException {
-		if (this.contemCarona(carona.getId())) {
+		if (this.contemCarona(carona.getIdCarona())) {
 			throw new HttpException(409, "Carona already exists");
 		}
-		caronas.put(carona.getId(), carona);
+		caronas.put(carona.getIdCarona(), carona);
 	}
 
 	public int getQuantidadeTotalCaronas() {
@@ -58,8 +58,8 @@ public class CaronaMock {
 		Motorista motorista = new Motorista(pessoa, 4);
 		Endereco destino = new Endereco("0","UFCG","Bodocongo");
 		Horario horario = new Horario(Horario.Dia.SEG, "7:00");
-		Carona carona = new Carona("100", motorista, motorista.getPessoa().getEndereco(), destino, horario);
-		caronas.put(carona.getId(), carona);
+		Carona carona = new Carona(motorista, motorista.getPessoa().getEndereco(), destino, horario, motorista.getQuantidadeVagasCarro());
+		caronas.put(carona.getIdCarona(), carona);
 	}
 
 	public Set<Carona> getCaronasDeMotorista(Motorista motorista) {
@@ -81,7 +81,7 @@ public class CaronaMock {
 		Carona caronaTemp;
 		for (String id : this.caronas.keySet()) {
 			caronaTemp = this.caronas.get(id);
-			 List<Passageiro> passageirosTemp = caronaTemp.getPassageiros();
+			 Set<Passageiro> passageirosTemp = caronaTemp.getPassageiros();
 			 for(Passageiro passAux: passageirosTemp){
 				 if (passAux.getMatricula().contains(passageiro.getMatricula())) {
 					 caronas.add(caronaTemp);

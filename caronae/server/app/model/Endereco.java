@@ -8,6 +8,8 @@ public class Endereco {
 
 	private String rua;
 
+	public Endereco(){}
+
 	public Endereco(String num, String rua, String bairro) {
 		setNum(num);
 		setRua(rua);
@@ -33,7 +35,16 @@ public class Endereco {
 	public String getRua() {
 		return rua;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Endereco{" +
+				"num='" + num + '\'' +
+				", bairro='" + bairro + '\'' +
+				", rua='" + rua + '\'' +
+				'}';
+	}
+
 	public void setRua(String rua) {
 		this.rua = rua;
 	}
