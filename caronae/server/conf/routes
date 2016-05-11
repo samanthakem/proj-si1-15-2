@@ -30,6 +30,7 @@ POST    /app/motoristas                      controllers.MotoristaController.add
 #Routes used for Carona Resource
 GET     /app/motorista/:id/caronas          controllers.CaronaController.getCaronasMotorista(id: String)
 POST    /app/carona/:id                     controllers.CaronaController.addCarona(id: String)
+GET     /app/caronas                        controllers.CaronaController.getCaronas(bairroOrigem: String, bairroDestino: String, dia: String, hora: String)
 
 #Routes used for Notificacoes
 GET /app/motoristas/:id/notificacoes    controllers.NotificacaoController.getMotoristaNotificacoes(id: String, start: Long ?= 0, end: Long ?= -1, reverse: Boolean ?= true, limite: Integer ?= 10)

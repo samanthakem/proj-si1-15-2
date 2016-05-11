@@ -3,9 +3,9 @@ package controllers;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.zaxxer.hikari.util.ClockSource;
 import model.Endereco;
 import model.Horario;
+import model.HorarioValidador;
 import model.caronaModel.Carona;
 import model.caronaModel.GerenciadorDeCaronas;
 import model.motoristaModel.GerenciadorDeMotoristas;
@@ -15,7 +15,6 @@ import model.sessaoModel.SessaoValidador;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
-import util.Utils;
 
 import java.io.IOException;
 import java.util.Set;
@@ -27,10 +26,9 @@ import java.util.Set;
 public class CaronaController extends Controller {
 	
 	private GerenciadorDeCaronas gerenciadorDeCaronas;
-
     private GerenciadorDeMotoristas gerenciadorDeMotoristas;
-
     private SessaoValidador sessaoValidador;
+    private HorarioValidador horarioValidador = new HorarioValidador();
 
 
     public CaronaController(){
@@ -59,6 +57,20 @@ public class CaronaController extends Controller {
         Motorista motorista = gerenciadorDeMotoristas.getMotorista(id);
         System.out.print(">>>>>>>>>>>>>>>>>>>>>> motorista: " +motorista.getMatricula() +"\n");
         Set<Carona> caronas = gerenciadorDeCaronas.getCaronasDeMotorista(motorista);
+
+        return ok(Json.toJson(caronas));
+    }
+
+    /**
+     * Get Caronas that matches the neighborhood, the day and the time
+     */
+    public Result getCaronas(String bairroOrigem, String bairroDestino, String dia, String hora) {
+        horarioValidador.validarDia(dia);
+        horarioValidador.validarHora(hora);
+
+        Horario horario = new Horario(Horario.Dia.valueOf(dia), hora);
+
+        Set<Carona> caronas = gerenciadorDeCaronas.getCaronas(bairroOrigem, bairroDestino, horario);
 
         return ok(Json.toJson(caronas));
     }
