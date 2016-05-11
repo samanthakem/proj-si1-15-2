@@ -95,15 +95,10 @@ public class CaronaMock {
     public Set<Carona> getCaronas(String bairroOrigem, String bairroDestino, Horario horario) {
 		Set<Carona> caronas = new HashSet<>();
 
-		System.out.println("=origem===> " + bairroOrigem);
-		System.out.println("=destino==> " + bairroDestino);
 		for (Carona carona: this.caronas.values()) {
 			String origem = carona.getPontoInicial().getBairro();
 			String destino = carona.getDestino().getBairro();
-			System.out.println("=origem===> " + origem);
-			System.out.println("=destino==> " + destino);
 			Horario horarioCarona = carona.getHorario();
-			System.out.println(horarioCarona.getIdHorario() + " - " + horario.getIdHorario());
 
 			if (origem.equals(bairroOrigem)
 				&& destino.equals(bairroDestino)

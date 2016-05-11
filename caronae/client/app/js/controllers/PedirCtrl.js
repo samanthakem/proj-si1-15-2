@@ -12,11 +12,11 @@ caronaeAppMain.controller('PedirCtrl', ['$scope','$rootScope',  "$http", "$locat
 
     if (!$rootScope.user) $scope.go("/main");
 
-    console.log($rootScope.user);
-
     $scope.dia = "";
     $scope.errorMsg = "";
     $scope.horas = [];
+    $scope.caronas = [];
+    $scope.imageURL = "http://www.clker.com/cliparts/5/7/4/8/13099629981030824019profile.svg.med.png";
     $scope.horarios = {
       "SEG": [],
       "TER": [],
@@ -66,6 +66,7 @@ caronaeAppMain.controller('PedirCtrl', ['$scope','$rootScope',  "$http", "$locat
       		    +"&bairroDestino="+$scope.destination
       			+"&dia="+$scope.dia+"&hora="+$scope.hora)
       .success(function (data) {
+      	$scope.caronas = data;
       	console.log(data);
       }).error(function (data, status) {
         $scope.errorMsg = data.error;
@@ -75,37 +76,21 @@ caronaeAppMain.controller('PedirCtrl', ['$scope','$rootScope',  "$http", "$locat
 
     recuperarHorarios();
 
-	$scope.not = {
-		name: "Mariane",
-		imageURL: "http://www.clker.com/cliparts/5/7/4/8/13099629981030824019profile.svg.med.png",
-		request: {
-			destination: "UFCG",
-			when: "Seg 07:40 AM",
-			accepted: false,
-			choosen: false,
-			telephone: "99999-9999",
-		}
-	};
-	$scope.pedidos = [$scope.not];
+    $scope.request = function(carona) {
+    	var req = {
+    		passageiro: $rootScope.user.matricula,
+    		motorista: carona.motorista.matricula,
+    		carona: carona.idCarona
+    	}
 
-	$scope.more = function() {
-		for (var i = 0; i < 3; i++) {
-			var copy1 = angular.copy($scope.not);
-
-			$scope.pedidos.push(copy1);
-		}
-	}
-
-	$scope.accept = function(notification) {
-		notification.request.choosen = true;
-		notification.request.accepted = true;
-		notification.status = "list-group-item-success";
-	}
-
-	$scope.reject = function(notification) {
-		notification.request.choosen = true;
-		notification.status = "list-group-item-danger";
-	}
+    	$http.put("/app/carona/" + carona.idCarona + "/passageiros", req)
+    	.success(function(data) {
+    		console.log(data);
+    	})
+    	.error(function(data, status) {
+    		console.log(data);
+    	});
+    }
 
   $scope.go = function(path){
     $location.path(path);

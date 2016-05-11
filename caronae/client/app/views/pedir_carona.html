@@ -34,22 +34,20 @@
 	  </div>
 	</div>
 	<div class="list-group">
-	<div class="row notificacao" ng-repeat="pedido in pedidos">
-	  <a href="#/pedir" class="list-group-item {{pedido.status}}">
+	<div class="row notificacao" ng-repeat="carona in caronas" ng-if="carona.motorista.pessoa.matricula == user.matricula">
+	  <a href="#/pedir" class="list-group-item {{carona.status}}">
 		<div class="picture pull-left col-xs-2 col-sm-1">
-		  <img ng-src="{{pedido.imageURL}}" class="img-responsive">
+		  <img ng-src="{{imageURL}}" class="img-responsive">
 		</div>
 		<div class="message pull-left col-xs-10 col-sm-11">
-		  <p><b>{{pedido.name}}</b></p>
-		  <div ng-if="pedido.request">
-			  <p><b>Para: </b> {{pedido.request.destination}}</br><b>Quando: </b>{{pedido.request.when}}
-		  </div>
+		  <p><b>{{carona.motorista.pessoa.nome}}</b></p>
+		  <p><b>Para: </b> {{carona.destino.bairro}}</br><b>Quando: </b>{{carona.horario.dia}} {{carona.horario.hora}}
 		</div>
 		<div class="clearfix"></div>
 	  </a>
 	  <div class="row">
 		<div class="col-xs-12 col-sm-12">
-			<div class="btn btn-block btn-lg btn-success" ng-click="request(pedido)">Pedir Carona</div>
+			<div class="btn btn-block btn-lg btn-success" ng-click="request(carona)">Pedir Carona</div>
 		</div>
 	  </div>
 	</div>

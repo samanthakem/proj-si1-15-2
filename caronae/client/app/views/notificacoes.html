@@ -9,8 +9,8 @@
 		<div class="message pull-left col-xs-10 col-sm-11">
 		  <p><b>{{notification.de.nome}} </b>{{notification.razao}}</p>
 		  <div ng-if="notification.carona">
-			  <p><b>Para: </b> {{notification.carona.destino.rua}}, {{notification.carona.destino.bairro}}</br><b>Quando: </b>{{notification.request.when}}
-			<p ng-if="notification.accepted">
+			  <p><b>Para: </b> {{notification.carona.destino.rua}}, {{notification.carona.destino.bairro}}</br><b>Quando: </b>{{notification.carona.horario.dia}} {{notification.carona.horario.hora}}
+			<p ng-if="!notification.waiting && !notification.rejected">
 				<b>Telefone: </b> {{notification.de.telefone}}
 			</p>
 		  </div>
@@ -20,7 +20,7 @@
 		</div>
 		<div class="clearfix"></div>
 	  </a>
-	  <div class="row" ng-if="notification.request && !notification.request.choosen">
+	  <div class="row" ng-if="notification.waiting">
 		<div class="col-xs-12 col-sm-6">
 			<div class="btn btn-block btn-lg btn-success" ng-click="accept(notification)">Aceitar</div>
 		</div>
