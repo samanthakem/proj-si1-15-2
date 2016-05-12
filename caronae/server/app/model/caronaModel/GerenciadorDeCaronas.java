@@ -1,15 +1,13 @@
 package model.caronaModel;
 
-import java.util.HashSet;
-import model.Endereco;
 import model.Horario;
-import java.util.Set;
 import model.motoristaModel.Motorista;
 import model.motoristaModel.MotoristaService;
 import model.passageiroModel.Passageiro;
 import model.passageiroModel.PassageiroService;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Classe responsavel por implementar os servicos da entidade {@Carona}
@@ -88,8 +86,8 @@ public class GerenciadorDeCaronas implements CaronaService {
 	}
 
 	@Override
-	public List<Carona> getCaronas(Endereco origem, Endereco destino, Horario horario, Integer limite) {
-		return dao.getCaronas(origem, destino, horario, limite);
+	public Set<Carona> getCaronas(String bairroOrigem, String bairroDestino, Horario horario) {
+		return dao.getCaronas(bairroOrigem, bairroDestino, horario);
 	}
 
 	public static void setGerenciador(GerenciadorDeCaronas gerenciador) {

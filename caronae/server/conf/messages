@@ -1,0 +1,70 @@
+NAO.EXISTE=does not exist
+EXISTE=already exists
+
+#Exceptions
+LOGGED.OUT=Logged out Successfully
+ERRO.CONSULTA=Error when retrieving
+ID.NULO=with ID NULL
+COM.ID=with ID
+ERRO.PERSISTENCIA.ID=Error when storing entity with ID
+ENTIDADE=Entity
+NAO.PODE.VAZIO=can't be empty
+FORMATO.INVALIDO=has invalid format
+VALOR.INVALIDO=has invalid value
+
+#Carona
+LISTA.CARONAS=List of Rides
+ID.CARONA=Ride's ID
+CARONA=Ride
+QNT.VAGAS=Quantity of unoccupied spots
+PONTO.INICIAL=Initial Point
+DESTINO=Destination
+HORARIO=Schedule
+
+#Motorista
+LISTA.MOTORISTAS=List of Drivers
+ID.MOTORISTA=Driver's ID
+MOTORISTA=Driver
+MATRICULA=Student ID
+QNT.VAGAS.CARRO=Total Car's Spots
+
+#Notificação
+LISTA.NOTIFICACOES=List of Notifications
+NOTIFICACAO=Notification
+RECUSOU=Rejected the
+ACEITOU=Accepted the
+PEDIU=Requested a
+PEDIDO=Request
+
+#Passageiro
+LISTA.PASSAGEIROS=List of Riders
+PASSAGEIRO=Rider
+ID.HORARIO=Schedule's ID
+
+#Pessoa
+LISTA.PESSOAS=List of People
+PESSOA=Person
+EMAIL=E-mail
+SENHA=Password
+NOME=Name
+BAIRRO=Neighborhood
+RUA=Street
+TELEFONE=Phone Number
+
+#Sessao
+SENHA.TAMANHO.ERRADO=The password has wrong length
+SENHA.ERRADA=The password is wrong
+SEM.USUARIO.CONECTADO=There is no user connected
+
+#Endereco
+ENDERECO=Address
+NUMERO=Number
+SEGUNDA=Monday
+TERCA=Tuesday
+QUARTA=Wednesday
+QUINTA=Thursday
+SEXTA=Friday
+SABADO=Saturday
+DOMINGO=Sunday
+HORA=Hour
+DIA=Day

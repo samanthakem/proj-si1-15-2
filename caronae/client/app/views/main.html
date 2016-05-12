@@ -36,7 +36,7 @@
             <div class="col-md-12"><p>Destino: {{caronaAtiva.destino.rua}} - {{caronaAtiva.destino.num}}, {{caronaAtiva.destino.bairro}}</p></div>
 
             <p class="col-md-12" >Passageiros: </p>
-            <div class="col-md-12" ng-repeat="passageiro in caronaAtiva.passageiros"><p>{{passageiro}}</p></div>
+            <div class="col-md-12" ng-repeat="passageiro in caronaAtiva.passageiros"><p><strong>{{passageiro.pessoa.nome}}</strong></p></div>
           </div>
         </div>
 

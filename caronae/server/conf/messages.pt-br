@@ -1,0 +1,70 @@
+NAO.EXISTE=não existe
+EXISTE=já existe
+
+#Exceptions
+LOGGED.OUT=Deslogado com sucesso
+ERRO.CONSULTA=Erro ao consultar
+ID.NULO=com ID nulo
+COM.ID=com id
+ERRO.PERSISTENCIA.ID=Erro ao salvar a entidade com ID
+ENTIDADE=Entidade
+NAO.PODE.VAZIO=não pode ser vazio
+FORMATO.INVALIDO=tem formato inválido
+VALOR.INVALIDO=tem valor invalido
+
+#Carona
+LISTA.CARONAS=Lista de Caronas
+ID.CARONA=ID da Carona
+CARONA=Carona
+QNT.VAGAS=Qunatidade de lugares livres
+PONTO.INICIAL=Ponto Inicial
+DESTINO=Destino
+HORARIO=Horário
+
+#Motorista
+LISTA.MOTORISTAS=Lista de Motoristas
+ID.MOTORISTA=ID do Motorista
+MOTORISTA=Motorista
+MATRICULA=Matrícula
+QNT.VAGAS.CARRO=Quantidade de Vagas no Carro
+
+#Notificação
+LISTA.NOTIFICACOES=Lista de Notificações
+NOTIFICACAO=Notificação
+RECUSOU=Recusou o
+ACEITOU=Aceitou o
+PEDIU=Pediu uma
+PEDIDO=Pedido
+
+#Passageiro
+LISTA.PASSAGEIROS=Lista de Passageiros
+PASSAGEIRO=Passageiro
+ID.HORARIO=ID do Horário
+
+#Pessoa
+LISTA.PESSOAS=Lista de Pessoas
+PESSOA=Pessoa
+EMAIL=E-mail
+SENHA=Senha
+NOME=Nome
+BAIRRO=Bairro
+RUA=Rua
+TELEFONE=Telefone
+
+#Sessao
+SENHA.TAMANHO.ERRADO=A senha tem tamanho errado
+SENHA.ERRADA=A senha esta errada
+SEM.USUARIO.CONECTADO=Não existe usuário conectado
+
+#Endereco
+ENDERECO=Endereço
+NUMERO=Número
+SEGUNDA=Segunda
+TERCA=Terça
+QUARTA=Quarta
+QUINTA=Quinta
+SEXTA=Sexta
+SABADO=Sábado
+DOMINGO=Domingo
+HORA=Hora
+DIA=Dia

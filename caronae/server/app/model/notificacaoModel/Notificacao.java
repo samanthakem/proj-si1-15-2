@@ -36,8 +36,7 @@ public class Notificacao {
      * @param {Long}
      *      timestamp O timestamp do momento em que a notificacao foi gerada
      */
-    public Notificacao(String idNotificacao, Pessoa de, Pessoa para, String razao, long timestamp, ParaTipo paraTipo) {
-        setIdNotificacao(idNotificacao);
+    public Notificacao(Pessoa de, Pessoa para, String razao, long timestamp, ParaTipo paraTipo) {
         setDe(de);
         setPara(para);
         setRazao(razao);
@@ -99,7 +98,8 @@ public class Notificacao {
      *      idNotificacao O id para a notificação
      */
     public void setIdNotificacao(String idNotificacao) {
-        this.idNotificacao = idNotificacao;
+        if (this.idNotificacao == null)
+            this.idNotificacao = idNotificacao;
     }
 
     /**

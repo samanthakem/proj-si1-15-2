@@ -11,12 +11,16 @@ public class NotificacaoPedidoCarona extends Notificacao {
         WAITING, ACCEPTED, REJECTED
     }
 
+    private static final String RAZAO = "pediu carona";
+
     private StatusPedido accepted = StatusPedido.WAITING;
 
     private Carona carona;
 
-    public NotificacaoPedidoCarona(String idNotificacao, Pessoa de, Pessoa para, String razao, long timestamp, ParaTipo paraTipo) {
-        super(idNotificacao, de, para, razao, timestamp, paraTipo);
+    public NotificacaoPedidoCarona(Pessoa de, Pessoa para, long timestamp, ParaTipo paraTipo, Carona carona) {
+        super(de, para, RAZAO, timestamp, paraTipo);
+
+        this.carona = carona;
     }
 
     public void accept() {

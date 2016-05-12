@@ -1,16 +1,15 @@
 package model.caronaModel;
 
-import java.util.*;
-
 import exceptions.HttpException;
-import model.Horario;
-
+import model.Endereco;
 import model.Horario;
 import model.motoristaModel.Motorista;
-import model.Endereco;
-import model.motoristaModel.MotoristaDao;
 import model.passageiroModel.Passageiro;
 import model.pessoaModel.Pessoa;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Samantha Monteiro, Gustavo Oliveira
@@ -57,7 +56,7 @@ public class CaronaMock {
 				"caroneiro.mss@caronae.com.br", "83999996666", "admin1", "111111111");
 		Motorista motorista = new Motorista(pessoa, 4);
 		Endereco destino = new Endereco("0","UFCG","Bodocongo");
-		Horario horario = new Horario(Horario.Dia.SEG, "7:00");
+		Horario horario = new Horario(Horario.Dia.SEG, "07:00");
 		Carona carona = new Carona(motorista, motorista.getPessoa().getEndereco(), destino, horario, motorista.getQuantidadeVagasCarro());
 		caronas.put(carona.getIdCarona(), carona);
 	}
@@ -77,10 +76,11 @@ public class CaronaMock {
 	}
 
 	public Set<Carona> getCaronasDePassageiro(Passageiro passageiro) {
-		 Set<Carona> caronas = new HashSet<>();
+		Set<Carona> caronas = new HashSet<>();
+
 		Carona caronaTemp;
 		for (String id : this.caronas.keySet()) {
-			caronaTemp = this.caronas.get(id);
+			 caronaTemp = this.caronas.get(id);
 			 Set<Passageiro> passageirosTemp = caronaTemp.getPassageiros();
 			 for(Passageiro passAux: passageirosTemp){
 				 if (passAux.getMatricula().contains(passageiro.getMatricula())) {
@@ -92,8 +92,22 @@ public class CaronaMock {
 		 return caronas;
 	}
 
-    public List<Carona> getCaronas(Endereco origem, Endereco destino, Horario horario, Integer limite) {
-        //TODO implements
-        return null;
+    public Set<Carona> getCaronas(String bairroOrigem, String bairroDestino, Horario horario) {
+		Set<Carona> caronas = new HashSet<>();
+
+		for (Carona carona: this.caronas.values()) {
+			String origem = carona.getPontoInicial().getBairro();
+			String destino = carona.getDestino().getBairro();
+			Horario horarioCarona = carona.getHorario();
+
+			if (origem.equals(bairroOrigem)
+				&& destino.equals(bairroDestino)
+				&& horarioCarona.equals(horario)) {
+				caronas.add(carona);
+			}
+		}
+
+
+        return caronas;
     }
 }

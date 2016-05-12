@@ -1,8 +1,11 @@
 'use strict';
 
-var caronaeApp = angular.module('caronaeApp', ['ngAnimate', 'ngCookies', 'ngResource', 'ngRoute', 'ngSanitize','ngTouch']);
+var caronaeApp = angular.module('caronaeApp', ['xlat', 'ngAnimate', 'ngCookies', 'ngResource', 'ngRoute', 'ngSanitize','ngTouch']);
 
-caronaeApp.config(function ($routeProvider) {
+caronaeApp.config(function ($routeProvider, $compileProvider) {
+  //Desabilita o debug no angularjs
+  $compileProvider.debugInfoEnabled(false);
+
   $routeProvider
     .when("/", {
       templateUrl: 'views/inicio.html',

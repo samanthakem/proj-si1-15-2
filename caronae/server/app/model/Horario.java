@@ -43,10 +43,7 @@ public class Horario {
 
     @Override
     public String toString() {
-        return "Horario{" +
-                "hora='" + hora + '\'' +
-                ", diaDaSemana=" + diaDaSemana +
-                '}';
+        return getIdHorario();
     }
 
     public void setDia(Dia dia) {
