@@ -10,7 +10,8 @@ caronaeAppMain.controller('NotificacoesCtrl', ['$scope', '$rootScope', "$http", 
 		$rootScope.go("/");
 	});
 	
-	var contexto = "";
+	$scope.imageURL = "http://www.clker.com/cliparts/5/7/4/8/13099629981030824019profile.svg.med.png";
+    var contexto = "";
 	if ($rootScope.perspective.driver) {
 		contexto = "/app/motoristas/"+$scope.user.matricula;
 	} else if ($rootScope.perspective.rider) {
@@ -36,19 +37,35 @@ caronaeAppMain.controller('NotificacoesCtrl', ['$scope', '$rootScope', "$http", 
 	
 	var adicionarNotificacoes = function(data) {
 		for (var i = 0; i < data.length; i++) {
+			if (data[i].accepted) {
+				data[i].status = "list-group-item-success";
+			} else if (data[i].rejected) {
+				data[i].status = "list-group-item-danger"
+			}
 			$scope.notifications.push(data[i]);
 			$scope.timestampLastNotification = data[i].timestamp;
 		}
 	}
 
 	$scope.accept = function(notification) {
-		notification.request.choosen = true;
-		notification.request.accepted = true;
-		notification.status = "list-group-item-success";
+		$http.put("/app/carona/"+notification.carona.idCarona+"/passageiros", notification)
+		.success(function(data) {
+			notification.waiting = false;
+			notification.accepted = true;
+			notification.status = "list-group-item-success";
+		}).error(function(data, status) {
+			alert(data.error);
+		})
 	}
 
 	$scope.reject = function(notification) {
-		notification.request.choosen = true;
-		notification.status = "list-group-item-danger";
+		$http.put("/app/notificacoes/"+notification.idNotificacao+"/reject", notification)
+		.success(function(data) {
+			notification.waiting = false;
+			notification.rejected = true;
+			notification.status = "list-group-item-danger";
+		}).error(function(data, status) {
+			alert(data.error);
+		})
 	}
 }]);

@@ -83,12 +83,14 @@ caronaeAppMain.controller('PedirCtrl', ['$scope','$rootScope',  "$http", "$locat
     		carona: carona.idCarona
     	}
 
-    	$http.put("/app/carona/" + carona.idCarona + "/passageiros", req)
+    	$http.post("/app/carona/" + carona.idCarona + "/notificacoes", req)
     	.success(function(data) {
+    		$scope.caronas.splice($scope.caronas.indexOf(carona), 1);
+    		alert("Requisição enviada!");
     		console.log(data);
     	})
     	.error(function(data, status) {
-    		console.log(data);
+    		alert(data.error);
     	});
     }
 

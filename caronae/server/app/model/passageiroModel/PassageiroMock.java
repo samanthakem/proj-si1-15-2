@@ -2,7 +2,7 @@ package model.passageiroModel;
 
 import exceptions.HttpException;
 import model.Endereco;
-import model.pessoaModel.GerenciadorDePessoas;
+import model.Horario;
 import model.pessoaModel.Pessoa;
 
 import java.util.HashMap;
@@ -51,9 +51,7 @@ public class PassageiroMock {
                 "caroneiro.mss@caronae.com.br", "83999996666", "admin1", "111111111");
 
         Passageiro passageiro = new Passageiro(pessoa);
-        passageiros.put(pessoa.getMatricula(), passageiro);
-
-        passageiro = new Passageiro(pessoa);
+        passageiro.addHorario(new Horario(Horario.Dia.SEG, "07:00"));
         passageiros.put(pessoa.getMatricula(), passageiro);
     }
 }

@@ -13,6 +13,8 @@ import model.motoristaModel.Motorista;
 import model.notificacaoModel.GerenciadorDeNotificacoes;
 import model.notificacaoModel.Notificacao;
 import model.notificacaoModel.NotificacaoPedidoCarona;
+import model.passageiroModel.GerenciadorDePassageiros;
+import model.passageiroModel.Passageiro;
 import model.pessoaModel.GerenciadorDePessoas;
 import model.pessoaModel.Pessoa;
 import model.sessaoModel.SessaoValidador;
@@ -33,6 +35,7 @@ public class CaronaController extends Controller {
 	
 	private GerenciadorDeCaronas gerenciadorDeCaronas;
     private GerenciadorDeMotoristas gerenciadorDeMotoristas;
+    private GerenciadorDePassageiros gerenciadorDePassageiros;
     private GerenciadorDePessoas gerenciadorDePessoas;
     private SessaoValidador sessaoValidador;
     private HorarioValidador horarioValidador = new HorarioValidador();
@@ -42,6 +45,7 @@ public class CaronaController extends Controller {
     public CaronaController(){
         gerenciadorDeCaronas = GerenciadorDeCaronas.getGerenciador();
         gerenciadorDeMotoristas = GerenciadorDeMotoristas.getGerenciador();
+        gerenciadorDePassageiros = GerenciadorDePassageiros.getGerenciador();
         gerenciadorDePessoas = GerenciadorDePessoas.getGerenciador();
         gerenciadorDeNotificacoes = GerenciadorDeNotificacoes.getGerenciador();
         sessaoValidador = new SessaoValidador();
@@ -120,25 +124,29 @@ public class CaronaController extends Controller {
 		return ok(Json.toJson(horario));
     }
 
-    /**
-     * Adiciona um passageiro a Carona
-     * @return Um JSON com as informações da carona
-     */
-    public Result modificarCarona(String id) {
+    public Result addPassageiro(String idCarona) {
         JsonNode request = request().body().asJson();
 
-        String idPassageiro  = Utils.getAtributo("passageiro", request);
-        String idMotorista = Utils.getAtributo("motorista", request);
-        String idCarona = id;
+        String passageiroID = Utils.getAtributo("matricula", request.get("de"));
+        String notificacaoID = Utils.getAtributo("idNotificacao", request);
 
-        Pessoa de = gerenciadorDePessoas.getPessoa(idPassageiro);
-        Pessoa para = gerenciadorDePessoas.getPessoa(idMotorista);
+        Passageiro passageiro = gerenciadorDePassageiros.getPassageiro(passageiroID);
         Carona carona = gerenciadorDeCaronas.getCarona(idCarona);
 
-        NotificacaoPedidoCarona notificacaoPedido = new NotificacaoPedidoCarona(de, para, new Date().getTime(), Notificacao.ParaTipo.MOTORISTA, carona);
-        gerenciadorDeNotificacoes.addNotificacao(notificacaoPedido);
+        Set<Passageiro> passageiros = carona.getPassageiros();
+        passageiros.add(passageiro);
+        carona.setPassageiros(passageiros);
 
-        return ok(Json.toJson(notificacaoPedido));
+        NotificacaoPedidoCarona notificacaoPedido = (NotificacaoPedidoCarona)gerenciadorDeNotificacoes.getNotificacao(notificacaoID);
+        notificacaoPedido.accept();
+
+        Pessoa de = gerenciadorDePessoas.getPessoa(carona.getMotorista().getMatricula());
+        Pessoa para = gerenciadorDePessoas.getPessoa(passageiroID);
+
+        Notificacao notificacao = new Notificacao(de, para, "Aceitou o pedido", new Date().getTime(), Notificacao.ParaTipo.PASSAGEIRO);
+        gerenciadorDeNotificacoes.addNotificacao(notificacao);
+
+        return ok(Json.toJson(carona));
     }
 
 

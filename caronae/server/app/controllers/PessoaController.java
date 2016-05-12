@@ -93,7 +93,7 @@ public class PessoaController extends Controller {
         String senha = Utils.getAtributo("password", request);
         String nome = Utils.getAtributo("name", request);
 	    String email = Utils.getAtributo("email", request);
-	    String telefone = Utils.getAtributo("phone", request);
+	    String telefone = Utils.getAtributo("telefone", request);
 	    String bairro = Utils.getAtributo("bairro", request);
 	    String rua = Utils.getAtributo("rua", request);
 	    String num = Utils.getAtributo("num", request);

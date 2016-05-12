@@ -31,10 +31,13 @@ POST    /app/motoristas                      controllers.MotoristaController.add
 GET     /app/motorista/:id/caronas          controllers.CaronaController.getCaronasMotorista(id: String)
 POST    /app/carona/:id                     controllers.CaronaController.addCarona(id: String)
 GET     /app/caronas                        controllers.CaronaController.getCaronas(bairroOrigem: String, bairroDestino: String, dia: String, hora: String)
-PUT     /app/carona/:id/passageiros         controllers.CaronaController.modificarCarona(id: String)
+POST     /app/carona/:idCarona/notificacoes controllers.NotificacaoController.fazerPedido(idCarona: String)
+PUT     /app/carona/:idCarona/passageiros   controllers.CaronaController.addPassageiro(idCarona: String)
 
 #Routes used for Notificacoes
 GET /app/motoristas/:id/notificacoes    controllers.NotificacaoController.getMotoristaNotificacoes(id: String, start: Long ?= 0, end: Long ?= -1, reverse: Boolean ?= true, limite: Integer ?= 10)
+GET /app/passageiros/:id/notificacoes   controllers.NotificacaoController.getPassageiroNotificacoes(id: String, start: Long ?= 0, end: Long ?= -1, reverse: Boolean ?= true, limite: Integer ?= 10)
+PUT /app/notificacoes/:idNotificacao/reject controllers.NotificacaoController.rejectPedido(idNotificacao: String)
 
 POST    /app/login              controllers.PessoaController.login()
 GET     /app/logged             controllers.PessoaController.getUsuarioLogado()

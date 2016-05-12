@@ -4,13 +4,13 @@
 	<div class="row notificacao" ng-repeat="notification in notifications">
 	  <a href="#/notificacoes" ng-click="teste('Notificacao')" class="list-group-item {{notification.status}}">
 		<div class="picture pull-left col-xs-2 col-sm-1">
-		  <img src="{{notification.imageURL}}" class="img-responsive">
+		  <img src="{{imageURL}}" class="img-responsive">
 		</div>
 		<div class="message pull-left col-xs-10 col-sm-11">
 		  <p><b>{{notification.de.nome}} </b>{{notification.razao}}</p>
 		  <div ng-if="notification.carona">
 			  <p><b>Para: </b> {{notification.carona.destino.rua}}, {{notification.carona.destino.bairro}}</br><b>Quando: </b>{{notification.carona.horario.dia}} {{notification.carona.horario.hora}}
-			<p ng-if="!notification.waiting && !notification.rejected">
+			<p ng-if="notification.accepted">
 				<b>Telefone: </b> {{notification.de.telefone}}
 			</p>
 		  </div>

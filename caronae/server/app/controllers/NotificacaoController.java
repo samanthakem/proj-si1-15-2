@@ -1,12 +1,19 @@
 package controllers;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import model.caronaModel.Carona;
+import model.caronaModel.GerenciadorDeCaronas;
 import model.notificacaoModel.GerenciadorDeNotificacoes;
 import model.notificacaoModel.Notificacao;
 import model.notificacaoModel.Notificacao.ParaTipo;
+import model.notificacaoModel.NotificacaoPedidoCarona;
+import model.pessoaModel.GerenciadorDePessoas;
+import model.pessoaModel.Pessoa;
 import model.sessaoModel.SessaoValidador;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
+import util.Utils;
 
 import java.util.Date;
 import java.util.List;
@@ -17,6 +24,8 @@ import java.util.List;
  */
 public class NotificacaoController extends Controller {
     private GerenciadorDeNotificacoes gerenciadorDeNotificacoes = GerenciadorDeNotificacoes.getGerenciador();
+    private GerenciadorDePessoas gerenciadorDePessoas = GerenciadorDePessoas.getGerenciador();
+    private GerenciadorDeCaronas gerenciadorDeCaronas = GerenciadorDeCaronas.getGerenciador();
     private SessaoValidador sessaoValidador = new SessaoValidador(); //Vai ser usado pra verificar que o usuário logado pode recuperar Notificacoes
 
     /**
@@ -49,5 +58,45 @@ public class NotificacaoController extends Controller {
         List<Notificacao> notificacoes = gerenciadorDeNotificacoes.getNotificacoes(matricula, start, end, limite, reverse, tipo);
 //q
         return ok(Json.toJson(notificacoes));
+    }
+
+    /**
+     * Adiciona um passageiro a Carona
+     * @param idCarona O id da carona que sera feito o pedido
+     * @return Um JSON com as informações da carona
+     */
+    public Result fazerPedido(String idCarona) {
+        JsonNode request = request().body().asJson();
+
+        String idPassageiro  = Utils.getAtributo("passageiro", request);
+        String idMotorista = Utils.getAtributo("motorista", request);
+
+        System.out.println(idPassageiro + idMotorista);
+
+        Pessoa de = gerenciadorDePessoas.getPessoa(idPassageiro);
+        Pessoa para = gerenciadorDePessoas.getPessoa(idMotorista);
+        Carona carona = gerenciadorDeCaronas.getCarona(idCarona);
+
+        NotificacaoPedidoCarona notificacaoPedido = new NotificacaoPedidoCarona(de, para, new Date().getTime(), Notificacao.ParaTipo.MOTORISTA, carona);
+        gerenciadorDeNotificacoes.addNotificacao(notificacaoPedido);
+
+        return ok(Json.toJson(notificacaoPedido));
+    }
+
+    /**
+     * Rejeita um Pedido de carona
+     * @param idNotificacao a notificação do pedido de carona
+     * @return a notificação atualizada
+     */
+    public Result rejectPedido(String idNotificacao) {
+        NotificacaoPedidoCarona notificacaoPedido = (NotificacaoPedidoCarona) gerenciadorDeNotificacoes.getNotificacao(idNotificacao);
+        notificacaoPedido.reject();
+
+        Notificacao notificacao = new Notificacao(notificacaoPedido.getPara(),
+                                                  notificacaoPedido.getDe(), "rejeitou o pedido",
+                                                  new Date().getTime(), ParaTipo.PASSAGEIRO);
+        gerenciadorDeNotificacoes.addNotificacao(notificacao);
+
+        return ok(Json.toJson(notificacao));
     }
 }

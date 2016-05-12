@@ -34,7 +34,7 @@
 	  </div>
 	</div>
 	<div class="list-group">
-	<div class="row notificacao" ng-repeat="carona in caronas" ng-if="carona.motorista.pessoa.matricula == user.matricula">
+	<div class="row notificacao" ng-repeat="carona in caronas" ng-if="carona.motorista.pessoa.matricula != user.matricula">
 	  <a href="#/pedir" class="list-group-item {{carona.status}}">
 		<div class="picture pull-left col-xs-2 col-sm-1">
 		  <img ng-src="{{imageURL}}" class="img-responsive">
