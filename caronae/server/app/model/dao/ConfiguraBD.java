@@ -9,7 +9,7 @@ import java.sql.Statement;
 public class ConfiguraBD {
 
     private static Statement declaracao = null;
-    private static java.sql.Connection conexao = null;
+    private static java.sql.Connection conexao;
 
     public static void main( String args[] ) throws SQLException {
 
@@ -17,7 +17,7 @@ public class ConfiguraBD {
         declaracao = conexao.createStatement();
 
         // Drop tables
-        dropTables();
+        //dropTables();
 
         // Create tables
         createTables();
@@ -32,10 +32,11 @@ public class ConfiguraBD {
         declaracao.executeUpdate(ScriptSQL.getCreatePessoa());
         declaracao.executeUpdate(ScriptSQL.getCreatePassageiro());
         declaracao.executeUpdate(ScriptSQL.getCreateMotorista());
-        declaracao.executeUpdate(ScriptSQL.getCreateCarona());
-        declaracao.executeUpdate(ScriptSQL.getCreateNotificacao());
         declaracao.executeUpdate(ScriptSQL.getCreateEndereco());
         declaracao.executeUpdate(ScriptSQL.getCreateHorario());
+        declaracao.executeUpdate(ScriptSQL.getCreateCarona());
+        declaracao.executeUpdate(ScriptSQL.getCreateNotificacao());
+
     }
 
     private static void dropTables() throws SQLException {

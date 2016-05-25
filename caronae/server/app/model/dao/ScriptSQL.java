@@ -53,10 +53,10 @@ public class ScriptSQL {
         sqlBuilder.append("CREATE TABLE Carona (" );
         sqlBuilder.append("ID_Carona\tSERIAL\tPRIMARY KEY, ");
         sqlBuilder.append("Motorista_Associado\tINT\treferences Motorista(ID_Motorista), ");
-        sqlBuilder.append("Qtd_Vagas_Disponiveis\tINT\tNOT NULL, ");
         sqlBuilder.append("Endereco_Inicio\tINT\treferences Endereco(ID_Endereco), ");
         sqlBuilder.append("Endereco_Destino\tINT\treferences Endereco(ID_Endereco), ");
-        sqlBuilder.append("Horario_Carona\tINT\treferences Horario(ID_Horario)");
+        sqlBuilder.append("Horario_Carona\tINT\treferences Horario(ID_Horario), ");
+        sqlBuilder.append("Qtd_Vagas_Disponiveis\tINT\tNOT NULL");
         // passageiros
         sqlBuilder.append(")");
 
@@ -72,7 +72,7 @@ public class ScriptSQL {
         sqlBuilder.append("Razao_Notificacao\tCHAR(32)\tNOT NULL, ");
         sqlBuilder.append("Pessoa_Que_Envia\t\tINT\t\t\treferences Pessoa(ID_Pessoa), ");
         sqlBuilder.append("Pessoa_Que_Recebe\t\tINT\t\t\treferences Pessoa(ID_Pessoa), ");
-        sqlBuilder.append("Timestemp_Notificacao\tLONG\tNOT NULL");
+        sqlBuilder.append("Timestemp_Notificacao\tINT\tNOT NULL");
 
         // ParaTipo paraTipo;
         sqlBuilder.append(")");
