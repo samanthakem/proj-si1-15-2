@@ -13,6 +13,8 @@ public class Motorista {
 
     private int quantidadeVagasCarro;
 
+    private int id;
+
     /**
      * Construtor padrão.
      */
@@ -52,6 +54,15 @@ public class Motorista {
      */
     public void setPessoa(Pessoa pessoa) {
     	this.pessoa = pessoa;
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**

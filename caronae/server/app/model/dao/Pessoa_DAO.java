@@ -51,6 +51,7 @@ public class Pessoa_DAO {
             pessoaResp.setTelefone(resultado.getString("Telefone_Pessoa"));
             pessoaResp.setSenha(resultado.getString("Senha_Pessoa"));
             pessoaResp.setMatricula(resultado.getString("Matricula_Pessoa"));
+            pessoaResp.setId(resultado.getInt("ID_Pessoa"));
 
             declaracao.close();
             conexao.close();
