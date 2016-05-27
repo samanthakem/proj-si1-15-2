@@ -1,7 +1,10 @@
 package model.dao;
 
+import model.Endereco;
 import model.dao.exceptions.RequisicaoInvalidaBD;
+import model.motoristaModel.GerenciadorDeMotoristas;
 import model.motoristaModel.Motorista;
+import model.pessoaModel.GerenciadorDePessoas;
 import model.pessoaModel.Pessoa;
 
 import java.sql.ResultSet;
@@ -16,7 +19,6 @@ public class Motorista_DAO {
     private static java.sql.Connection conexao = null;
     private static Statement declaracao = null;
     private static String strSql;
-
 
     // Para persistir o motorista, primeiro se faz um Pessoa_DAO.getPessoa("matriculaDaPessoa")
     public static void persistirMotorista(Motorista motorista) throws RequisicaoInvalidaBD {
@@ -73,6 +75,15 @@ public class Motorista_DAO {
             RequisicaoInvalidaBD exception = new RequisicaoInvalidaBD(e.getMessage());
             exception.setStackTrace(e.getStackTrace());
             throw exception;
+        }
+    }
+
+    public static boolean existeMotorista(String matricula) {
+        Motorista moto = getMotorista(matricula);
+        if(moto != null) {
+            return true;
+        } else {
+            return false;
         }
     }
 }

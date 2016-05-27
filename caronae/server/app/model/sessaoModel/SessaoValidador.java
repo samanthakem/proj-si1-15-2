@@ -17,8 +17,6 @@ import static play.mvc.Controller.session;
 public class SessaoValidador {
     GerenciadorDePessoas gerenciadorDePessoas;
 
-
-
     public SessaoValidador() {
         gerenciadorDePessoas =  GerenciadorDePessoas.getGerenciador();
     }
@@ -34,7 +32,7 @@ public class SessaoValidador {
 
         Pessoa pessoa = gerenciadorDePessoas.getPessoa(matricula);
 
-        if( pessoa.getSenha().compareTo(password) != 0 ) {
+        if( pessoa.getSenha().trim().compareTo(password.trim()) != 0 ) {
             throw new HttpException(400, "The password is wrong");
         }
 
