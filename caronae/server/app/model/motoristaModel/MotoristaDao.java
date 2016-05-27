@@ -4,6 +4,7 @@ import exceptions.DAOErroMensagem;
 import exceptions.DAOException;
 import exceptions.DAOParameterErrors;
 import exceptions.HttpException;
+import model.dao.Motorista_DAO;
 
 /**
  * Created by aline on 18/04/2016.
@@ -27,7 +28,8 @@ public class MotoristaDao {
     public Motorista getMotorista(String matricula) {
         Motorista motorista = null;
         try {
-            motorista = motoristaMock.get(matricula);
+            //motorista = motoristaMock.get(matricula);
+            motorista = Motorista_DAO.getMotorista(matricula);
         } catch (HttpException ex) {
             throw new DAOException(DAOErroMensagem.CONSULTA_ID_NAO_ENCONTRADO, ex)
                     .addParametroParaMensagem(DAOParameterErrors.NOME_ARRAY, "Lista de Motoristas")
@@ -42,7 +44,8 @@ public class MotoristaDao {
      */
     public void persistirMotorista(Motorista motorista) {
         try {
-            motoristaMock.add(motorista);
+            //motoristaMock.add(motorista);
+            Motorista_DAO.persistirMotorista(motorista);
         } catch (HttpException ex) {
             throw new DAOException(DAOErroMensagem.SALVAR_ENTIDADE_JA_EXISTENTE, ex)
                     .addParametroParaMensagem(DAOParameterErrors.ID_DA_ENTIDADE, motorista.getMatricula());
@@ -55,7 +58,9 @@ public class MotoristaDao {
      * @return true se encontra, caso contrário false
      */
     public boolean existeMotorista(String matricula) {
-        return motoristaMock.existeMotorista(matricula);
+
+        //return motoristaMock.existeMotorista(matricula);
+        return  Motorista_DAO.existeMotorista(matricula);
     }
     
     

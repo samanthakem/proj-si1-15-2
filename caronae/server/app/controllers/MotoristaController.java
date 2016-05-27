@@ -32,7 +32,7 @@ public class MotoristaController extends Controller {
     public Result addMotorista(){
         JsonNode request = request().body().asJson();
 
-        String matricula = Utils.getAtributo("matricula", request);
+        String matricula = Utils.getAtributo("studentId", request);
         String vagas = Utils.getAtributo("vagas", request);
 
         Pessoa pessoa = gerenciadorDePessoas.getPessoa(matricula);

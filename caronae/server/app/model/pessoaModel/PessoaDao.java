@@ -4,6 +4,7 @@ import exceptions.DAOErroMensagem;
 import exceptions.DAOException;
 import exceptions.DAOParameterErrors;
 import exceptions.HttpException;
+import model.dao.Pessoa_DAO;
 
 /**
  * @author Gustavo Oliveira, Samantha Monteiro, Rafaella
@@ -29,7 +30,8 @@ public class PessoaDao {
 	public Pessoa getPessoa(String matricula) {
 		Pessoa pessoa;
 		try {
-			pessoa = pessoaMock.get(matricula);
+			//pessoa = pessoaMock.get(matricula);
+			pessoa = Pessoa_DAO.getPessoa(matricula);
 		} catch (HttpException ex) {
 			throw new DAOException(DAOErroMensagem.CONSULTA_ID_NAO_ENCONTRADO,
 					ex).addParametroParaMensagem(DAOParameterErrors.NOME_ARRAY,
@@ -46,7 +48,8 @@ public class PessoaDao {
 	 */
 	public void persistirPessoa(Pessoa pessoa) {
 		try {
-			pessoaMock.add(pessoa);
+			//pessoaMock.add(pessoa);
+			Pessoa_DAO.persistirPessoa(pessoa);
 		} catch (HttpException ex) {
 			throw new DAOException(
 					DAOErroMensagem.SALVAR_ENTIDADE_JA_EXISTENTE, ex)

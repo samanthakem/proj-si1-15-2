@@ -26,6 +26,8 @@ public class Notificacao extends Model {
 
     private ParaTipo paraTipo;
 
+    private int id;
+
     public Notificacao() {}
 
     /**
@@ -77,6 +79,14 @@ public class Notificacao extends Model {
      */
     public Pessoa getPara() {
         return this.para;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**

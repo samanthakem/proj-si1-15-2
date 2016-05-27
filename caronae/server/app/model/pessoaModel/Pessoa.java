@@ -25,6 +25,8 @@ public class Pessoa extends Model {
     
     private Endereco endereco;
 
+    private int id;
+
     /**
      * Construtor padrão.
      */
@@ -62,6 +64,15 @@ public class Pessoa extends Model {
      */
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
