@@ -1,5 +1,8 @@
 package model.pessoaModel;
 
+import javax.persistence.*;
+
+import com.avaje.ebean.Model;
 import com.fasterxml.jackson.databind.JsonNode;
 import model.Endereco;
 import play.libs.Json;
@@ -7,7 +10,8 @@ import play.libs.Json;
 /**
  * Created by stenio on 4/3/2016.
  */
-public class Pessoa {
+@Entity
+public class Pessoa extends Model {
 
     private String nome;
     

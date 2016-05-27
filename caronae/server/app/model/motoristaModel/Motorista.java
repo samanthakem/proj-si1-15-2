@@ -1,5 +1,7 @@
 package model.motoristaModel;
 
+import javax.persistence.*;
+import com.avaje.ebean.Model;
 import com.fasterxml.jackson.databind.JsonNode;
 import model.pessoaModel.Pessoa;
 import play.libs.Json;
@@ -7,7 +9,8 @@ import play.libs.Json;
 /**
  * Stenio, Samantha, Aline
  */
-public class Motorista {
+@Entity
+public class Motorista extends Model {
 
     private Pessoa pessoa;
 

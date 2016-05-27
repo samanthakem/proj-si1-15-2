@@ -1,18 +1,20 @@
 package model.passageiroModel;
 
+import com.avaje.ebean.Model;
 import com.fasterxml.jackson.databind.JsonNode;
 import exceptions.HttpException;
 import model.Horario;
 import model.pessoaModel.Pessoa;
 import play.libs.Json;
-
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author Stenio Araujo, Samantha Monteiro
  */
-public class Passageiro {
+@Entity
+public class Passageiro extends Model {
 	
     private Pessoa pessoa;
     
