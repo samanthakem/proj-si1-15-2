@@ -62,4 +62,32 @@ public class Pessoa_DAO {
             throw exception;
         }
     }
+
+    public static Pessoa getPessoa(int idPessoa) throws RequisicaoInvalidaBD {
+        try {
+            ResultSet resultado;
+            conexao = model.dao.Connection.getConnection();
+            declaracao = conexao.createStatement();
+            strSql = "SELECT * FROM Pessoa c WHERE c.Id_Pessoa='" + idPessoa + "';";
+            resultado = declaracao.executeQuery(strSql);
+
+            Pessoa pessoaResp = new Pessoa();
+
+            resultado.next();
+            pessoaResp.setNome(resultado.getString("Nome_Pessoa"));
+            pessoaResp.setEmail(resultado.getString("Email_Pessoa"));
+            pessoaResp.setTelefone(resultado.getString("Telefone_Pessoa"));
+            pessoaResp.setSenha(resultado.getString("Senha_Pessoa"));
+            pessoaResp.setMatricula(resultado.getString("Matricula_Pessoa"));
+            pessoaResp.setId(resultado.getInt("ID_Pessoa"));
+
+            declaracao.close();
+            conexao.close();
+            return pessoaResp;
+        } catch (Exception e) {
+            RequisicaoInvalidaBD exception = new RequisicaoInvalidaBD(e.getMessage());
+            exception.setStackTrace(e.getStackTrace());
+            throw exception;
+        }
+    }
 }
