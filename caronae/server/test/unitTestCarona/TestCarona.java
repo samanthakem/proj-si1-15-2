@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import model.Endereco;
 import model.Horario;
 import model.caronaModel.Carona;
+import model.motoristaModel.Motorista;
+import model.pessoaModel.Pessoa;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,42 +17,31 @@ import org.junit.Test;
  */
 
 public class TestCarona {
-	Carona carona1, carona2;
+	Carona carona1;
 	Endereco endereco1, endereco2;
 	Horario horario1, horario2; 
+	Pessoa pessoa1;
+	Motorista motorista1;
 	//criar e setar ids de carona e motorista
 	
 	@Before
 	public void setUp() throws Exception {
 		endereco1 = new Endereco("44", "Rua dos Facheiros", "Malvinas");
 		endereco2 = new Endereco("sn", "Avenida Aprígio Veloso", "Bodocongó");
-		carona1 = new Carona();
-		carona2 = new Carona("1", "1", endereco1, endereco2, horario1);
+		pessoa1 = new Pessoa("Mariana", endereco1, "mariana@ccc.ufcg.edu.br", "33332222", "1234", "111111222");
+		motorista1 = new Motorista(pessoa1, 4);
+		carona1 = new Carona(motorista1, endereco1, endereco2, horario1, 4);
 		
 	}
 
 	@Test
 	public void testCarona() {
-		carona1.setPontoInicial(endereco2);
-		carona1.setDestino(endereco2);
-		carona1.setHorario(horario2);
-		
-		assertEquals(endereco1, carona2.getPontoInicial());
-		assertEquals(endereco2, carona2.getDestino());
-		assertEquals(endereco2, carona1.getPontoInicial());
+				
 		assertEquals(endereco1, carona1.getPontoInicial());
+		assertEquals(endereco2, carona1.getDestino());
 	}
-	
-	//testar get e set id de passageiros (List)
-	
-	//testar get e set id de motoristas
-	
-	//testar get e set id (de quem??)
-	
-	//testar get e set Horario
 	
 	//testar get qtdade de vagas no carro
 	
-	//testar toJson (?)
 
 }

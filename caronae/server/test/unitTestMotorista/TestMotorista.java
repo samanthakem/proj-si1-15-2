@@ -38,13 +38,13 @@ public class TestMotorista {
 	public void testMotorista() {
 		assertEquals("111111222", motorista2.getMatricula());
 		
-		motorista2.setMatricula("114210448"); //modificando motorista4
+		pessoa1.setMatricula("114210448"); 
 		
 		assertEquals("114210448", motorista2.getMatricula());
 		assertEquals(4, motorista2.getQuantidadeVagasCarro());
 		
 		motorista1.setQuantidadeVagasCarro(2); //setando novos atributos pra motorista1
-		motorista1.setMatricula("111222333");
+		pessoa1.setMatricula("111222333");
 		
 		assertEquals(2, motorista1.getQuantidadeVagasCarro());
 		assertEquals("111222333", motorista1.getMatricula());
@@ -61,9 +61,6 @@ public class TestMotorista {
 		assertEquals(pessoa1.getNome(), motorista2.getPessoa().getNome());
 	}
 	
-	//testar equals
-	
-	//testar toJson
 	
 	//testar idCarona
 
