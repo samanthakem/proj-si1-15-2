@@ -110,4 +110,8 @@ public class CaronaMock {
 
         return caronas;
     }
+    
+    public boolean existeCarona(String nome){
+    	return caronas.containsKey(nome);
+    }
 }

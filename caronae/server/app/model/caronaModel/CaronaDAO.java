@@ -68,5 +68,9 @@ public class CaronaDAO {
 	public Set<Carona> getCaronas(String bairroOrigem, String bairroDestino, Horario horario) {
 		return caronaMock.getCaronas(bairroOrigem, bairroDestino, horario);
 	}
+	
+	public boolean existeCarona(String nome){
+		return caronaMock.existeCarona(nome);
+	}
 
 }

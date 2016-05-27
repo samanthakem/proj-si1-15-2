@@ -34,7 +34,7 @@ public class TestCaronaDao {
 	
 	@Test
 	public void testPersistirCarona() {
-		
+		assertFalse(carona1.existeCarona("João José Joaquim"));
 	}
 	
 	@Test
