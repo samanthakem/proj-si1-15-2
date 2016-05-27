@@ -22,7 +22,6 @@ public class TestCarona {
 	Horario horario1, horario2; 
 	Pessoa pessoa1;
 	Motorista motorista1;
-	//criar e setar ids de carona e motorista
 	
 	@Before
 	public void setUp() throws Exception {
@@ -39,9 +38,12 @@ public class TestCarona {
 				
 		assertEquals(endereco1, carona1.getPontoInicial());
 		assertEquals(endereco2, carona1.getDestino());
+		assertEquals(pessoa1, motorista1.getPessoa());
+		pessoa1.setMatricula("111111111");
+		assertEquals(pessoa1.getMatricula(), motorista1.getMatricula());
+		motorista1.setQuantidadeVagasCarro(1);
+		assertEquals(1, motorista1.getQuantidadeVagasCarro());
 	}
-	
-	//testar get qtdade de vagas no carro
 	
 
 }
