@@ -118,7 +118,8 @@ public class PessoaController extends Controller {
         }
 
         if (Boolean.parseBoolean(motorista)) {
-            Motorista m = new Motorista(pessoa, Integer.parseInt(vagas));
+            Pessoa pessoa1 = gerenciadorDePessoas.getPessoa(matricula);
+            Motorista m = new Motorista(pessoa1, Integer.parseInt(vagas));
             gerenciadorDeMotoristas.addMotorista(m);
         }
 

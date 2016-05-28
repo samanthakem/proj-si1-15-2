@@ -1,13 +1,16 @@
 package model.notificacaoModel;
 
+import com.avaje.ebean.Model;
 import com.fasterxml.jackson.databind.JsonNode;
 import model.pessoaModel.Pessoa;
 import play.libs.Json;
+import javax.persistence.*;
 
 /**
  * Created by stenio on 4/18/2016.
  */
-public class Notificacao {
+@Entity
+public class Notificacao extends Model {
 
     public enum ParaTipo {
         MOTORISTA, PASSAGEIRO;
@@ -22,6 +25,8 @@ public class Notificacao {
     private long timestamp;
 
     private ParaTipo paraTipo;
+
+    private int id;
 
     public Notificacao() {}
 
@@ -74,6 +79,14 @@ public class Notificacao {
      */
     public Pessoa getPara() {
         return this.para;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**

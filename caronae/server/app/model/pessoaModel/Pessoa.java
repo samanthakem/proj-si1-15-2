@@ -1,5 +1,8 @@
 package model.pessoaModel;
 
+import javax.persistence.*;
+
+import com.avaje.ebean.Model;
 import com.fasterxml.jackson.databind.JsonNode;
 import model.Endereco;
 import play.libs.Json;
@@ -7,7 +10,8 @@ import play.libs.Json;
 /**
  * Created by stenio on 4/3/2016.
  */
-public class Pessoa {
+@Entity
+public class Pessoa extends Model {
 
     private String nome;
     
@@ -20,6 +24,8 @@ public class Pessoa {
     private String matricula;
     
     private Endereco endereco;
+
+    private int id;
 
     /**
      * Construtor padrão.
@@ -58,6 +64,15 @@ public class Pessoa {
      */
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**

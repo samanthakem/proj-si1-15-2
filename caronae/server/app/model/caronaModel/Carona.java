@@ -1,23 +1,21 @@
 package model.caronaModel;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import model.Endereco;
 import model.Horario;
 import model.motoristaModel.Motorista;
 import model.passageiroModel.Passageiro;
-import play.data.validation.Constraints;
-import play.libs.Json;
-
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
+import javax.persistence.*;
+import com.avaje.ebean.Model;
 
 /**
  * @author Samantha Monteiro, Gustavo Oliveira
  */
-public class Carona {
+@Entity
+public class Carona extends Model {
 
+	@Id
 	private String idCarona;
 
 	private Set<Passageiro> passageiros;
