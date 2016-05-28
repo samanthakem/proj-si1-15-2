@@ -1,8 +1,11 @@
 package model.caronaModel;
 
+import controllers.PessoaController;
 import exceptions.HttpException;
 import model.Endereco;
 import model.Horario;
+import model.dao.Motorista_DAO;
+import model.dao.Passageiro_DAO;
 import model.motoristaModel.Motorista;
 import model.passageiroModel.Passageiro;
 import model.pessoaModel.Pessoa;
