@@ -48,6 +48,9 @@ public class TestMotorista {
 		
 		assertEquals(2, motorista1.getQuantidadeVagasCarro());
 		assertEquals("111222333", motorista1.getMatricula());
+		
+		motorista1.setQuantidadeVagasCarro(-2);
+		assertEquals(0, motorista1.getQuantidadeVagasCarro());
 	}
 	
 	@Test
@@ -60,8 +63,4 @@ public class TestMotorista {
 		assertEquals(motorista2.getMatricula(), pessoa1.getMatricula());
 		assertEquals(pessoa1.getNome(), motorista2.getPessoa().getNome());
 	}
-	
-	
-	//testar idCarona
-
 }

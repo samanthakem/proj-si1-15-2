@@ -67,6 +67,9 @@ public class Motorista {
      * @param quantidadeVagasCarro a nova quantidade de vagas no carro do Motorista
      */
     public void setQuantidadeVagasCarro(int quantidadeVagasCarro) {
+    	if (quantidadeVagasCarro < 0) {
+    		this.quantidadeVagasCarro = 0;
+    	}
         this.quantidadeVagasCarro = quantidadeVagasCarro;
     }
     

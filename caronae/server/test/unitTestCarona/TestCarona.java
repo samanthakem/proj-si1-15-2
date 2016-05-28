@@ -43,6 +43,8 @@ public class TestCarona {
 		assertEquals(pessoa1.getMatricula(), motorista1.getMatricula());
 		motorista1.setQuantidadeVagasCarro(1);
 		assertEquals(1, motorista1.getQuantidadeVagasCarro());
+		motorista1.setQuantidadeVagasCarro(-1);
+		assertEquals(0, motorista1.getQuantidadeVagasCarro());
 	}
 	
 

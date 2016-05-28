@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @author Samantha Monteiro, Gustavo Oliveira
+ * @author Samantha Monteiro, Gustavo Oliveira, Rafaella Chaves
  */
 public class CaronaMock {
 	private static CaronaMock mock;

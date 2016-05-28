@@ -90,6 +90,9 @@ public class Carona {
 	}
 
 	public void setQntVagasDisponiveis(int qntVagasDisponiveis) {
+		if (qntVagasDisponiveis < 0) {
+			this.qntVagasDisponiveis = 0;
+		}
 		this.qntVagasDisponiveis = qntVagasDisponiveis;
 	}
 
