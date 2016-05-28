@@ -22,6 +22,8 @@ public class Passageiro extends Model {
 
     private List<Horario> horarios;
 
+    private int id;
+
     /**
      * Construtor padrão
      */
@@ -51,7 +53,15 @@ public class Passageiro extends Model {
     public String getIdCarona() {
     	return idCarona;
     }
-    
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
 	public boolean equals(Object objeto) {
 		if (this == objeto) {
@@ -80,6 +90,10 @@ public class Passageiro extends Model {
      */
     public Pessoa getPessoa() {
         return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
     /**

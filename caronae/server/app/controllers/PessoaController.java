@@ -113,7 +113,8 @@ public class PessoaController extends Controller {
         gerenciadorDePessoas.addPessoa(pessoa);
 
         if(Boolean.parseBoolean(passageiro)) {
-            Passageiro p = new Passageiro(pessoa);
+            Pessoa pessoa1 = gerenciadorDePessoas.getPessoa(matricula);
+            Passageiro p = new Passageiro(pessoa1);
             gerenciadorDePassageiros.addPassageiro(p);
         }
 
